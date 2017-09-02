@@ -1,7 +1,6 @@
 package org.amoustakos.boilerplate.injection.module;
 
 import android.app.Activity;
-import android.content.Context;
 
 import org.amoustakos.boilerplate.injection.ActivityContext;
 
@@ -18,15 +17,7 @@ public class ActivityModule {
 
     @Provides
     @ActivityContext
-    Context providesContext() {
-        return mActivity;
-    }
-
-    /*
-     * Activities
-     */
-    @Provides
-    Activity provideActivity() {
+    Activity providesContext() {
         return mActivity;
     }
 

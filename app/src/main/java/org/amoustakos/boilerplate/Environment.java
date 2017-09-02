@@ -31,20 +31,19 @@ public class Environment {
      * Init methods
      */
     void init(){
-//        initPrefs();
+        initPrefs();
         initLog();
         initRealm();
         initFonts();
     }
 
-//    private void initPrefs(){
-//        PreferencesUtil.init(context);
-//    }
+    private void initPrefs(){}
 
     private void initLog(){
         if (BuildConfig.DEBUG)
             Timber.plant(new Timber.DebugTree());
     }
+
     private void initFonts(){
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("ubuntu/Ubuntu-condensed.ttf")
@@ -52,6 +51,7 @@ public class Environment {
                 .build()
         );
     }
+
     private void initRealm(){
         Realm.init(context.get());
         RealmConfiguration realmConfig = new RealmConfiguration

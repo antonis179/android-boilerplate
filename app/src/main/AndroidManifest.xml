@@ -1,6 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.amoustakos.boilerplate">
 
+
+	<!-- Permissions -->
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+
+
+
 	<application
 		android:name=".BoilerplateApplication"
 		android:allowBackup="true"

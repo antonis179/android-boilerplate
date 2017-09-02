@@ -8,9 +8,6 @@ import org.amoustakos.boilerplate.injection.component.ApplicationComponent;
 import org.amoustakos.boilerplate.injection.component.DaggerApplicationComponent;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;
 
-/**
- * Created by antonis on 02/09/2017.
- */
 
 public class BoilerplateApplication extends Application {
 	ApplicationComponent mApplicationComponent;
