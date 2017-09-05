@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.inputmethod.InputMethodManager;
 
-import org.amoustakos.boilerplate.injection.ActivityContext;
+import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext;
 
 
 public final class ViewUtil {

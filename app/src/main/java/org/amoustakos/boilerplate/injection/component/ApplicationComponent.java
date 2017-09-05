@@ -4,17 +4,23 @@ import android.app.Application;
 import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
-import org.amoustakos.boilerplate.injection.ApplicationContext;
+import org.amoustakos.boilerplate.examples.dao.ExampleDao;
+import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;
+import org.amoustakos.boilerplate.injection.module.DBModule;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import io.realm.Realm;
 
 @Singleton
-@Component(modules = ApplicationModule.class)
+@Component(modules = {
+		ApplicationModule.class,
+		DBModule.class
+})
 public interface ApplicationComponent {
-
 
 
     /*
@@ -24,6 +30,19 @@ public interface ApplicationComponent {
     Context context();
     Application application();
     Environment environment();
+
+
+	/*
+	 * DB
+	 */
+	@DefaultRealm Realm realm();
+
+
+
+	/*
+	 * DAOs
+	 */
+	ExampleDao exampleDao();
 
 
 

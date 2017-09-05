@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import org.amoustakos.boilerplate.injection.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 
 public abstract class SharedPreferencesHelper {
 

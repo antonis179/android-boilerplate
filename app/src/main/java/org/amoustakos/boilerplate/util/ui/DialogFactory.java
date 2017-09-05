@@ -6,7 +6,7 @@ import android.content.Context;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 
-import org.amoustakos.boilerplate.injection.ActivityContext;
+import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext;
 
 
 /**

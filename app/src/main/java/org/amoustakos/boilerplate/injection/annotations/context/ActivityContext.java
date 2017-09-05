@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.injection;
+package org.amoustakos.boilerplate.injection.annotations.context;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

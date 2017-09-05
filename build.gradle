@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		realmVersion = '3.1.4'
+		realmVersion = '3.7.0'
 		retrolambda = '3.7.0'
 	}
 
@@ -20,6 +20,7 @@ buildscript {
 
 	}
 }
+
 
 allprojects {
 	repositories {

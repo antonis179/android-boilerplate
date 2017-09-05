@@ -10,7 +10,8 @@ import org.amoustakos.boilerplate.injection.module.ApplicationModule;
 
 
 public class BoilerplateApplication extends Application {
-	ApplicationComponent mApplicationComponent;
+
+	private ApplicationComponent mApplicationComponent;
 
 
     /*
@@ -34,14 +35,24 @@ public class BoilerplateApplication extends Application {
          * logs, db, fonts depend on this.
          */
 		getComponent().environment().init();
+
 	}
 
+
+	/*
+	 * Overrides
+	 */
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		System.gc();
 	}
 
+
+
+	/*
+	 * Getters - Setters
+	 */
 	public static BoilerplateApplication get(Context context) {
 		return (BoilerplateApplication) context.getApplicationContext();
 	}

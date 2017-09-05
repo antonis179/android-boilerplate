@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
-import org.amoustakos.boilerplate.injection.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 
 import javax.inject.Singleton;
 
@@ -55,12 +55,6 @@ public class ApplicationModule {
 //    @Singleton
 //    ApiService provideApiService() {
 //        return ApiService.Creator.newApiService();
-//    }
-
-//    @Provides
-//    @Singleton
-//    RealmManager provideDatabaseHelper() {
-//        return new RealmManager();
 //    }
 
 //    @Provides

@@ -2,7 +2,7 @@ package org.amoustakos.boilerplate;
 
 import android.content.Context;
 
-import org.amoustakos.boilerplate.injection.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 import org.amoustakos.boilerplate.io.db.migrations.base.Migration;
 
 import java.lang.ref.WeakReference;
@@ -60,6 +60,7 @@ public class Environment {
                 .migration(new Migration())
                 .build();
         Realm.setDefaultConfiguration(realmConfig);
+	    Realm.getDefaultInstance().setAutoRefresh(true);
     }
 
 
