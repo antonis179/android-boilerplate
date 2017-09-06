@@ -76,26 +76,40 @@ public final class RealmUtil {
 	}
 
 
-	public static RealmModel getByColumn(@NonNull Realm realm, Class model, String column, String value) {
+	public static RealmModel getOneByColumn(@NonNull Realm realm, Class model, String column, String value) {
+		return realm.where(model).equalTo(column, value).findFirst();
+	}
+
+	public static RealmModel getOneByColumn(@NonNull Realm realm, Class model, String column, int value) {
+		return realm.where(model).equalTo(column, value).findFirst();
+	}
+
+	public static RealmModel getOneByColumn(@NonNull Realm realm, Class model, String column, double value) {
+		return realm.where(model).equalTo(column, value).findFirst();
+	}
+
+	public static RealmModel getOneByColumn(@NonNull Realm realm, Class model, String column, float value) {
 		return realm.where(model).equalTo(column, value).findFirst();
 	}
 
 
-	public static RealmModel getByColumn(@NonNull Realm realm, Class model, String column, int value) {
-		return realm.where(model).equalTo(column, value).findFirst();
+
+
+	public static RealmResults getByColumn(@NonNull Realm realm, Class model, String column, String value) {
+		return realm.where(model).equalTo(column, value).findAll();
 	}
 
-
-	public static RealmModel getByColumn(@NonNull Realm realm, Class model, String column, double value) {
-		return realm.where(model).equalTo(column, value).findFirst();
+	public static RealmResults getByColumn(@NonNull Realm realm, Class model, String column, int value) {
+		return realm.where(model).equalTo(column, value).findAll();
 	}
 
-
-	public static RealmModel getByColumn(@NonNull Realm realm, Class model, String column, float value) {
-		return realm.where(model).equalTo(column, value).findFirst();
+	public static RealmResults getByColumn(@NonNull Realm realm, Class model, String column, double value) {
+		return realm.where(model).equalTo(column, value).findAll();
 	}
 
-
+	public static RealmResults getByColumn(@NonNull Realm realm, Class model, String column, float value) {
+		return realm.where(model).equalTo(column, value).findAll();
+	}
 
 
 

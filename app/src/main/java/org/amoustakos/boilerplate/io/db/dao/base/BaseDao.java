@@ -68,24 +68,46 @@ public abstract class BaseDao<T extends RealmModel> {
 		RealmUtil.clearAll(getRealm(), modelType);
 	}
 
+
+
 	public RealmResults<T> getAll() {
 		return RealmUtil.getByModel(getRealm(), modelType);
 	}
 
-	public T getByColumn(String column, String value) {
-		return (T) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+
+
+	public T getOneByColumn(String column, String value) {
+		return (T) RealmUtil.getOneByColumn(getRealm(), modelType, column, value);
 	}
 
-	public T getByColumn(String column, int value) {
-		return (T) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	public T getOneByColumn(String column, int value) {
+		return (T) RealmUtil.getOneByColumn(getRealm(), modelType, column, value);
 	}
 
-	public T getByColumn(String column, double value) {
-		return (T) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	public T getOneByColumn(String column, double value) {
+		return (T) RealmUtil.getOneByColumn(getRealm(), modelType, column, value);
 	}
 
-	public T getByColumn(String column, float value) {
-		return (T) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	public T getOneByColumn(String column, float value) {
+		return (T) RealmUtil.getOneByColumn(getRealm(), modelType, column, value);
+	}
+
+
+
+	public RealmResults<T> getByColumn(String column, String value) {
+		return (RealmResults<T>) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	}
+
+	public RealmResults<T> getByColumn(String column, int value) {
+		return (RealmResults<T>) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	}
+
+	public RealmResults<T> getByColumn(String column, double value) {
+		return (RealmResults<T>) RealmUtil.getByColumn(getRealm(), modelType, column, value);
+	}
+
+	public RealmResults<T> getByColumn(String column, float value) {
+		return (RealmResults<T>) RealmUtil.getByColumn(getRealm(), modelType, column, value);
 	}
 
 
