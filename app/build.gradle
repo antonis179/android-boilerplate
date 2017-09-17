@@ -15,7 +15,7 @@ android {
 		versionName "0.1"
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-
+33
 		jackOptions {
 			enabled false
 		}
