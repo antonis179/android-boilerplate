@@ -81,7 +81,7 @@ public class BaseActivity extends AppCompatActivity {
     private void makeComponents(long activityID) {
 	    ConfigPersistentComponent configPersistentComponent;
 	    int index = sComponentsMap.indexOfKey(activityID);
-	    if (index >= 0) {
+	    if (index < 0) { //component does not exist
 		    Timber.d("Creating new ConfigPersistentComponent id=%d", activityID);
 		    configPersistentComponent = DaggerConfigPersistentComponent.builder()
 				    .applicationComponent(application().getComponent())
@@ -90,7 +90,7 @@ public class BaseActivity extends AppCompatActivity {
 	    }
 	    else {
 		    Timber.d("Reusing ConfigPersistentComponent id=%d", activityID);
-		    configPersistentComponent = sComponentsMap.get(activityID);
+		    configPersistentComponent = sComponentsMap.get(index);
 	    }
 	    mActivityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
     }
