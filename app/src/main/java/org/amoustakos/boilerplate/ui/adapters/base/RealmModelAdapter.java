@@ -4,11 +4,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import io.realm.RealmBaseAdapter;
-import io.realm.RealmObject;
+import io.realm.RealmModel;
 import io.realm.RealmResults;
 
 
-public class RealmModelAdapter<T extends RealmObject> extends RealmBaseAdapter<T> {
+public class RealmModelAdapter<T extends RealmModel> extends RealmBaseAdapter<T> {
 
     public RealmModelAdapter(RealmResults<T> realmResults) {
         super(realmResults);

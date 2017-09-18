@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.examples.models;
+package org.amoustakos.boilerplate.examples.io.local.models;
 
 import io.realm.RealmModel;
 import io.realm.annotations.RealmClass;

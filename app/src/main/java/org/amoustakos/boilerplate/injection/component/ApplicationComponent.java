@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
-import org.amoustakos.boilerplate.examples.dao.ExampleDao;
+import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;

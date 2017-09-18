@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.injection.module;
 
 
-import org.amoustakos.boilerplate.examples.dao.ExampleDao;
+import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 
 import javax.inject.Singleton;

@@ -1,6 +1,6 @@
-package org.amoustakos.boilerplate.examples.dao;
+package org.amoustakos.boilerplate.examples.io.local.dao;
 
-import org.amoustakos.boilerplate.examples.models.ExampleModel;
+import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.io.db.dao.base.BaseDao;
 
@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import static org.amoustakos.boilerplate.examples.models.ExampleModel.COL_ID;
-import static org.amoustakos.boilerplate.examples.models.ExampleModel.COL_NAME;
+import static org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.COL_ID;
+import static org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.COL_NAME;
 
 
 /**
@@ -24,6 +24,7 @@ public class ExampleDao extends BaseDao<ExampleModel> {
 	/*
 	 * Constructors
 	 */
+
 	@Inject
 	public ExampleDao(@DefaultRealm Realm realm) {
 		super(realm, ExampleModel.class);
