@@ -2,12 +2,16 @@ package org.amoustakos.boilerplate.ui.activities.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.amoustakos.boilerplate.BoilerplateApplication;
+import org.amoustakos.boilerplate.R;
 import org.amoustakos.boilerplate.injection.component.ActivityComponent;
 import org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent;
 import org.amoustakos.boilerplate.injection.component.DaggerConfigPersistentComponent;
@@ -24,7 +28,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
@@ -43,8 +47,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	    setContentView(layoutId());
 	    makeID(savedInstanceState);
 	    makeComponents(mActivityId);
+
+	    Toolbar toolbar = getToolbar();
+	    if (toolbar != null)
+	    	setSupportActionBar(toolbar);
     }
 
 	@Override
@@ -101,8 +110,14 @@ public class BaseActivity extends AppCompatActivity {
     /*
      * View helpers
      */
+    @LayoutRes protected abstract int layoutId();
+
     protected View getRootView() {
 	    return ((ViewGroup)ButterKnife.findById(this, android.R.id.content)).getChildAt(0);
+    }
+
+    @Nullable protected Toolbar getToolbar() {
+	    return (Toolbar) findViewById(R.id.toolbar);
     }
 
 
@@ -111,6 +126,7 @@ public class BaseActivity extends AppCompatActivity {
     /*
      * Getters
      */
+
     public ActivityComponent activityComponent() {
         return mActivityComponent;
     }
