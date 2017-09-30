@@ -22,9 +22,9 @@ public abstract class BaseDao<T extends RealmModel> {
 
 
 
-	/*
+	/* =============================================================================================
 	 * Constructor
-	 */
+	 * ===========================================================================================*/
 
 	public BaseDao(Realm realm, Class<T> modelType) {
 		this.realm = realm;
@@ -34,9 +34,9 @@ public abstract class BaseDao<T extends RealmModel> {
 
 
 
-	/*
+	/* =============================================================================================
 	 * Helpers
-	 */
+	 * ===========================================================================================*/
 
 	protected boolean has() {
 		return RealmUtil.has(getRealm(), modelType);
@@ -48,9 +48,9 @@ public abstract class BaseDao<T extends RealmModel> {
 
 
 
-	/*
+	/* =============================================================================================
 	 * CRUD
-	 */
+	 * ===========================================================================================*/
 
 	public T add(@NonNull T model, boolean copy) {
 		return (T) RealmUtil.add(getRealm(), model, copy);
@@ -113,9 +113,9 @@ public abstract class BaseDao<T extends RealmModel> {
 
 
 
-	/*
+	/* =============================================================================================
 	 * Overrides
-	 */
+	 * ===========================================================================================*/
 
 	@Override
 	protected void finalize() throws Throwable {
@@ -125,8 +125,9 @@ public abstract class BaseDao<T extends RealmModel> {
 
 
 
-	/*
+	/* =============================================================================================
 	 * Getters - Setters
-	 */
+	 * ===========================================================================================*/
+
 	protected synchronized Realm getRealm() {return realm;}
 }
