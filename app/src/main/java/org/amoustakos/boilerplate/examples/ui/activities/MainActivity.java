@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends BaseActivity {
 
-	private String basePackage;
+	private static final String basePackage = MainActivity.class.getPackage().getName();
 
 
 	// =========================================================================================
@@ -44,9 +44,6 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
-
-
-		basePackage = this.getPackageName();
 	}
 
 

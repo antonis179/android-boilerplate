@@ -31,7 +31,7 @@ import timber.log.Timber;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-
+//TODO: Add lifecycle observable
 public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 										GoogleApiClient.OnConnectionFailedListener,
 										LocationListener,
@@ -220,7 +220,6 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 	public void onActivityPaused(Activity activity) {
 		stopLocationUpdates();
 	}
-
 
 
 	///////////////////////////////////////////////////////////////////////////
