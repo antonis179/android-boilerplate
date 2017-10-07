@@ -4,12 +4,12 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
 
-	compileSdkVersion 25
-	buildToolsVersion "26.0.0"
+	compileSdkVersion 26
+	buildToolsVersion "26.0.2"
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
 		minSdkVersion 21
-		targetSdkVersion 25
+		targetSdkVersion 26
 		// Major -> Millions, Minor -> Thousands, Bugfix -> Hundreds. E.g 1.3.72 == 1,003,072
 		versionCode 1
 		versionName "0.1"
@@ -44,7 +44,7 @@ android {
 
 }
 
-
+//TODO: Remove retrolambda in AS 3.0
 //Jack is not supported by realm.
 retrolambda {
 	javaVersion JavaVersion.VERSION_1_7
