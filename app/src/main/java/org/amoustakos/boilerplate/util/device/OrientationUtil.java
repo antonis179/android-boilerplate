@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.sensor;
+package org.amoustakos.boilerplate.util.device;
 
 import android.app.Activity;
 import android.app.Application;
@@ -16,6 +16,9 @@ import java.lang.annotation.Retention;
 import static android.content.Context.SENSOR_SERVICE;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
+/**
+ * TODO
+ */
 public final class OrientationUtil implements Application.ActivityLifecycleCallbacks {
 	public static final int ORIENTATION_PORTRAIT = ExifInterface.ORIENTATION_ROTATE_90; // 6
 	public static final int ORIENTATION_LANDSCAPE_REVERSE = ExifInterface.ORIENTATION_ROTATE_180; // 3
@@ -33,9 +36,9 @@ public final class OrientationUtil implements Application.ActivityLifecycleCallb
 	private SensorManager sManager;
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Constructors
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public OrientationUtil(Context context, @Orientation int defaultOrientation) {
 		pitches = new float[smoothness];
@@ -67,11 +70,9 @@ public final class OrientationUtil implements Application.ActivityLifecycleCallb
 	}
 
 
-
-
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Calculations
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	private synchronized float addValue(float value, float[] values) {
 		value = (float) Math.round((Math.toDegrees(value)));
@@ -113,10 +114,9 @@ public final class OrientationUtil implements Application.ActivityLifecycleCallb
 	}
 
 
-
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Getters - Setters
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public SensorEventListener getEventListener() {
 		return sensorEventListener;
@@ -147,9 +147,9 @@ public final class OrientationUtil implements Application.ActivityLifecycleCallb
 	}
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Inner classes
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	@Retention(SOURCE)
 	@IntDef({ORIENTATION_PORTRAIT, ORIENTATION_LANDSCAPE_REVERSE, ORIENTATION_LANDSCAPE, ORIENTATION_PORTRAIT_REVERSE})
@@ -183,9 +183,9 @@ public final class OrientationUtil implements Application.ActivityLifecycleCallb
 	};
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Implemented
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public void onActivityCreated(Activity activity, Bundle savedInstanceState) {}
 	public void onActivityStarted(Activity activity) {}

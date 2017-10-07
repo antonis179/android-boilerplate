@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util;
+package org.amoustakos.boilerplate.util.text;
 
 import java.text.DecimalFormat;
 
@@ -7,9 +7,9 @@ import java.text.DecimalFormat;
 public final class ConversionUtil {
 
 
-    /*
-     ************** Double conversions *******************
-     */
+    //=========================================================================================
+    // Double conversions
+    //=========================================================================================
 
     public static String formatDouble(String value) {
         Double d = getDouble(value, 0D);
@@ -38,9 +38,9 @@ public final class ConversionUtil {
     }
 
 
-	/*
-	 ************** Float conversions *******************
-	 */
+    //=========================================================================================
+    // Float conversions
+    //=========================================================================================
 
     public static String formatFloat(String value) {
         Float f = getFloat(value, 0F);
@@ -67,10 +67,9 @@ public final class ConversionUtil {
     }
 
 
-
-	/*
-	 ************** Integer conversions *******************
-	 */
+    //=========================================================================================
+    // Integer conversions
+    //=========================================================================================
 
 
     public static Integer getInt(String s, Integer defaultNum) {
@@ -83,10 +82,9 @@ public final class ConversionUtil {
     }
 
 
-
-	/*
-	 ************** Long conversions *******************
-	 */
+    //=========================================================================================
+    // Long conversions
+    //=========================================================================================
 
 
     public static Long getLong(String s, Long defaultNum) {
@@ -99,10 +97,9 @@ public final class ConversionUtil {
     }
 
 
-
-	/*
-	 ************** Boolean conversions *******************
-	 */
+    //=========================================================================================
+    // Boolean conversions
+    //=========================================================================================
 
 
     public static Boolean getBoolean(String s, Boolean defaultBool) {
@@ -127,9 +124,9 @@ public final class ConversionUtil {
     }
 
 
-	/*
-     ************** Percentage conversions *******************
-     */
+    //=========================================================================================
+    // Percentage conversions
+    //=========================================================================================
 
     public static int getPercent(int value, int max) {
         return (value * 100) / max;

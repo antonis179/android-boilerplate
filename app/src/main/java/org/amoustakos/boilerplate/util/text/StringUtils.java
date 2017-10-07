@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util;
+package org.amoustakos.boilerplate.util.text;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
