@@ -44,6 +44,9 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
+
+		if (getToolbar() != null)
+			getToolbar().setTitle(R.string.title_activity_main);
 	}
 
 

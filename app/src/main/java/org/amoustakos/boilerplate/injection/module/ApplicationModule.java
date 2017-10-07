@@ -46,31 +46,4 @@ public class ApplicationModule {
 
 
 
-
-
-
-
-
-//    @Provides
-//    @Singleton
-//    ApiService provideApiService() {
-//        return ApiService.Creator.newApiService();
-//    }
-
-//    @Provides
-//    @Singleton
-//    PreferencesHelper providePreferencesHelper() {
-//        return new PreferencesHelper(mApplication);
-//    }
-
-//    @Provides
-//    @Singleton
-//    DataManager provideDataManager(
-//                                        ApiService apiService,
-//                                        PreferencesHelper preferencesHelper,
-//                                        RealmManager databaseHelper
-//                                    ) {
-//        return new DataManager(apiService, preferencesHelper, databaseHelper);
-//    }
-
 }

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -54,6 +56,11 @@ retrolambda {
 }
 
 
+kapt {
+	generateStubs true
+}
+
+
 
 dependencies {
 	final PLAY_SERVICES = '11.0.4'
@@ -102,7 +109,7 @@ dependencies {
 
 	//Dagger
 	compile "com.google.dagger:dagger:${DAGGER}"
-	//Required by Dagger2
+	kapt daggerCompiler
 	provided 'org.glassfish:javax.annotation:10.0-b28'
 	annotationProcessor daggerCompiler
 	testAnnotationProcessor daggerCompiler
@@ -135,6 +142,8 @@ dependencies {
 	compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 
 
+	//Kotlin
+	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 
 	//Tests

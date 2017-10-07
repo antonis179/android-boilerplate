@@ -25,23 +25,15 @@ abstract class BaseDao<T : RealmModel> (
     // CRUD
     // =========================================================================================
 
-    val all: RealmResults<T>
-        get() = RealmUtil.getByModel(realm, modelType)
+    fun all(): RealmResults<T> = RealmUtil.getByModel(realm, modelType)
 
     fun add(model: T, copy: Boolean): T? = RealmUtil.add(realm, model, copy)
 
-    fun addOrUpdate(model: T) {
-        RealmUtil.addOrUpdate(realm, model)
-    }
+    fun addOrUpdate(model: T) = RealmUtil.addOrUpdate(realm, model)
 
-    fun remove(model: T) {
-        RealmUtil.remove(realm, model)
-    }
+    fun remove(model: T) = RealmUtil.remove(realm, model)
 
-    fun clearAll() {
-        RealmUtil.clearAll(realm, modelType)
-    }
-
+    fun clearAll() = RealmUtil.clearAll(realm, modelType)
 
     fun getOneByColumn(column: String, value: String): T? =
             RealmUtil.getOneByColumn(realm, modelType, column, value)
@@ -54,7 +46,6 @@ abstract class BaseDao<T : RealmModel> (
 
     fun getOneByColumn(column: String, value: Float): T? =
             RealmUtil.getOneByColumn(realm, modelType, column, value)
-
 
     fun getByColumn(column: String, value: String): RealmResults<T> =
             RealmUtil.getByColumn(realm, modelType, column, value)
@@ -72,5 +63,6 @@ abstract class BaseDao<T : RealmModel> (
     // =========================================================================================
     // Overrides
     // =========================================================================================
+
     protected fun finalize() = realm.close()
 }

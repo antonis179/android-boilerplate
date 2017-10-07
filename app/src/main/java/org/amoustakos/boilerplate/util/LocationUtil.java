@@ -66,9 +66,9 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 	private final WeakReference<Context> context;
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Constructors
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public LocationUtil(@ApplicationContext Context context) {
 		this.context = new WeakReference<>(context);
@@ -95,9 +95,9 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 	}
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Client
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	private void buildGoogleApiClient() {
 		Timber.d("Building google api client");
@@ -117,9 +117,10 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 	}
 
 
-	///////////////////////////////////////////////////////////////////////////
+
+	// =========================================================================================
 	// Functionality
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	@RequiresPermission(ACCESS_COARSE_LOCATION)
 	public boolean startLocationUpdates() {
@@ -162,9 +163,10 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 		setState(STATE_DISCONNECTED);
 	}
 
-	///////////////////////////////////////////////////////////////////////////
+
+	// =========================================================================================
 	// Getters - Setters
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public Observable<Location> getLocationUpdates() {
 		return locationSubject;
@@ -184,9 +186,10 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 		return state;
 	}
 
-	///////////////////////////////////////////////////////////////////////////
+
+	// =========================================================================================
 	// Implemented
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	public void onLocationChanged(Location location) {
 		mCurrentLocation = location;
@@ -222,9 +225,9 @@ public class LocationUtil implements GoogleApiClient.ConnectionCallbacks,
 	}
 
 
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 	// Inner classes
-	///////////////////////////////////////////////////////////////////////////
+	// =========================================================================================
 
 	@Retention(SOURCE)
 	@StringDef({STATE_CONNECTED, STATE_CONNECTING, STATE_DISCONNECTED, STATE_DISCONNECTING})

@@ -8,9 +8,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxUtil {
 
-    /*
-     ************ Schedulers **************
-     */
+
+    // =========================================================================================
+    // Schedulers
+    // =========================================================================================
 
     /**
      * Applies default IO schedulers on an Observable. <br />
@@ -64,9 +65,9 @@ public class RxUtil {
     }
 
 
-    /*
-     ************ Policies **************
-     */
+    // =========================================================================================
+    // Policies
+    // =========================================================================================
 
     /**
      * Applies a retry policy to your observable (will retry execution upon failure).
@@ -76,18 +77,16 @@ public class RxUtil {
     }
 
 
-	/*
-	 *********** Subscriptions ************
-	 * TODO: Make subscription handling utility methods to be used in activity cancellations etc.
-	 */
+    // =========================================================================================
+    // Subscriptions
+    // =========================================================================================
+    //TODO: Make subscription handling utility methods to be used in activity cancellations etc.
 
 
 
-
-
-	/*
-	 *********** Testing *****************
-	 */
+    // =========================================================================================
+    // Testing
+    // =========================================================================================
 
     /**
      * Method to check a {@link Predicate} without throwing an error. <br />

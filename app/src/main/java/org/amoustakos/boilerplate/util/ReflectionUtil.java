@@ -19,10 +19,9 @@ public class ReflectionUtil {
 	private static final String BAD_PACKAGE_ERROR = "Unable to get resources from path '%s'. Are you sure the package '%s' exists?";
 
 
-
-	/* =============================================================================================
-	 *                                     Class Reflections
-	 * ===========================================================================================*/
+	// =========================================================================================
+	// Class Reflections
+	// =========================================================================================
 
 	/**
 	 * Scans the provided package for the classes that match the infered type.
