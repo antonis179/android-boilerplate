@@ -1,7 +1,8 @@
 buildscript {
-	ext {
+    ext {
 		realmVersion = '3.7.0'
 		retrolambda = '3.7.0'
+		kotlin_version = '1.1.51'
 	}
 
 	repositories {
@@ -18,13 +19,17 @@ buildscript {
 		//Retrolambda
 		classpath "me.tatarka:gradle-retrolambda:${retrolambda}"
 
-	}
+		//Kotlin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+    }
 }
 
 
 allprojects {
 	repositories {
 		jcenter()
+		mavenCentral()
 	}
 }
 

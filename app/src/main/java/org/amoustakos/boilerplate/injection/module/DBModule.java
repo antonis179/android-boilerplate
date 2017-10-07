@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.injection.module;
 
 
-import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
+import org.amoustakos.boilerplate.examples.io.local.dao.ExampleD;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 
 import javax.inject.Singleton;
@@ -39,8 +39,8 @@ public class DBModule {
 	 */
 
 	@Provides @Singleton
-	ExampleDao provideExampleDao(@DefaultRealm Realm realm) {
-		return new ExampleDao(realm);
+	ExampleD provideExampleDao(@DefaultRealm Realm realm) {
+		return new ExampleD(realm);
 	}
 
 
