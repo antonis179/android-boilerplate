@@ -12,8 +12,8 @@ open class ExampleModel : RealmModel {
 
 
     companion object Column {
-        val ID = "id"
-        val NAME = "name"
+        const val ID = "id"
+        const val NAME = "name"
     }
 
 
