@@ -15,6 +15,10 @@ import dagger.Subcomponent;
 @Subcomponent(modules = DialogModule.class)
 public interface DialogComponent {
 
+    // =========================================================================================
+    // Injections
+    // =========================================================================================
+
     void inject(Dialog dlg);
 
 }

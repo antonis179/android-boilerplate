@@ -1,7 +1,5 @@
 package org.amoustakos.boilerplate.util
 
-import android.app.ActivityManager
-import android.app.Service
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
@@ -23,16 +21,17 @@ object AndroidComponentUtil {
 				PackageManager.DONT_KILL_APP)
 	}
 
-	/**
+	/*TODO: fix deprecation if possible
 	 * Checks whether a service is running
 	 */
-	fun isServiceRunning(context: Context, serviceClass: Class<out Service>): Boolean {
-		val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-
-		for (service in manager.getRunningServices(Integer.MAX_VALUE))
-			if (serviceClass.name == service.service.className)
-				return true
-
-		return false
-	}
+//	fun isServiceRunning(context: Context, serviceClass: Class<out Service>): Boolean {
+//		val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//
+//		manager.getRunningServices(Integer.MAX_VALUE).forEach { service ->
+//			if (serviceClass.name == service.service.className)
+//				return true
+//		}
+//
+//		return false
+//	}
 }

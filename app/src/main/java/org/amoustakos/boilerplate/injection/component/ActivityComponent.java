@@ -3,9 +3,10 @@ package org.amoustakos.boilerplate.injection.component;
 
 import android.app.Activity;
 
-import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext;
 import org.amoustakos.boilerplate.injection.PerActivity;
+import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext;
 import org.amoustakos.boilerplate.injection.module.ActivityModule;
+import org.amoustakos.boilerplate.ui.activities.BaseActivity;
 
 import dagger.Subcomponent;
 
@@ -17,11 +18,17 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
 
 
+    // =========================================================================================
+    // Injections
+    // =========================================================================================
+
     void inject(Activity activity);
 
 
+    // =========================================================================================
+    // Base
+    // =========================================================================================
 
-    @ActivityContext
-    Activity activity();
+    @ActivityContext BaseActivity activity();
 
 }

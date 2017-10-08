@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.ui.adapters.base
+package org.amoustakos.boilerplate.ui.adapters
 
 import android.view.View
 import android.view.ViewGroup

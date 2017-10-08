@@ -15,6 +15,11 @@ import dagger.Subcomponent;
 @Subcomponent(modules = FragmentModule.class)
 public interface FragmentComponent {
 
+
+    // =========================================================================================
+    // Injections
+    // =========================================================================================
+
     void inject(Fragment fragment);
 
 }

@@ -23,33 +23,29 @@ import io.realm.Realm;
 public interface ApplicationComponent {
 
 
-    /*
-     * Base
-     */
-    @ApplicationContext
+	// =========================================================================================
+	// Base
+	// =========================================================================================
+
+	@ApplicationContext
     Context context();
     Application application();
     Environment environment();
 
 
-	/*
-	 * DB
-	 */
+	// =========================================================================================
+	// DB
+	// =========================================================================================
+
 	@DefaultRealm Realm realm();
 
 
+	// =========================================================================================
+	// DAOs
+	// =========================================================================================
 
-	/*
-	 * DAOs
-	 */
 	ExampleDao exampleDao();
 
-
-
-//    ApiService apiService();
-//    PreferencesHelper preferencesHelper();
-//    RealmManager databaseHelper();
-//    DataManager dataManager();
 
 
 }

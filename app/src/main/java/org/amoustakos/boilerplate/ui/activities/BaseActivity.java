@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.ui.activities.base;
+package org.amoustakos.boilerplate.ui.activities;
 
 import android.content.Context;
 import android.os.Bundle;

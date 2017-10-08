@@ -1,28 +1,24 @@
 package org.amoustakos.boilerplate.injection.module;
 
-import android.app.Activity;
-
 import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext;
+import org.amoustakos.boilerplate.ui.activities.BaseActivity;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class ActivityModule {
-    private Activity mActivity;
+    private BaseActivity mActivity;
 
-    public ActivityModule(Activity activity) {
+    public ActivityModule(BaseActivity activity) {
         mActivity = activity;
     }
 
     @Provides
     @ActivityContext
-    Activity providesContext() {
+    BaseActivity providesContext() {
         return mActivity;
     }
 
 
-    /*
-     * Adapters
-     */
 }

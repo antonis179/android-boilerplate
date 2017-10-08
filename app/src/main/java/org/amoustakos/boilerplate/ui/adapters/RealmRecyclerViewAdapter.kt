@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.ui.adapters.base
+package org.amoustakos.boilerplate.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
