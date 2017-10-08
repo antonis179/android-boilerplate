@@ -29,7 +29,7 @@ buildscript {
 		RX_JAVA = '2.1.3'
 		RX_ANDROID = '2.0.1'
 		ANDROID_ADAPTERS = '2.1.0'
-		BUTTERKNIFE = '8.5.1'
+		BUTTERKNIFE = '8.6.0'
 
 		GSON = '2.8.1'
 		OKHTTP = '3.8.1'

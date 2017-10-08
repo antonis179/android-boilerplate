@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
-//apply plugin: 'me.tatarka.retrolambda'
 
 android {
 
@@ -43,13 +42,6 @@ android {
 
 }
 
-//TODO: Remove retrolambda in AS 3.0
-//Jack is not supported by realm.
-//retrolambda {
-//	javaVersion JavaVersion.VERSION_1_7
-//	defaultMethods false
-//	incremental true
-//}
 
 
 kapt {
@@ -116,10 +108,10 @@ dependencies {
 	//Permissions
 	compile "com.karumi:dexter:${DEXTER}"
 
-	//Butterknife
+	//Timber
 	compile "com.jakewharton.timber:timber:${TIMBER}"
 
-	//Timber
+	//Butterknife
 	compile "com.jakewharton:butterknife:${BUTTERKNIFE}"
 	annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
 
