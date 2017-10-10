@@ -1,6 +1,8 @@
 package org.amoustakos.boilerplate.examples.ui.contracts;
 
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
+import org.amoustakos.boilerplate.ui.contracts.BaseContractActions;
+import org.amoustakos.boilerplate.ui.contracts.BaseContractView;
 
 import java.util.List;
 

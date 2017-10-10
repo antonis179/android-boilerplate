@@ -2,6 +2,7 @@ package org.amoustakos.boilerplate.examples.ui.presenters;
 
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract;
 import org.amoustakos.boilerplate.ui.activities.BaseActivity;
+import org.amoustakos.boilerplate.ui.presenters.BasePresenter;
 import org.amoustakos.boilerplate.util.ReflectionUtil;
 
 import java.util.List;

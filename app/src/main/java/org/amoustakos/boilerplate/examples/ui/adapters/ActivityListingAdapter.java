@@ -72,8 +72,8 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
         public ActivityListingViewHolder(View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.card_view_container);
-            name = itemView.findViewById(R.id.tv_server_name);
-            descr = itemView.findViewById(R.id.tv_server_descr);
+            name = itemView.findViewById(R.id.tv_activity_name);
+            descr = itemView.findViewById(R.id.tv_activity_descr);
 
             initViews();
         }

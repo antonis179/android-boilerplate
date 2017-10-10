@@ -1,10 +1,10 @@
-package org.amoustakos.boilerplate.examples.ui.presenters;
+package org.amoustakos.boilerplate.ui.presenters;
 
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.support.annotation.NonNull;
 
-import org.amoustakos.boilerplate.examples.ui.contracts.BaseContractView;
+import org.amoustakos.boilerplate.ui.contracts.BaseContractView;
 
 /**
  * Created by Antonis Moustakos on 10/8/2017.
