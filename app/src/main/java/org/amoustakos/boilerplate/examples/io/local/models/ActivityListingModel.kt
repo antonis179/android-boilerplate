@@ -9,8 +9,4 @@ data class ActivityListingModel (
                                     val activity:Class<out BaseActivity>?,
                                     val name:String? = null,
                                     val description:String? = null
-                                ){
-
-
-
-}
+                                )

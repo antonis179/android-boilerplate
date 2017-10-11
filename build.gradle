@@ -30,7 +30,7 @@ buildscript {
 		RX_JAVA = '2.1.3'
 		RX_ANDROID = '2.0.1'
 		ANDROID_ADAPTERS = '2.1.0'
-		BUTTERKNIFE = '8.6.0'
+		BUTTERKNIFE = '8.8.1'
 
 		GSON = '2.8.1'
 		OKHTTP = '3.8.1'
@@ -43,6 +43,9 @@ buildscript {
 
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.0.0-beta7'
+
+		//apt
+		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
 		//Realm
 		classpath "io.realm:realm-gradle-plugin:${REALM}"

@@ -12,10 +12,13 @@ import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
 import org.amoustakos.boilerplate.ui.adapters.RecyclerViewAdapter;
 import org.amoustakos.boilerplate.util.RxUtil;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingAdapter.ActivityListingViewHolder, ActivityListingModel> {
+	private final Object mLock = new Object();
 
     private final PublishSubject<ActivityListingModel> onClickSubject = PublishSubject.create();
     private final PublishSubject<ActivityListingModel> onLongClickSubject = PublishSubject.create();
@@ -25,7 +28,8 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 	// Constructors
 	// =========================================================================================
 
-	public ActivityListingAdapter() {
+	public ActivityListingAdapter(List<ActivityListingModel> items) {
+		super(items);
         onClickSubject.compose(RxUtil.applyDefaultSchedulers());
 		onLongClickSubject.compose(RxUtil.applyDefaultSchedulers());
     }
@@ -44,6 +48,23 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 	@Override
 	public void onBindViewHolder(ActivityListingViewHolder holder, int position) {
 		holder.loadItem(getItem(position));
+	}
+
+
+	// =========================================================================================
+	// Data
+	// =========================================================================================
+
+	public void clean() {
+		synchronized (mLock) {
+			getItems().clear();
+		}
+	}
+
+	public void addItems(List<ActivityListingModel> items) {
+		synchronized (mLock) {
+			setItems(items);
+		}
 	}
 
 

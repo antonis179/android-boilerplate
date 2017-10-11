@@ -40,9 +40,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     private ViewGroup rootView;
 
 
-	/*
-	 * Overridden
-	 */
+	// =========================================================================================
+	// Overridden
+	// =========================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 	    makeID(savedInstanceState);
 	    makeComponents(mActivityId);
 
+
+	    //TODO: inflate toolbar
 	    Toolbar toolbar = getToolbar();
 	    if (toolbar != null)
 	    	setSupportActionBar(toolbar);
@@ -78,11 +80,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 	}
 
 
-    /*
-     * Injection
-     */
+	// =========================================================================================
+	// Injection
+	// =========================================================================================
 
-    private void makeID(Bundle savedInstanceState) {
+	private void makeID(Bundle savedInstanceState) {
 	    mActivityId = savedInstanceState != null ?
 			    savedInstanceState.getLong(KEY_ACTIVITY_ID) : NEXT_ID.getAndIncrement();
     }
@@ -105,12 +107,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+	// =========================================================================================
+	// View helpers
+	// =========================================================================================
 
-
-    /*
-     * View helpers
-     */
-    @LayoutRes protected abstract int layoutId();
+	@LayoutRes protected abstract int layoutId();
 
     protected View getRootView() {
 	    return ((ViewGroup)ButterKnife.findById(this, android.R.id.content)).getChildAt(0);
@@ -121,11 +122,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-
-
-    /*
-     * Getters
-     */
+	// =========================================================================================
+	// Getters
+	// =========================================================================================
 
     public ActivityComponent activityComponent() {
         return mActivityComponent;

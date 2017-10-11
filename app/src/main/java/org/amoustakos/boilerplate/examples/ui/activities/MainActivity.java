@@ -3,19 +3,23 @@ package org.amoustakos.boilerplate.examples.ui.activities;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.LayoutRes;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import org.amoustakos.boilerplate.R;
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
+import org.amoustakos.boilerplate.examples.ui.adapters.ActivityListingAdapter;
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract;
 import org.amoustakos.boilerplate.examples.ui.presenters.ActivityListingPresenter;
 import org.amoustakos.boilerplate.ui.activities.BaseActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Activity that lists all the activities in the same package and creates <br />
@@ -32,6 +36,10 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	private boolean doubleBackToExitPressedOnce = false;
 	private ActivityListingPresenter<MainActivity> mPresenter;
 
+	private ActivityListingAdapter exampleAdapter;
+
+	private Unbinder unbinder;
+
 	// =========================================================================================
 	// Views
 	// =========================================================================================
@@ -44,6 +52,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	// Overrides
 	// =========================================================================================
 
+
 	@Override
 	@LayoutRes protected int layoutId() {
 		return R.layout.activity_main;
@@ -53,13 +62,15 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ButterKnife.bind(this);
+		unbinder = ButterKnife.bind(this);
 
 		if (getToolbar() != null)
 			getToolbar().setTitle(R.string.title_activity_main);
 
 		if (mPresenter == null)
 			mPresenter = new ActivityListingPresenter<>(basePackage, this);
+
+		setupRecycler();
 	}
 
 
@@ -74,6 +85,11 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 		new Handler().postDelayed(()->setDoubleBackToExitPressedOnce(false), 2000);
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unbinder.unbind();
+	}
 
 	// =========================================================================================
 	// View interactions
@@ -81,7 +97,27 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 
 	@Override
 	public void onItemsCollected(List<ActivityListingModel> items) {
+		refreshAdapter(items);
+	}
 
+
+	// =========================================================================================
+	// Setup
+	// =========================================================================================
+
+	private void refreshAdapter(List<ActivityListingModel> items) {
+		exampleAdapter.clean();
+		exampleAdapter.addItems(items);
+		exampleAdapter.notifyDataSetChanged();
+	}
+
+	private void setupRecycler() {
+		if (exampleAdapter == null)
+			exampleAdapter = new ActivityListingAdapter(new ArrayList<>());
+		final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		exampleRecycler.setLayoutManager(layoutManager);
+		exampleRecycler.setAdapter(exampleAdapter);
 	}
 
 
