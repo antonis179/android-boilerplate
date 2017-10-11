@@ -121,7 +121,7 @@ dependencies {
 
 	//Kotlin
 	compile "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
+	compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
 
 
 	//Tests

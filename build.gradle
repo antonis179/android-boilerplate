@@ -21,6 +21,7 @@ buildscript {
 		LIFECYCLE_JAVA8 = '1.0.0-beta2'
 
 		KOTLIN = '1.1.51'
+		KOTLIN_STDLIB = '1.2-M2'
 		REALM = '3.7.0'
 
 		DAGGER = '2.11'

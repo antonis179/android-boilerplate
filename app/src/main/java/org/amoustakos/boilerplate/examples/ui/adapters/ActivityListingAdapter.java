@@ -27,6 +27,7 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 
 	public ActivityListingAdapter() {
         onClickSubject.compose(RxUtil.applyDefaultSchedulers());
+		onLongClickSubject.compose(RxUtil.applyDefaultSchedulers());
     }
 
 
@@ -88,8 +89,8 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 
         private void loadItem(ActivityListingModel mdl){
             item = mdl;
-            name.setText(mdl.name);
-            descr.setText(mdl.description);
+            name.setText(mdl.getName());
+            descr.setText(mdl.getDescription());
         }
     }
 }
