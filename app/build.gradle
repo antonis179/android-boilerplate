@@ -1,13 +1,32 @@
 apply plugin: 'com.android.application'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		//Realm
+		classpath "io.realm:realm-gradle-plugin:${REALM}"
+
+		//Kotlin
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN}"
+		classpath "org.jetbrains.kotlin:kotlin-android-extensions:${KOTLIN}"
+
+	}
+
+}
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 android {
+	compileSdkVersion compileVersion
+	buildToolsVersion buildToolsVersion
 
-	compileSdkVersion 26
-	buildToolsVersion "26.0.2"
+
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
 		minSdkVersion 21
@@ -19,11 +38,8 @@ android {
 	}
 
 
-
 	buildTypes {
 		debug {
-//            minifyEnabled true
-//            shrinkResources true
 			minifyEnabled false
 			shrinkResources false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -43,11 +59,9 @@ android {
 }
 
 
-
 kapt {
 	generateStubs true
 }
-
 
 
 dependencies {
