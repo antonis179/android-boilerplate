@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	// =========================================================================================
 
 	private boolean doubleBackToExitPressedOnce = false;
-	private ActivityListingPresenter<MainActivity> mPresenter;
+	private ActivityListingContract.Actions mPresenter;
 
 	private ActivityListingAdapter exampleAdapter;
 
@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 			mPresenter = new ActivityListingPresenter<>(basePackage, this);
 
 		setupRecycler();
+		mPresenter.load();
 	}
 
 

@@ -46,6 +46,7 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 					models.add(model);
 				}
 
+				Timber.i("Found " + activities.size() + " classes");
 
 				return models;
 			})
