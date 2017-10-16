@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.device;
+package org.amoustakos.deviceutils;
 
 import android.app.ActivityManager;
 import android.content.Context;
