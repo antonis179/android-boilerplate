@@ -14,12 +14,12 @@ import org.amoustakos.boilerplate.util.RxUtil;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingAdapter.ActivityListingViewHolder, ActivityListingModel> {
-	private final Object mLock = new Object();
-
     private final PublishSubject<ActivityListingModel> onClickSubject = PublishSubject.create();
     private final PublishSubject<ActivityListingModel> onLongClickSubject = PublishSubject.create();
 
@@ -52,23 +52,6 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 
 
 	// =========================================================================================
-	// Data
-	// =========================================================================================
-
-	public void clean() {
-		synchronized (mLock) {
-			getItems().clear();
-		}
-	}
-
-	public void addItems(List<ActivityListingModel> items) {
-		synchronized (mLock) {
-			setItems(items);
-		}
-	}
-
-
-	// =========================================================================================
 	// Observers
 	// =========================================================================================
 
@@ -86,21 +69,21 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 	// =========================================================================================
 
     public class ActivityListingViewHolder extends RecyclerView.ViewHolder {
-        CardView container;
-        TextView name;
-        TextView descr;
-        ActivityListingModel item;
+	    @BindView(R.id.card_view_container)
+	    CardView container;
+	    @BindView(R.id.tv_activity_name)
+	    TextView name;
+	    @BindView(R.id.tv_activity_descr)
+	    TextView descr;
+	    ActivityListingModel item;
 
         public ActivityListingViewHolder(View itemView) {
             super(itemView);
-            container = itemView.findViewById(R.id.card_view_container);
-            name = itemView.findViewById(R.id.tv_activity_name);
-            descr = itemView.findViewById(R.id.tv_activity_descr);
-
             initViews();
         }
 
         private void initViews(){
+	        ButterKnife.bind(this, itemView);
 	        container.setOnClickListener(v->onClickSubject.onNext(item));
 	        container.setOnLongClickListener(v -> {
 		        onLongClickSubject.onNext(item);

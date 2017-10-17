@@ -6,31 +6,24 @@ allprojects {
 	}
 }
 
-buildscript {
-	repositories {
-		jcenter()
-	}
-
-	dependencies {
-		classpath 'com.android.tools.build:gradle:3.0.0-beta7'
-    }
-
-}
-
 ext {
+	//Build
 	compileVersion = 26
+	minVersion = 21
+	targetVersion = 26
 	buildToolsVersion = '26.0.2'
 
+	//Plugins
+	REALM = '3.7.0'
+
+	//Support
 	PLAY_SERVICES = '11.4.2'
 	SUPPORT = '26.1.0'
 	CONSTRAINT_LAYOUT = '1.0.2'
 	LIFECYCLE = '1.0.0-alpha9-1'
 	LIFECYCLE_JAVA8 = '1.0.0-beta2'
 
-	KOTLIN = '1.1.51'
-	KOTLIN_STDLIB = '1.2-M2'
-	REALM = '3.7.0'
-
+	//Annotation processors - injection - RX
 	DAGGER = '2.11'
 	JAVA_POET = '1.7.0'
 	RETROFIT = '2.3.0'
@@ -40,13 +33,39 @@ ext {
 	BUTTERKNIFE = '8.8.1'
 	JAVAX_ANNOTATIONS = '10.0-b28'
 
+	//Net
 	GSON = '2.8.1'
 	OKHTTP = '3.8.1'
+
+	//Logging
 	TIMBER = '4.5.1'
+
+	//Permissions
 	DEXTER = '4.1.1'
 
+	//Testing
 	ESPRESSO = '2.2.2'
 	JUNIT = '4.12'
+}
+
+buildscript {
+	repositories {
+		jcenter()
+		google()
+	}
+
+	ext {
+		KOTLIN = '1.1.51'
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:3.0.0-rc1'
+
+		//Kotlin
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN}"
+		classpath "org.jetbrains.kotlin:kotlin-android-extensions:${KOTLIN}"
+    }
+
 }
 
 

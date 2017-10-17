@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 	compileSdkVersion compileVersion
@@ -6,8 +9,8 @@ android {
 
 
 	defaultConfig {
-		minSdkVersion 21
-		targetSdkVersion 26
+		minSdkVersion minVersion
+		targetSdkVersion targetVersion
 		versionCode 1000
 		versionName "0.1"
 
@@ -21,6 +24,15 @@ android {
 		}
 	}
 
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+}
+
+kapt {
+	generateStubs true
 }
 
 dependencies {
@@ -28,9 +40,16 @@ dependencies {
 
 	//Support
 	implementation "com.android.support:appcompat-v7:${SUPPORT}"
+	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
+	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
+	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
+
+	//Kotlin
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
 
 	//Tests
 	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
