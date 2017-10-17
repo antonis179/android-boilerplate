@@ -13,9 +13,6 @@ ext {
 	targetVersion = 26
 	buildToolsVersion = '26.0.2'
 
-	//Plugins
-	REALM = '3.7.0'
-
 	//Support
 	PLAY_SERVICES = '11.4.2'
 	SUPPORT = '26.1.0'
@@ -56,6 +53,7 @@ buildscript {
 
 	ext {
 		KOTLIN = '1.1.51'
+		REALM = '3.7.0'
 	}
 
 	dependencies {
@@ -64,6 +62,9 @@ buildscript {
 		//Kotlin
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN}"
 		classpath "org.jetbrains.kotlin:kotlin-android-extensions:${KOTLIN}"
+
+		//Realm
+		classpath "io.realm:realm-gradle-plugin:${REALM}"
     }
 
 }

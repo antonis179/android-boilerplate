@@ -13,12 +13,12 @@ object AndroidComponentUtil {
 	fun setComponentState(context: Context, componentClass: Class<*>, enable: Boolean) {
 		val componentName = ComponentName(context, componentClass)
 		val pm = context.packageManager
-		pm.setComponentEnabledSetting(componentName,
-				if (enable)
-					PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-				else
-					PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-				PackageManager.DONT_KILL_APP)
+        pm.setComponentEnabledSetting(
+                componentName,
+                if (enable) PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+        )
 	}
 
 	/*TODO: fix deprecation if possible
