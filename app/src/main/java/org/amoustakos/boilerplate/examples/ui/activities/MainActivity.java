@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 
 	private void refreshAdapter(List<ActivityListingModel> items) {
 		exampleAdapter.clean();
-		exampleAdapter.addItems(items);
+		exampleAdapter.addAll(items);
 		exampleAdapter.notifyDataSetChanged();
 	}
 
