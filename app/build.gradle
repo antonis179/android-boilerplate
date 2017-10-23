@@ -49,6 +49,7 @@ kapt {
 
 dependencies {
 	def daggerCompiler = "com.google.dagger:dagger-compiler:${DAGGER}"
+	def daggerAndroidCompiler = "com.google.dagger:dagger-android-processor:${DAGGER}"
 
 
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -86,9 +87,13 @@ dependencies {
 	provided "com.squareup:javapoet:${JAVA_POET}"//Add before dagger
 
 	//Dagger
-	implementation "com.google.dagger:dagger:${DAGGER}"
-	kapt daggerCompiler
 	provided "org.glassfish:javax.annotation:${JAVAX_ANNOTATIONS}"
+	implementation "com.google.dagger:dagger:${DAGGER}"
+	implementation "com.google.dagger:dagger:${DAGGER}"
+	implementation "com.google.dagger:dagger-android:${DAGGER}"
+	implementation "com.google.dagger:dagger-android-support:${DAGGER}"
+	kapt daggerCompiler
+	kapt daggerAndroidCompiler
 	testAnnotationProcessor daggerCompiler
 	androidTestAnnotationProcessor daggerCompiler
 

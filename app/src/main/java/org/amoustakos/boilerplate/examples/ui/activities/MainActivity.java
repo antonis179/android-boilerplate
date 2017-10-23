@@ -27,7 +27,7 @@ import butterknife.Unbinder;
  */
 public class MainActivity extends BaseActivity implements ActivityListingContract.View{
 
-	private static final String basePackage = MainActivity.class.getPackage().getName();
+	private static String basePackage = MainActivity.class.getPackage().getName();
 
 	// =========================================================================================
 	// Variables
@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 			getToolbar().setTitle(R.string.title_activity_main);
 
 		if (mPresenter == null)
-			mPresenter = new ActivityListingPresenter<>(basePackage, this);
+			mPresenter = new ActivityListingPresenter<>(basePackage, this, getApplicationContext());
 
 		setupRecycler();
 		mPresenter.load();

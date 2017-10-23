@@ -1,10 +1,15 @@
 package org.amoustakos.boilerplate.examples.ui.presenters;
 
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract;
 import org.amoustakos.boilerplate.ui.activities.BaseActivity;
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter;
-import org.amoustakos.boilerplate.util.ReflectionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +24,13 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 											implements ActivityListingContract.Actions {
 
 	private String basePackage;
+	private PackageManager pm;
 
 
-	public ActivityListingPresenter(String basePackage, T view) {
+	public ActivityListingPresenter(String basePackage, T view, @NonNull Context context) {
 		super(view);
-		this.basePackage = basePackage;
+		this.basePackage = context.getPackageName();
+		pm = context.getPackageManager();
 	}
 
 
@@ -35,9 +42,9 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 	public void load() {
 		Observable.fromCallable(() -> {
 				List<ActivityListingModel> models = new ArrayList<>();
-				List<Class<BaseActivity>> activities = getActivities();
+			List<Class<? extends BaseActivity>> activities = getActivities();
 
-				for (Class<BaseActivity> act : activities) {
+			for (Class<? extends BaseActivity> act : activities) {
 					ActivityListingModel model = new ActivityListingModel(
 							act,
 							act.getName(),
@@ -61,11 +68,28 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 
 
 	// =========================================================================================
-	// Reflection
+	//
 	// =========================================================================================
 
-	private List<Class<BaseActivity>> getActivities() {
-		return ReflectionUtil.listClasses(basePackage);
+	private List<Class<? extends BaseActivity>> getActivities() {
+		List<Class<? extends BaseActivity>> activities = new ArrayList<>();
+		try {
+			PackageInfo packageInfo = pm.getPackageInfo(basePackage, PackageManager.GET_ACTIVITIES);
+			ActivityInfo[] act = packageInfo.activities;
+			for (ActivityInfo ai : act) {
+				try {
+					if (!ai.packageName.equals(basePackage)) continue;
+					Class<? extends BaseActivity> cl = Class.forName(ai.name).asSubclass(BaseActivity.class);
+					activities.add(cl);
+				} catch (ClassNotFoundException | ClassCastException cle) {
+					Timber.v(cle);
+				}
+			}
+		} catch (PackageManager.NameNotFoundException e) {
+			Timber.e(e);
+		}
+
+		return activities;
 	}
 
 

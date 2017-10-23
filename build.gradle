@@ -21,7 +21,7 @@ ext {
 	LIFECYCLE_JAVA8 = '1.0.0-beta2'
 
 	//Annotation processors - injection - RX
-	DAGGER = '2.11'
+	DAGGER = '2.12'
 	JAVA_POET = '1.7.0'
 	RETROFIT = '2.3.0'
 	RX_JAVA = '2.1.3'
