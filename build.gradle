@@ -8,14 +8,14 @@ allprojects {
 
 ext {
 	//Build
-	compileVersion = 26
+	compileVersion = 27
 	minVersion = 21
-	targetVersion = 26
-	buildToolsVersion = '26.0.2'
+	targetVersion = 27
+	buildToolsVersion = '27.0.0'
 
 	//Support
 	PLAY_SERVICES = '11.4.2'
-	SUPPORT = '26.1.0'
+	SUPPORT = '27.0.0'
 	CONSTRAINT_LAYOUT = '1.0.2'
 	LIFECYCLE = '1.0.0-alpha9-1'
 	LIFECYCLE_JAVA8 = '1.0.0-beta2'

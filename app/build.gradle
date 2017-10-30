@@ -56,6 +56,7 @@ dependencies {
 
 	//Inner modules
 	implementation project(":utils_device")
+	implementation project(":utils_image")
 
 
 	//GSON

@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.image;
+package org.amoustakos.utils.image;
 
 import timber.log.Timber;
 
