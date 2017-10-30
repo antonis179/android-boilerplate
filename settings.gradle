@@ -1,1 +1,1 @@
-include ':app', ':utils_device', ':utils_image'
+include ':app', ':utils_device', ':utils_image', ':utils_network'

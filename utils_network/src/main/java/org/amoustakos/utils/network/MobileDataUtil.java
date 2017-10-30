@@ -1,8 +1,10 @@
-package org.amoustakos.boilerplate.util.network;
+package org.amoustakos.utils.network;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,20 +12,18 @@ import java.lang.reflect.Method;
 
 import timber.log.Timber;
 
-import static org.amoustakos.boilerplate.util.network.NetworkUtil.getNetworkInfo;
-
 
 /**
- * NOTE: NEED TO INSTALL AS SYSTEM APP FOR THIS TO WORK.
+ * <h1>WARNING</h1>
+ * NOTE: NEED TO INSTALL AS SYSTEM APP FOR THIS UTILITY TO WORK.
  */
-
-public class MobileDataUtil {
-
+@SuppressLint("PrivateApi")
+public final class MobileDataUtil {
 
     /**
      * Checks if the device is connected to a mobile network
      */
-    public static boolean isConnected(Context context){
+    public static boolean isConnected(@NonNull Context context) {
         final ConnectivityManager conManager = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo net = conManager.getActiveNetworkInfo();
@@ -37,8 +37,8 @@ public class MobileDataUtil {
 	/**
 	 * Retrieves the state of the mobile data (on = true, off = false)
 	 */
-	public static boolean getState(Context context){
-        try{
+	public static boolean getState(@NonNull Context context) {
+		try{
             TelephonyManager telephonyService = (TelephonyManager)
                     context.getSystemService(Context.TELEPHONY_SERVICE);
             Method getMobileDataEnabledMethod =
@@ -57,12 +57,12 @@ public class MobileDataUtil {
 	/**
 	 * Sets the state of the mobile data (on = true, off = false)
 	 */
-	public static boolean setState(Context context, boolean active){
-        final ConnectivityManager conman = (ConnectivityManager)
+	public static boolean setState(@NonNull Context context, boolean active) {
+		final ConnectivityManager conman = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
         Method dataMtd;
         try {
-            dataMtd =ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", boolean.class);
+	        dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", boolean.class);
         } catch (NoSuchMethodException e) {
             Timber.w(e, e.getMessage());
             return false;
@@ -81,9 +81,9 @@ public class MobileDataUtil {
     /**
      * Checks if there is fast connectivity
      */
-    public static boolean isConnectedFast(Context context) {
-        NetworkInfo info = getNetworkInfo(context);
-        return info != null && info.isConnected() && isConnectionFast(info.getType(), info.getSubtype());
+    public static boolean isConnectedFast(@NonNull Context context) {
+	    NetworkInfo info = NetworkUtil.getNetworkInfo(context);
+	    return info != null && info.isConnected() && isConnectionFast(info.getType(), info.getSubtype());
     }
 
 

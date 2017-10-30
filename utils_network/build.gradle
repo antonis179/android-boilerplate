@@ -40,6 +40,9 @@ dependencies {
 	//Support
 	implementation "com.android.support:appcompat-v7:${SUPPORT}"
 
+	//Retrofit
+	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
+
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 

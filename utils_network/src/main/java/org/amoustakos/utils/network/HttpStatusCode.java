@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.network;
+package org.amoustakos.utils.network;
 
 import java.net.HttpURLConnection;
 
