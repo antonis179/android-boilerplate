@@ -1,7 +1,7 @@
-package org.amoustakos.boilerplate.util
+package org.amoustakos.utils.network
 
 
-object ErrorUtil {
+object NetworkErrorUtil {
 
 
 	/**

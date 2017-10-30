@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util
+package org.amoustakos.utils.device
 
 import android.Manifest
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
@@ -15,7 +15,6 @@ import android.support.annotation.RequiresPermission
 import android.support.v4.app.ActivityCompat
 import com.google.android.gms.location.*
 import io.reactivex.subjects.PublishSubject
-import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
 import timber.log.Timber
 import java.lang.ref.WeakReference
 
@@ -49,15 +48,15 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 	// Constructors
 	// =========================================================================================
 
-	@Throws(NullPointerException::class) constructor(@ApplicationContext @NonNull context: Context) {
+	@Throws(NullPointerException::class) constructor(@NonNull context: Context) {
 		this.context = WeakReference(context)
 		init()
 	}
 
-	@Throws(NullPointerException::class) constructor(@ApplicationContext context: Context,
-														mUpdateInterval: Long,
-														mFastestUpdateInterval: Long,
-														mRequestPriority: Int) {
+	@Throws(NullPointerException::class) constructor(context: Context,
+													 mUpdateInterval: Long,
+													 mFastestUpdateInterval: Long,
+													 mRequestPriority: Int) {
 		this.mUpdateInterval = mUpdateInterval
 		this.mFastestUpdateInterval = mFastestUpdateInterval
 		this.mRequestPriority = mRequestPriority

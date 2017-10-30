@@ -43,12 +43,21 @@ dependencies {
 	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
 	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
 
+	//Play
+	implementation "com.google.android.gms:play-services-gcm:${PLAY_SERVICES}"
+	implementation "com.google.android.gms:play-services-maps:${PLAY_SERVICES}"
+	implementation "com.google.android.gms:play-services-location:${PLAY_SERVICES}"
+
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+
+	//RX
+	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
+	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
 
 	//Tests
 	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
