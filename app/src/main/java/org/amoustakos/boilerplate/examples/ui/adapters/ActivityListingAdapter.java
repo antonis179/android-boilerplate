@@ -69,12 +69,14 @@ public class ActivityListingAdapter extends RecyclerViewAdapter<ActivityListingA
 	// =========================================================================================
 
     public class ActivityListingViewHolder extends RecyclerView.ViewHolder {
+
 	    @BindView(R.id.card_view_container)
 	    CardView container;
 	    @BindView(R.id.tv_activity_name)
 	    TextView name;
 	    @BindView(R.id.tv_activity_descr)
 	    TextView descr;
+
 	    ActivityListingModel item;
 
         public ActivityListingViewHolder(View itemView) {

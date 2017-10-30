@@ -11,13 +11,15 @@ import timber.log.Timber;
 
 
 /**
- * Utility class for reflection methods. <br />
+ * <i>To be removed</i> <br />
+ * Utility class for reflection methods.
  * <br />
  * <h1><b>WARNING!!!</b></h1>
  * Be mindful of using complex folder structures for {@link #listClasses(String)} and
  * {@link #listClasses(File, String)} as both use recursion to loop through folders.
  */
 @SuppressWarnings("unchecked")
+@Deprecated
 public final class ReflectionUtil {
 
 	private static final char PKG_SEPARATOR = '.';
