@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 			getToolbar().setTitle(R.string.title_activity_main);
 
 		if (mPresenter == null)
-			mPresenter = new ActivityListingPresenter<>(basePackage, this, getApplicationContext());
+			mPresenter = new ActivityListingPresenter<>(this, getApplicationContext());
 
 		setupRecycler();
 		mPresenter.load();

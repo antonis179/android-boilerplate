@@ -39,7 +39,7 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 	//Support
-	implementation "com.android.support:appcompat-v7:${SUPPORT}"
+	implementation "com.android.support:support-v4:${SUPPORT}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
@@ -47,6 +47,10 @@ dependencies {
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+
+	//RX
+	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
+	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
 
 	//Tests
 	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {

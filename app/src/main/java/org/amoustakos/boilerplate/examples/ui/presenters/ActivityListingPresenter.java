@@ -1,8 +1,6 @@
 package org.amoustakos.boilerplate.examples.ui.presenters;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
@@ -10,6 +8,7 @@ import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract;
 import org.amoustakos.boilerplate.ui.activities.BaseActivity;
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter;
+import org.amoustakos.utils.android.PackageManagerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 	private PackageManager pm;
 
 
-	public ActivityListingPresenter(String basePackage, T view, @NonNull Context context) {
+	public ActivityListingPresenter(T view, @NonNull Context context) {
 		super(view);
 		this.basePackage = context.getPackageName();
 		pm = context.getPackageManager();
@@ -68,28 +67,11 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 
 
 	// =========================================================================================
-	//
+	// Helpers
 	// =========================================================================================
 
 	private List<Class<? extends BaseActivity>> getActivities() {
-		List<Class<? extends BaseActivity>> activities = new ArrayList<>();
-		try {
-			PackageInfo packageInfo = pm.getPackageInfo(basePackage, PackageManager.GET_ACTIVITIES);
-			ActivityInfo[] act = packageInfo.activities;
-			for (ActivityInfo ai : act) {
-				try {
-					if (!ai.packageName.equals(basePackage)) continue;
-					Class<? extends BaseActivity> cl = Class.forName(ai.name).asSubclass(BaseActivity.class);
-					activities.add(cl);
-				} catch (ClassNotFoundException | ClassCastException cle) {
-					Timber.v(cle);
-				}
-			}
-		} catch (PackageManager.NameNotFoundException e) {
-			Timber.e(e);
-		}
-
-		return activities;
+		return PackageManagerUtils.getDefinedActivities(pm, basePackage);
 	}
 
 

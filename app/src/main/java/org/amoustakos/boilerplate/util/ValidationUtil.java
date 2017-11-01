@@ -15,7 +15,8 @@ public final class ValidationUtil {
 
     public static boolean isValidEmail(CharSequence target) {
         try {
-            return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+	        return !TextUtils.isEmpty(target)
+			        && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }catch(Exception e){
             Timber.d(e);
             return false;
@@ -49,7 +50,7 @@ public final class ValidationUtil {
     public static boolean isValidPort(String port){
         try{
             int fPort = Integer.parseInt(port);
-            return fPort>=1 && fPort<=65535;
+	        return fPort >= 1 && fPort <= 65535;
         }catch(Exception e){
             Timber.d(e);
             return false;

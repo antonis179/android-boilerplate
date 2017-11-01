@@ -55,6 +55,7 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 	//Inner modules
+	implementation project(":utils_android")
 	implementation project(":utils_device")
 	implementation project(":utils_image")
 	implementation project(":utils_network")
