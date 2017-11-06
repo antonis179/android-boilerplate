@@ -40,6 +40,7 @@ public final class PackageManagerUtils {
 	 * @param basePackage Required to specify the manifest to look through.
 	 * @param <T>         Defines the casting performed to the activities retrieved.
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Activity> List<Class<? extends T>> getDefinedActivities(
 			@NonNull PackageManager pm,
 			@NonNull String basePackage
