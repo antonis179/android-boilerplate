@@ -35,6 +35,7 @@ kapt {
 	generateStubs true
 }
 
+
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -44,12 +45,19 @@ dependencies {
 	//Retrofit
 	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
 
+	//RX
+	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
+	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
+
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+
+	//Network tools - https://github.com/stealthcopter/AndroidNetworkTools/releases/
+	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.2.2'
 
 	//Tests
 	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
