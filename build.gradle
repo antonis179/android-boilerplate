@@ -4,6 +4,8 @@ allprojects {
 		mavenCentral()
 		google()
 		maven {url "https://jitpack.io"}
+		maven { url 'https://maven.fabric.io/public' }
+		maven { url 'http://maven.localytics.com/public' }
 	}
 }
 
@@ -15,10 +17,10 @@ ext {
 	buildToolsVersion = '27.0.0'
 
 	//Support
-	PLAY_SERVICES = '11.4.2'
-	SUPPORT = '27.0.0'
+	PLAY_SERVICES = '11.6.0'
+	SUPPORT = '27.0.1'
 	CONSTRAINT_LAYOUT = '1.0.2'
-	LIFECYCLE = '1.0.0-alpha9-1'
+	LIFECYCLE = '1.0.0'
 	LIFECYCLE_JAVA8 = '1.0.0-beta2'
 
 	//Annotation processors - injection - RX
@@ -40,6 +42,11 @@ ext {
 
 	//Permissions
 	DEXTER = '4.1.1'
+
+	//Analytics
+	APPSEE = '2.3.3'
+	LOCALYTICS = '4.5.1'
+	FACEBOOK = '4.27.0'
 
 	//Testing
 	ESPRESSO = '2.2.2'
