@@ -1,5 +1,7 @@
 package org.amoustakos.boilerplate.examples.ui.activities;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.LayoutRes;
@@ -20,13 +22,20 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import timber.log.Timber;
 
 /**
  * Activity that lists all the activities in the same package and creates <br />
  * a {@link RecyclerView} that starts each one on click.
  */
-public class MainActivity extends BaseActivity implements ActivityListingContract.View{
+//TODO: Google search | android.gms.actions.SEARCH_ACTION --es query "flights" org.amoustakos.boilerplate
+public class MainActivity extends BaseActivity implements ActivityListingContract.View {
 
+	// =========================================================================================
+	// Constants
+	// =========================================================================================
+
+	private static final String ACTION_VOICE_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION";
 	private static String basePackage = MainActivity.class.getPackage().getName();
 
 	// =========================================================================================
@@ -64,6 +73,8 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 		super.onCreate(savedInstanceState);
 		unbinder = ButterKnife.bind(this);
 
+		Timber.d(getIntent().getAction() + " | " + getIntent().getDataString());
+
 		if (getToolbar() != null)
 			getToolbar().setTitle(R.string.title_activity_main);
 
@@ -72,8 +83,15 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 
 		setupRecycler();
 		mPresenter.load();
+
+		handleVoiceSearch(getIntent());
 	}
 
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		handleVoiceSearch(intent);
+	}
 
 	@Override
 	public void onBackPressed() {
@@ -90,6 +108,17 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	protected void onDestroy() {
 		super.onDestroy();
 		unbinder.unbind();
+	}
+
+	// =========================================================================================
+	// Voice
+	// =========================================================================================
+
+	private void handleVoiceSearch(Intent intent) {
+		if (intent != null && ACTION_VOICE_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			//TODO
+		}
 	}
 
 	// =========================================================================================

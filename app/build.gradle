@@ -80,6 +80,9 @@ dependencies {
 	implementation "com.google.android.gms:play-services-maps:${PLAY_SERVICES}"
 	implementation "com.google.android.gms:play-services-location:${PLAY_SERVICES}"
 
+	//Assistant
+	implementation "com.google.firebase:firebase-appindexing:${PLAY_SERVICES}"
+
 	//UI
 	implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
 
