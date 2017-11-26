@@ -48,10 +48,9 @@ dependencies {
 	//Analytics
 	implementation "com.appsee:appsee-android:${APPSEE}"
 	implementation "com.localytics.android:library:${LOCALYTICS}"
-	implementation ("com.facebook.android:facebook-android-sdk:${FACEBOOK}")
-//			{
-//		exclude group: 'com.android.support', module: 'customtabs'
-//	}
+	implementation ("com.facebook.android:facebook-android-sdk:${FACEBOOK}") {
+		exclude group: 'com.android.support', module: 'customtabs'
+	}
 
 	//RX
 	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"

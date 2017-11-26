@@ -41,7 +41,7 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 	public void load() {
 		Observable.fromCallable(() -> {
 				List<ActivityListingModel> models = new ArrayList<>();
-			List<Class<? extends BaseActivity>> activities = getActivities();
+			List<Class<? extends BaseActivity>> activities = excludeCurrent(getActivities());
 
 			for (Class<? extends BaseActivity> act : activities) {
 					ActivityListingModel model = new ActivityListingModel(
@@ -74,5 +74,23 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 		return PackageManagerUtils.getDefinedActivities(pm, basePackage);
 	}
 
+	private List<Class<? extends BaseActivity>> excludeCurrent(List<Class<? extends BaseActivity>> classes) {
+		Class<?> current = mView.getClass();
+		Integer toRemove = null;
+
+		int count = 0;
+		for (Class<? extends BaseActivity> cl : classes) {
+			if (current == cl) {
+				toRemove = count;
+				break;
+			}
+			count++;
+		}
+
+		if (toRemove != null)
+			classes.remove(toRemove.intValue());
+
+		return classes;
+	}
 
 }

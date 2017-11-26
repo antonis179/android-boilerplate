@@ -51,7 +51,7 @@ public final class PackageManagerUtils {
 			ActivityInfo[] act = packageInfo.activities;
 			for (ActivityInfo ai : act) {
 				try {
-					if (!ai.packageName.equals(basePackage)) continue;
+					if (!ai.name.contains(basePackage)) continue;
 					Class<? extends T> cl = (Class<? extends T>) Class.forName(ai.name);
 					activities.add(cl);
 				} catch (ClassNotFoundException | ClassCastException cle) {

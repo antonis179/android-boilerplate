@@ -94,11 +94,9 @@ public abstract class Event {
 
 
 		//Print info
-		String message = "Analytics Event ---> " +
-				eventName +
-				SPACE +
-				action +
-				SPACE +
+		String message = "Event: " +
+				eventName + SPACE +
+				action + SPACE +
 				(attributes.size() > 0 ? attributes.toString() : "");
 
 		Timber.d(message);
