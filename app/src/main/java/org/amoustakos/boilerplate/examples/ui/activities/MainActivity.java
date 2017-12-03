@@ -28,7 +28,8 @@ import timber.log.Timber;
  * Activity that lists all the activities in the same package and creates <br />
  * a {@link RecyclerView} that starts each one on click.
  */
-//TODO: Google search | android.gms.actions.SEARCH_ACTION --es query "flights" org.amoustakos.boilerplate
+//adb shell am start -a com.google.android.gms.actions.SEARCH_ACTION -e query flights org.amoustakos.boilerplate
+//https://developers.google.com/voice-actions/system/#step_3_update_your_app_completion_status
 public class MainActivity extends BaseActivity implements ActivityListingContract.View {
 
 	// =========================================================================================
@@ -36,7 +37,6 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 	// =========================================================================================
 
 	private static final String ACTION_VOICE_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION";
-	private static String basePackage = MainActivity.class.getPackage().getName();
 
 	// =========================================================================================
 	// Variables
@@ -118,6 +118,9 @@ public class MainActivity extends BaseActivity implements ActivityListingContrac
 		if (intent != null && ACTION_VOICE_SEARCH.equals(intent.getAction())) {
 			String query = intent.getStringExtra(SearchManager.QUERY);
 			//TODO
+			Timber.i(intent.getAction());
+			Timber.i(intent.getDataString());
+			Timber.i(query);
 		}
 	}
 
