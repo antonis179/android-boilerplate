@@ -29,7 +29,7 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 
 	//Publishers
 	val locationSubject = PublishSubject.create<Location>()
-	val stateSubject = PublishSubject.create<String>()
+	val availabilitySubject = PublishSubject.create<LocationAvailability?>()
 
 	//Client
 	private var mLocationRequest: LocationRequest? = null
@@ -134,7 +134,7 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 
 	override fun onLocationAvailability(p0: LocationAvailability?) {
 		super.onLocationAvailability(p0)
-		//TODO
+		p0?.let { availabilitySubject.onNext(it) }
 	}
 
 	// =========================================================================================
@@ -147,6 +147,7 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 	override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 	override fun onActivityDestroyed(activity: Activity) {}
 
+	@SuppressLint("MissingPermission")
 	override fun onActivityResumed(activity: Activity) {
 		if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return
