@@ -79,15 +79,15 @@ class MemoryUtil
         @RequiresApi(16)
         @JvmStatic
         fun calculateRam(@NonNull context: Context): Double {
-            try {
+            return try {
                 val actManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 val memInfo = ActivityManager.MemoryInfo()
                 actManager.getMemoryInfo(memInfo)
                 val totalMemory = memInfo.totalMem
-                return totalMemory.toDouble() / 1024.0 / 1024.0
+                totalMemory.toDouble() / 1024.0 / 1024.0
             } catch (ne: Exception) {
                 Timber.w(ne)
-                return java.lang.Double.NaN
+                java.lang.Double.NaN
             }
         }
 
