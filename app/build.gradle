@@ -96,7 +96,6 @@ dependencies {
 	//Dagger
 	provided "org.glassfish:javax.annotation:${JAVAX_ANNOTATIONS}"
 	implementation "com.google.dagger:dagger:${DAGGER}"
-	implementation "com.google.dagger:dagger:${DAGGER}"
 	implementation "com.google.dagger:dagger-android:${DAGGER}"
 	implementation "com.google.dagger:dagger-android-support:${DAGGER}"
 	kapt daggerCompiler
