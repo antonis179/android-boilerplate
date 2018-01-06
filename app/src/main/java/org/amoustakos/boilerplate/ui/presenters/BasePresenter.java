@@ -13,7 +13,7 @@ import io.reactivex.internal.disposables.ListCompositeDisposable;
  * Created by Antonis Moustakos on 10/8/2017.
  */
 
-public class BasePresenter<T extends BaseContractView> implements DefaultLifecycleObserver{
+public class BasePresenter<T extends BaseContractView> implements DefaultLifecycleObserver {
 
 	protected T mView;
 
@@ -38,8 +38,7 @@ public class BasePresenter<T extends BaseContractView> implements DefaultLifecyc
 	}
 
 	public boolean addLifecycleBoundDisposable(Disposable disposable) {
-		if (rxDisposables.isDisposed()) return false;
-		return rxDisposables.add(disposable);
+		return !rxDisposables.isDisposed() && rxDisposables.add(disposable);
 	}
 
 

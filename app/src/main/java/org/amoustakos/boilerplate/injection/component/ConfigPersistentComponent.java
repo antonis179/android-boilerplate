@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.injection.component;
 
 
-import org.amoustakos.boilerplate.injection.ConfigPersistent;
+import org.amoustakos.boilerplate.injection.annotations.scopes.ConfigPersistent;
 import org.amoustakos.boilerplate.injection.module.ActivityModule;
 import org.amoustakos.boilerplate.injection.module.DialogModule;
 import org.amoustakos.boilerplate.injection.module.FragmentModule;

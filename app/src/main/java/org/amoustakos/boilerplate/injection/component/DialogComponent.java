@@ -3,7 +3,7 @@ package org.amoustakos.boilerplate.injection.component;
 
 import android.app.Dialog;
 
-import org.amoustakos.boilerplate.injection.PerActivity;
+import org.amoustakos.boilerplate.injection.annotations.scopes.PerActivity;
 import org.amoustakos.boilerplate.injection.module.DialogModule;
 
 import dagger.Subcomponent;

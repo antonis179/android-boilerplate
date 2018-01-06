@@ -13,8 +13,19 @@ import android.view.View
 class ScrollAwareFABBehavior : FloatingActionButton.Behavior() {
 
 
-	override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: FloatingActionButton, target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
-		super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type)
+	override fun onNestedScroll(
+			coordinatorLayout: CoordinatorLayout,
+			child: FloatingActionButton,
+			target: View,
+			dxConsumed: Int,
+			dyConsumed: Int,
+			dxUnconsumed: Int,
+			dyUnconsumed: Int,
+			type: Int) {
+
+		super.onNestedScroll(
+				coordinatorLayout, child, target, dxConsumed,
+				dyConsumed, dxUnconsumed, dyUnconsumed, type)
 
 		val hide = dyConsumed > 0 && child.visibility == View.VISIBLE
 		val show = dyConsumed < 0 && child.visibility != View.VISIBLE
