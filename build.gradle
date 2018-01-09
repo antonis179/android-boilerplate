@@ -3,7 +3,7 @@ allprojects {
 		jcenter()
 		mavenCentral()
 		google()
-		maven {url "https://jitpack.io"}
+		maven { url "https://jitpack.io" }
 		maven { url 'https://maven.fabric.io/public' }
 		maven { url 'http://maven.localytics.com/public' }
 	}
@@ -38,7 +38,7 @@ ext {
 	OKHTTP = '3.8.1'
 
 	//Logging
-	TIMBER = '4.5.1'
+	TIMBER = '4.6.0'
 
 	//Permissions
 	DEXTER = '4.1.1'
