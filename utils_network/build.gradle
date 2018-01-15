@@ -49,6 +49,12 @@ dependencies {
 	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
 	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
 
+	//Retrofit
+	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
+	implementation "com.squareup.retrofit2:converter-gson:${RETROFIT}"
+	implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT}"
+	implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: "${OKHTTP}"
+
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 

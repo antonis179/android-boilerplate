@@ -79,6 +79,7 @@ dependencies {
 	implementation "com.google.android.gms:play-services-gcm:${PLAY_SERVICES}"
 	implementation "com.google.android.gms:play-services-maps:${PLAY_SERVICES}"
 	implementation "com.google.android.gms:play-services-location:${PLAY_SERVICES}"
+	implementation "com.google.android.gms:play-services-awareness:${PLAY_SERVICES}"
 
 	//Assistant
 	implementation "com.google.firebase:firebase-appindexing:${PLAY_SERVICES}"

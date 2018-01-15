@@ -9,6 +9,7 @@ import org.amoustakos.boilerplate.injection.annotations.context.ApplicationConte
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;
 import org.amoustakos.boilerplate.injection.module.DBModule;
+import org.amoustakos.boilerplate.injection.module.NetworkModule;
 
 import javax.inject.Singleton;
 
@@ -18,7 +19,8 @@ import io.realm.Realm;
 @Singleton
 @Component(modules = {
 		ApplicationModule.class,
-		DBModule.class
+		DBModule.class,
+		NetworkModule.class
 })
 public interface ApplicationComponent {
 
