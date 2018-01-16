@@ -14,13 +14,13 @@ import java.util.Arrays.asList
  * By default a [GsonConverterFactory] and an [RxJava2CallAdapterFactory] are used.
  */
 
-data class RetrofitEngineOptions(
+data class RetrofitEngineOptions @JvmOverloads constructor(
 
         val baseUrl: String,
 
 
-        val converterFactories: List<Converter.Factory> =
-        asList(GsonConverterFactory.create(GsonBuilder().create())),
-        val adapterFactories: List<CallAdapter.Factory> =
-        asList(RxJava2CallAdapterFactory.create())
+        val converterFactories: List<Converter.Factory> = asList(
+                GsonConverterFactory.create(GsonBuilder().create())),
+        val adapterFactories: List<CallAdapter.Factory> = asList(
+                RxJava2CallAdapterFactory.create())
 )

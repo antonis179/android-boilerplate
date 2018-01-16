@@ -10,17 +10,17 @@ import java.io.File
  * Defaults are provided for all options.
  */
 
-data class OkhttpOptions(
+data class OkhttpOptions @JvmOverloads constructor(
 
         // Caching
-        val cacheSize: Long = -1L,
-        val cacheDir: File? = null,
-        val cacheSubDirectory: String = "http",
+        val cacheSize: Long = -1L,                      // MB
+        val cacheDir: File? = null,                     // Root folder
+        val cacheSubDirectory: String = "http",         // Subfolder
 
         // Connection
-        val connectTimeout: Int = 15,    //Seconds
-        val readTimeout: Int = 15,       //Seconds
-        val writeTimeout: Int = 15,      //Seconds
+        val connectTimeout: Int = 15,                   // Seconds
+        val readTimeout: Int = 15,                      // Seconds
+        val writeTimeout: Int = 15,                     // Seconds
 
         // Interceptors
         val interceptors: List<Interceptor>? = null,

@@ -6,10 +6,14 @@ import android.content.Context;
 import org.amoustakos.boilerplate.Environment;
 import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions;
+import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;
 import org.amoustakos.boilerplate.injection.module.DBModule;
 import org.amoustakos.boilerplate.injection.module.NetworkModule;
+import org.amoustakos.utils.network.retrofit.OkhttpOptions;
+import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions;
 
 import javax.inject.Singleton;
 
@@ -47,6 +51,16 @@ public interface ApplicationComponent {
 	// =========================================================================================
 
 	ExampleDao exampleDao();
+
+
+	// =========================================================================================
+	// Network
+	// =========================================================================================
+	@DefaultRetrofitOptions
+	RetrofitEngineOptions defaultRetrofitOptions();
+
+	@DefaultOkHttpOptions
+	OkhttpOptions defaultOkHttpOptions();
 
 
 
