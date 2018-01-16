@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitBuilder {
 
 
+    @JvmStatic
     fun getRetrofitEngine(okHttpClient: OkHttpClient, opts: RetrofitEngineOptions): Retrofit {
         val builder = Retrofit.Builder()
                 .baseUrl(opts.baseUrl)
@@ -23,9 +24,11 @@ object RetrofitBuilder {
     }
 
 
+    @JvmStatic
     fun <T> newService(engine: Retrofit, service: Class<T>): T = engine.create(service)
 
 
+    @JvmStatic
     fun getHttpClient(opts: OkhttpOptions): OkHttpClient {
         val client = OkHttpClient.Builder()
 

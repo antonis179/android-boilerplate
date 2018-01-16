@@ -6,7 +6,9 @@ import android.content.Context;
 import org.amoustakos.boilerplate.Environment;
 import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
+import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpClient;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions;
+import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.module.ApplicationModule;
@@ -19,6 +21,8 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import io.realm.Realm;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 
 @Singleton
 @Component(modules = {
@@ -61,6 +65,12 @@ public interface ApplicationComponent {
 
 	@DefaultOkHttpOptions
 	OkhttpOptions defaultOkHttpOptions();
+
+	@DefaultOkHttpClient
+	OkHttpClient defaultOkHttpClient();
+
+	@DefaultRetrofitEngine
+	Retrofit defaultRetrofitEngine();
 
 
 

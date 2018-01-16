@@ -12,6 +12,9 @@ import java.io.File
 
 data class OkhttpOptions @JvmOverloads constructor(
 
+        // Debug
+        val isDebug: Boolean = false,
+
         // Caching
         val cacheSize: Long = -1L,                      // MB
         val cacheDir: File? = null,                     // Root folder
@@ -23,10 +26,8 @@ data class OkhttpOptions @JvmOverloads constructor(
         val writeTimeout: Int = 15,                     // Seconds
 
         // Interceptors
-        val interceptors: List<Interceptor>? = null,
+        val interceptors: List<Interceptor>? = null
 
 
-        // Debug
-        val isDebug: Boolean = false
 
 )
