@@ -3,7 +3,7 @@ package org.amoustakos.boilerplate;
 import android.content.Context;
 
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
-import org.amoustakos.boilerplate.io.db.migrations.base.Migration;
+import org.amoustakos.boilerplate.io.local.migrations.base.Migration;
 
 import java.lang.ref.WeakReference;
 

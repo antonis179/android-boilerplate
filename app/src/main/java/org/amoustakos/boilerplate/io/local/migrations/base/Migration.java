@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.io.db.migrations.base;
+package org.amoustakos.boilerplate.io.local.migrations.base;
 
 import android.support.annotation.NonNull;
 

@@ -1,6 +1,7 @@
 package org.amoustakos.boilerplate.injection.module;
 
 import org.amoustakos.boilerplate.BuildConfig;
+import org.amoustakos.boilerplate.examples.io.remote.ExampleNetCall;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpClient;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine;
@@ -73,6 +74,12 @@ public class NetworkModule {
 	// =========================================================================================
 	// APIs
 	// =========================================================================================
+
+	@Provides
+	@Singleton
+	ExampleNetCall.ApiService provideExampleApiService(@DefaultRetrofitEngine Retrofit engine) {
+		return RetrofitBuilder.newService(engine, ExampleNetCall.ApiService.class);
+	}
 
 
 }

@@ -6,7 +6,7 @@ import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.ID
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.NAME
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm
-import org.amoustakos.boilerplate.io.db.dao.base.BaseDao
+import org.amoustakos.boilerplate.io.local.dao.base.BaseDao
 import javax.inject.Inject
 
 

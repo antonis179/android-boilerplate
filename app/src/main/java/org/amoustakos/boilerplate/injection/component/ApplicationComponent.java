@@ -5,6 +5,7 @@ import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
 import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
+import org.amoustakos.boilerplate.examples.io.remote.ExampleNetCall;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpClient;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions;
@@ -60,17 +61,17 @@ public interface ApplicationComponent {
 	// =========================================================================================
 	// Network
 	// =========================================================================================
-	@DefaultRetrofitOptions
-	RetrofitEngineOptions defaultRetrofitOptions();
+	@DefaultRetrofitOptions RetrofitEngineOptions defaultRetrofitOptions();
+	@DefaultOkHttpOptions OkhttpOptions defaultOkHttpOptions();
+	@DefaultOkHttpClient OkHttpClient defaultOkHttpClient();
+	@DefaultRetrofitEngine Retrofit defaultRetrofitEngine();
 
-	@DefaultOkHttpOptions
-	OkhttpOptions defaultOkHttpOptions();
+	ExampleNetCall.ApiService exampleApiService();
 
-	@DefaultOkHttpClient
-	OkHttpClient defaultOkHttpClient();
 
-	@DefaultRetrofitEngine
-	Retrofit defaultRetrofitEngine();
+	// =========================================================================================
+	// Injections
+	// =========================================================================================
 
 
 

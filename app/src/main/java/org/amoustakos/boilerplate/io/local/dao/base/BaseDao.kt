@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.io.db.dao.base
+package org.amoustakos.boilerplate.io.local.dao.base
 
 import io.realm.Realm
 import io.realm.RealmModel

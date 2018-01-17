@@ -28,6 +28,4 @@ data class OkhttpOptions @JvmOverloads constructor(
         // Interceptors
         val interceptors: List<Interceptor>? = null
 
-
-
 )
