@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util;
+package org.amoustakos.utils.android;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.amoustakos.boilerplate.R;
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
 import org.amoustakos.boilerplate.ui.adapters.RecyclerViewAdapter;
-import org.amoustakos.boilerplate.util.RxUtil;
+import org.amoustakos.utils.android.RxUtil;
 
 import java.util.List;
 

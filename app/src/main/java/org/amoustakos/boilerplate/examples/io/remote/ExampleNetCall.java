@@ -1,5 +1,6 @@
 package org.amoustakos.boilerplate.examples.io.remote;
 
+import org.amoustakos.boilerplate.io.remote.BaseCall;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import static org.amoustakos.boilerplate.io.remote.Headers.HEADER_CONTENT_TYPE;
  * Created by antonis on 17/01/2018.
  */
 
-public class ExampleNetCall {
+public class ExampleNetCall extends BaseCall {
 
 	private final ApiService service;
 
@@ -34,6 +35,9 @@ public class ExampleNetCall {
 	// =========================================================================================
 	// Implementation
 	// =========================================================================================
+
+
+
 
 
 

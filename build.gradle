@@ -25,7 +25,6 @@ ext {
 
 	//Annotation processors - injection - RX
 	DAGGER = '2.12'
-	JAVA_POET = '1.7.0'
 	RETROFIT = '2.3.0'
 	RX_JAVA = '2.1.3'
 	RX_ANDROID = '2.0.1'

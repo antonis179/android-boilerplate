@@ -39,6 +39,9 @@ kapt {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+	//Inner modules
+	implementation project(":utils_android")
+
 	//Support
 	implementation "com.android.support:appcompat-v7:${SUPPORT}"
 
