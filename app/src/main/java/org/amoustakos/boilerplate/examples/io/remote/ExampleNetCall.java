@@ -10,8 +10,9 @@ import retrofit2.Response;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-import static org.amoustakos.boilerplate.io.remote.Headers.HEADER_APPLICATION_JSON;
-import static org.amoustakos.boilerplate.io.remote.Headers.HEADER_CONTENT_TYPE;
+import static org.amoustakos.utils.network.Headers.HEADER_CONTENT_TYPE;
+import static org.amoustakos.utils.network.Headers.MIME_JSON;
+
 
 /**
  * Created by antonis on 17/01/2018.
@@ -46,7 +47,7 @@ public class ExampleNetCall extends BaseCall {
 	// =========================================================================================
 
 	public interface ApiService {
-		@Headers(HEADER_CONTENT_TYPE + HEADER_APPLICATION_JSON)
+		@Headers(HEADER_CONTENT_TYPE + " " + MIME_JSON)
 		@POST("/endpoint")
 		Observable<Response<JSONObject>> makeCall();
 	}

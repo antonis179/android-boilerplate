@@ -55,14 +55,14 @@ object HttpStatusCode {
      * Returns whether the given HTTP response status code is a success code
      * `>= 200 and < 300`.
      */
-    fun isSuccess(statusCode: Int): Boolean {
+    @JvmStatic fun isSuccess(statusCode: Int): Boolean {
         return statusCode >= OK && statusCode < MULTIPLE_CHOICES
     }
 
     /**
      * Returns whether the given HTTP response status code is a redirection code.
      */
-    fun isRedirection(statusCode: Int): Boolean {
+    @JvmStatic fun isRedirection(statusCode: Int): Boolean {
         return (statusCode == HttpURLConnection.HTTP_MOVED_TEMP
                 || statusCode == HttpURLConnection.HTTP_MOVED_PERM
                 || statusCode == HttpURLConnection.HTTP_SEE_OTHER)
@@ -71,14 +71,14 @@ object HttpStatusCode {
     /**
      * Returns true if the Throwable is an instance of RetrofitError
      */
-    fun isHttpStatusCode(throwable: Throwable): Boolean {
+    @JvmStatic fun isHttpStatusCode(throwable: Throwable): Boolean {
         return throwable is HttpException
     }
 
     /**
      * Checks whether the [HttpException]'s code is equal to the provided one.
      */
-    fun isEqualCode(throwable: HttpException, statusCode: Int): Boolean {
+    @JvmStatic fun isEqualCode(throwable: HttpException, statusCode: Int): Boolean {
         return throwable.code() == statusCode
     }
 
@@ -86,7 +86,7 @@ object HttpStatusCode {
      * Checks whether the provided [Throwable] is an [HttpException] <br></br>
      * and its code equals to [.UNAUTHORIZED]
      */
-    fun isUnauthorized(throwable: Throwable): Boolean {
+    @JvmStatic fun isUnauthorized(throwable: Throwable): Boolean {
         return isHttpStatusCode(throwable) && isEqualCode(throwable as HttpException, HttpStatusCode.UNAUTHORIZED)
     }
 }

@@ -20,8 +20,7 @@ public class DBModule {
 
 	/**
 	 * !IMPORTANT! <br />
-	 * Do not make this provider a singleton or you will run into unexpected <br />
-	 * behaviour when closing a realm instance
+	 * Do not make this provider a singleton. Let Realm handle caching.
 	 */
 	@Provides
 	@DefaultRealm
