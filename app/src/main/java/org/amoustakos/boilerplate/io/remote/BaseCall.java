@@ -1,8 +1,8 @@
 package org.amoustakos.boilerplate.io.remote;
 
+import org.amoustakos.models.network.NetEvent;
 import org.amoustakos.utils.network.HttpStatusCode;
 import org.amoustakos.utils.network.retrofit.AuthInterface;
-import org.amoustakos.utils.network.retrofit.NetEvent;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
@@ -57,7 +57,8 @@ public abstract class BaseCall {
 
 	public <T> ObservableTransformer<NetEvent<T>, NetEvent<T>> applyMapErrorResponse() {
 		return tObservable ->
-				tObservable.onErrorReturn(t -> new NetEvent<T>(true));
+				tObservable.onErrorReturn(t ->
+						new NetEvent<T>(-1, true, null));
 	}
 
 	/**

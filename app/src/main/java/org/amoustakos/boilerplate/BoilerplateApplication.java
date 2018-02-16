@@ -39,9 +39,6 @@ public class BoilerplateApplication extends Application {
 	}
 
 
-	/*
-	 * Overrides
-	 */
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -49,10 +46,10 @@ public class BoilerplateApplication extends Application {
 	}
 
 
+	// =========================================================================================
+	// Getters - Setters
+	// =========================================================================================
 
-	/*
-	 * Getters - Setters
-	 */
 	public static BoilerplateApplication get(Context context) {
 		return (BoilerplateApplication) context.getApplicationContext();
 	}

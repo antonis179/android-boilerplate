@@ -10,13 +10,13 @@ object Headers {
      * Headers
      */
 
-    @JvmField val HEADER_CONTENT_TYPE = "Content-Type:"
+    const val HEADER_CONTENT_TYPE = "Content-Type:"
 
 
     /*
      * Mime types
      */
 
-    @JvmField val MIME_JSON = "application/json"
+    const val MIME_JSON = "application/json"
 
 }
