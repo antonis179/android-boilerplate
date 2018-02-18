@@ -135,6 +135,7 @@ dependencies {
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+	implementation "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN}"
 
 
 	//Tests
