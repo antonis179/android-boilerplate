@@ -43,6 +43,7 @@ android {
 
 kapt {
 	generateStubs true
+	useBuildCache true
 }
 
 
@@ -71,6 +72,8 @@ dependencies {
 	implementation "com.android.support:design:${SUPPORT}"
 	implementation "com.android.support:recyclerview-v7:${SUPPORT}"
 	implementation "com.android.support:cardview-v7:${SUPPORT}"
+
+	//Lifecycle
 	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
 	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
 	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
@@ -89,7 +92,7 @@ dependencies {
 
 	//Realm
 	provided "io.realm:realm-android-library:${REALM}"
-	implementation "io.realm:android-adapters:${ANDROID_ADAPTERS}"
+	implementation "io.realm:android-adapters:${REALM_ANDROID_ADAPTERS}"
 
 
 	//Dagger
