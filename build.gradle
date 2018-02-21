@@ -33,6 +33,7 @@ ext {
 
 	//Realm
 	REALM_ANDROID_ADAPTERS = '2.1.1'
+	KOTLIN_REALM_EXT = '2.1.1'
 
 	//Net
 	GSON = '2.8.1'
