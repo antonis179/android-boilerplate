@@ -4,7 +4,8 @@ import android.support.annotation.NonNull
 import android.support.v7.widget.RecyclerView
 
 
-abstract class RecyclerViewAdapter<T : RecyclerView.ViewHolder, Y>(@NonNull protected var mItems: MutableList<Y>) :
+abstract class RecyclerViewAdapter<T : RecyclerView.ViewHolder, Y>
+    (@NonNull protected var mItems: MutableList<Y>) :
         RecyclerView.Adapter<T>() {
 
     private val mLock = Any()

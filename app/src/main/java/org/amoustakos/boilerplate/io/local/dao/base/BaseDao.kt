@@ -2,24 +2,33 @@ package org.amoustakos.boilerplate.io.local.dao.base
 
 import io.realm.Realm
 import io.realm.RealmModel
+import io.realm.RealmObject
 import io.realm.RealmResults
+import org.amoustakos.boilerplate.util.io.RealmTraits
 import org.amoustakos.boilerplate.util.io.RealmUtil
 
 abstract class BaseDao<T : RealmModel> (
-                                            @get:Synchronized protected val realm: Realm,
-                                            private val modelType: Class<T>
-                                        ) {
+        @get:Synchronized protected val realm: Realm,
+        private val modelType: Class<T>)
+    : RealmTraits() {
 
 
     // =========================================================================================
     // Helpers
     // =========================================================================================
 
-    protected fun has(): Boolean = RealmUtil.has(realm, modelType)
+    fun has(): Boolean = RealmUtil.has(realm, modelType)
 
-    protected val count: Long?
+    val count: Long
         get() = RealmUtil.getCount(realm, modelType)
 
+    fun isAutoUpdate(): Boolean = realm.isAutoRefresh
+
+    fun isRealmClosed(): Boolean = realm.isClosed
+
+    fun isValid(model: T): Boolean = RealmObject.isValid(model)
+
+    fun isEmpty(): Boolean = count == 0L
 
     // =========================================================================================
     // CRUD
@@ -32,6 +41,9 @@ abstract class BaseDao<T : RealmModel> (
     fun addOrUpdate(model: T) = RealmUtil.addOrUpdate(realm, model)
 
     fun remove(model: T) = RealmUtil.remove(realm, model)
+
+    /** Max 100 objects (Realm limitation per transaction) **/
+    fun remove(models: List<T>) = RealmUtil.remove(realm, models)
 
     fun clearAll() = RealmUtil.clearAll(realm, modelType)
 
@@ -59,10 +71,11 @@ abstract class BaseDao<T : RealmModel> (
     fun getByColumn(column: String, value: Float): RealmResults<T> =
             RealmUtil.getByColumn(realm, modelType, column, value)
 
-
     // =========================================================================================
     // Overrides
     // =========================================================================================
 
+    /** This method overrides "finalize" even though it can't be declared in kotlin yet. */
     protected fun finalize() = realm.close()
+
 }

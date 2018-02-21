@@ -6,16 +6,13 @@ import io.realm.RealmObject
 import io.realm.RealmResults
 
 /**
- * Utility class to help with Realm IO. <br></br>
- * <br></br>
- * Most of these methods can be implemented with [RealmObject] instead of [RealmModel] <br></br>
+ * Utility class to help with Realm IO.
+ *
+ * Most of these methods can be implemented with [RealmObject] instead of [RealmModel]
  * but this would require you to extend this at model level instead of implement.
- * <br></br>
- * <br></br>
  */
 @Suppress("UNCHECKED_CAST")
-object RealmUtil {
-
+object RealmUtil : RealmTraits() {
 
     // =========================================================================================
     // Helpers
@@ -26,42 +23,35 @@ object RealmUtil {
     fun getCount(realm: Realm, model: Class<out RealmModel>): Long = realm.where(model).count()
 
 
-    infix fun Realm.transWithResp(transaction: () -> RealmModel?): RealmModel? {
-        beginTransaction()
-        val resp = transaction.invoke()
-        commitTransaction()
-        return resp
-    }
-
-    infix fun Realm.trans(transaction: () -> Unit) {
-        this.beginTransaction()
-        transaction.invoke()
-        this.commitTransaction()
-    }
-
-
     // =========================================================================================
     // CRUD
     // =========================================================================================
 
     fun <T : RealmModel> add(realm: Realm, model: T, copy: Boolean): T? {
-       return (realm transWithResp {
-           var obj: RealmModel? = null
-           if (copy)
-               obj = realm.copyToRealm(model)
-           else
-               realm.insert(model)
-           obj
-       }) as T?
+        return (realm transWithResp {
+            var obj: RealmModel? = null
+            if (copy)
+                obj = realm.copyToRealm(model)
+            else
+                realm.insert(model)
+            obj
+        }) as T?
     }
 
 
     fun addOrUpdate(realm: Realm, model: RealmModel) = realm trans {
-            realm.insertOrUpdate(model)
+        realm.insertOrUpdate(model)
     }
 
     fun remove(realm: Realm, model: RealmModel) = realm trans {
-            RealmObject.deleteFromRealm(model)
+        RealmObject.deleteFromRealm(model)
+    }
+
+    /** Max 100 objects (Realm limitation per transaction) **/
+    fun remove(realm: Realm, models: List<RealmModel>) = realm trans {
+        models.forEach {
+            RealmObject.deleteFromRealm(it)
+        }
     }
 
     fun clearAll(realm: Realm, model: Class<out RealmModel>) = realm trans {
@@ -97,6 +87,5 @@ object RealmUtil {
 
     fun <T : RealmModel> getByColumn(realm: Realm, model: Class<T>, column: String, value: Float): RealmResults<T> =
             realm.where(model).equalTo(column, value).findAll()
-
 
 }
