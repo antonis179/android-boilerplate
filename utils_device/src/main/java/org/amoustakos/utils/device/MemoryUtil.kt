@@ -7,7 +7,6 @@ import android.support.annotation.NonNull
 import android.support.annotation.RequiresApi
 import timber.log.Timber
 import java.lang.Exception
-import java.lang.NullPointerException
 import java.lang.ref.WeakReference
 
 /**
@@ -16,31 +15,14 @@ import java.lang.ref.WeakReference
  * [.lowMemThres] <br />
  * [.highMemThres] <br />
  */
-class MemoryUtil
-
-// =========================================================================================
-// Constructors
-// =========================================================================================
-
-/**
- * Constructor that uses the default parameters: <br></br>
- * [.lowMemThres] <br></br>
- * [.highMemThres]
- */
-(context: Context) {
+class MemoryUtil constructor (@NonNull context: Context) {
 
     //Thresholds
     private var lowMemThres = 512.0
     private var highMemThres = 1536.0
 
     //Dependencies
-    private val context: WeakReference<Context>
-
-    init {
-        if (context == null)
-            throw NullPointerException("Context cannot be null")
-        this.context = WeakReference(context)
-    }
+    private val context: WeakReference<Context> = WeakReference(context)
 
     /**
      * Constructor that allows setting the threshold parameters <br></br>
@@ -64,21 +46,24 @@ class MemoryUtil
      * Returns free RAM in MB.
      */
     @RequiresApi(16)
-    fun calculateRam(): Double = calculateRam(context.get()!!)
+    fun calculateRam(): Double = calculateRam(context.get())
 
 
     companion object {
-        const val HIGH = 0L
-        const val MEDIUM = 1L
-        const val LOW = 2L
-        const val UNKNOWN = Long.MIN_VALUE
+        const val HIGH: Long = 0
+        const val MEDIUM: Long = 1
+        const val LOW: Long = 2
+        const val UNKNOWN: Long = Long.MIN_VALUE
 
         /**
          * Returns free RAM in MB.
          */
         @RequiresApi(16)
         @JvmStatic
-        fun calculateRam(@NonNull context: Context): Double {
+        fun calculateRam(@NonNull context: Context?): Double {
+            if (context == null)
+                throw NullPointerException("Context was null")
+
             return try {
                 val actManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 val memInfo = ActivityManager.MemoryInfo()
@@ -100,17 +85,16 @@ class MemoryUtil
 
     @MemoryProfile
     fun profile(): Long {
-        val memory: Double = calculateRam(context.get()!!)
+        val memory: Double = calculateRam(context.get())
 
         if (memory == java.lang.Double.NaN)
             return UNKNOWN
 
-        if (memory <= lowMemThres)
-            return LOW
-        else if (memory < highMemThres)
-            return MEDIUM
-        else
-            return HIGH
+        return when {
+            memory <= lowMemThres -> LOW
+            memory < highMemThres -> MEDIUM
+            else -> HIGH
+        }
     }
 
 

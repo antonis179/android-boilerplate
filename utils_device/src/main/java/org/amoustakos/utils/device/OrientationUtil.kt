@@ -15,7 +15,7 @@ import android.support.annotation.IntDef
  * Calculates and reports device rotation based on accelerometer and magnetometer.
  */
 class OrientationUtil
-(context: Context, @Orientation defaultOrientation: Int) : DefaultLifecycleObserver {
+(context: Context, @Orientation defaultOrientation: Long) : DefaultLifecycleObserver {
 
     private val smoothness = 1
     private var averagePitch = 0f
@@ -65,10 +65,9 @@ class OrientationUtil
     // =========================================================================================
 
     @Synchronized private fun addValue(value: Float, values: FloatArray): Float {
-        var v = value
-        v = Math.round(Math.toDegrees(value.toDouble())).toFloat()
+        val v: Float = Math.round(Math.toDegrees(value.toDouble())).toFloat()
         var average = 0f
-        (1..(smoothness - 1)).forEach { i ->
+        for (i in 1 until smoothness) {
             values[i - 1] = values[i]
             average += values[i]
         }
@@ -79,7 +78,7 @@ class OrientationUtil
 
 
     @Orientation
-    private fun calculateOrientation(): Int {
+    private fun calculateOrientation(): Long {
         // finding local orientation dip
         if ((orientation == ORIENTATION_PORTRAIT || orientation == ORIENTATION_PORTRAIT_REVERSE) && averageRoll > -30 && averageRoll < 30) {
             return if (averagePitch > 0)
@@ -156,18 +155,18 @@ class OrientationUtil
     // =========================================================================================
 
     companion object {
-        const val ORIENTATION_PORTRAIT = ExifInterface.ORIENTATION_ROTATE_90 // 6
-        const val ORIENTATION_LANDSCAPE_REVERSE = ExifInterface.ORIENTATION_ROTATE_180 // 3
-        const val ORIENTATION_LANDSCAPE = ExifInterface.ORIENTATION_NORMAL // 1
-        const val ORIENTATION_PORTRAIT_REVERSE = ExifInterface.ORIENTATION_ROTATE_270 // 8
+        const val ORIENTATION_PORTRAIT: Long = ExifInterface.ORIENTATION_ROTATE_90.toLong() // 6
+        const val ORIENTATION_LANDSCAPE_REVERSE: Long = ExifInterface.ORIENTATION_ROTATE_180.toLong() // 3
+        const val ORIENTATION_LANDSCAPE: Long = ExifInterface.ORIENTATION_NORMAL.toLong() // 1
+        const val ORIENTATION_PORTRAIT_REVERSE: Long = ExifInterface.ORIENTATION_ROTATE_270.toLong() // 8
 
         @JvmStatic
-        fun getCameraRotationDegrees(@Orientation orientation: Int): Float {
-            return when {
-                orientation == ORIENTATION_LANDSCAPE -> -90f
-                orientation == ORIENTATION_PORTRAIT -> 0f
-                orientation == ORIENTATION_LANDSCAPE_REVERSE -> 90f
-                orientation == ORIENTATION_PORTRAIT_REVERSE -> 180f
+        fun getCameraRotationDegrees(@Orientation orientation: Long): Float {
+            return when (orientation) {
+                ORIENTATION_LANDSCAPE -> -90f
+                ORIENTATION_PORTRAIT -> 0f
+                ORIENTATION_LANDSCAPE_REVERSE -> 90f
+                ORIENTATION_PORTRAIT_REVERSE -> 180f
                 else -> java.lang.Float.MIN_VALUE
             }
         }
@@ -179,7 +178,11 @@ class OrientationUtil
     // =========================================================================================
 
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
-    @IntDef(ORIENTATION_PORTRAIT.toLong(), ORIENTATION_LANDSCAPE_REVERSE.toLong(), ORIENTATION_LANDSCAPE.toLong(), ORIENTATION_PORTRAIT_REVERSE.toLong())
+    @IntDef(
+            ORIENTATION_PORTRAIT,
+            ORIENTATION_LANDSCAPE_REVERSE,
+            ORIENTATION_LANDSCAPE,
+            ORIENTATION_PORTRAIT_REVERSE)
     annotation class Orientation
 
 }

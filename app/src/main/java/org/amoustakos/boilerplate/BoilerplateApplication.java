@@ -2,7 +2,6 @@ package org.amoustakos.boilerplate;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
 
 import org.amoustakos.boilerplate.injection.component.ApplicationComponent;
 import org.amoustakos.boilerplate.injection.component.DaggerApplicationComponent;
@@ -39,13 +38,6 @@ public class BoilerplateApplication extends Application {
 	}
 
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		System.gc();
-	}
-
-
 	// =========================================================================================
 	// Getters - Setters
 	// =========================================================================================
@@ -53,6 +45,7 @@ public class BoilerplateApplication extends Application {
 	public static BoilerplateApplication get(Context context) {
 		return (BoilerplateApplication) context.getApplicationContext();
 	}
+
 	public ApplicationComponent getComponent() {
 		return mApplicationComponent;
 	}

@@ -3,12 +3,15 @@ package org.amoustakos.boilerplate.injection.module;
 
 import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
+import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig;
+import org.amoustakos.boilerplate.io.local.RealmConfig;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 @Module
 public class DBModule {
@@ -26,6 +29,17 @@ public class DBModule {
 	@DefaultRealm
 	Realm provideRealm() {
 		return Realm.getDefaultInstance();
+	}
+
+
+	// =========================================================================================
+	// Configs
+	// =========================================================================================
+
+	@Provides
+	@DefaultRealmConfig
+	RealmConfiguration provideDefaultRealmConfig() {
+		return RealmConfig.defaultConfig();
 	}
 
 

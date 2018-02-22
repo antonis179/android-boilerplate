@@ -3,12 +3,10 @@
 package org.amoustakos.boilerplate
 
 import android.content.Context
-import com.vicpin.krealmextensions.RealmConfigStore
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
-import org.amoustakos.boilerplate.io.local.migrations.base.Migration
+import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
 import timber.log.Timber
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import java.lang.ref.WeakReference
@@ -17,14 +15,11 @@ import javax.inject.Singleton
 
 @Singleton
 class Environment @Inject
-constructor(@ApplicationContext context: Context) {
+constructor(
+        @ApplicationContext context: Context,
+        @DefaultRealmConfig private val realmConfig: RealmConfiguration){
 
     private val context: WeakReference<Context> = WeakReference(context)
-
-
-    companion object {
-        private const val REALM_SCHEMA_VERSION = 0
-    }
 
 
     /*
@@ -54,14 +49,7 @@ constructor(@ApplicationContext context: Context) {
 
     private fun initRealm() {
         Realm.init(context.get())
-        val realmConfig = RealmConfiguration.Builder()
-                .schemaVersion(REALM_SCHEMA_VERSION.toLong())
-                .migration(Migration())
-                .build()
         Realm.setDefaultConfiguration(realmConfig)
-        Realm.getDefaultInstance().isAutoRefresh = true
-
-        RealmConfigStore.init(ExampleModel::class.java, realmConfig)
     }
 
 }
