@@ -19,7 +19,7 @@ public abstract class BaseCall {
 
 
 	/**
-	 * Applies the default retries to an observable: <br />
+	 * Applies the default retries to an observable
 	 */
 	public <T> ObservableTransformer<T, T> applyRetries(int times) {
 		return tObservable ->
@@ -27,7 +27,7 @@ public abstract class BaseCall {
 	}
 
 	/**
-	 * Applies the default error logging to an observable (warning): <br />
+	 * Applies the default error logging to an observable
 	 */
 	public <T> ObservableTransformer<T, T> applyErrorLogging() {
 		return tObservable ->
@@ -36,7 +36,7 @@ public abstract class BaseCall {
 
 
 	/**
-	 * Adds an authorization call to an observable.
+	 * Adds an authorization call to an observable
 	 */
 	protected <T> Observable<T> auth(Observable<T> obs, AuthInterface authManager) {
 		if (authManager.isAuthorized()) {
@@ -54,7 +54,9 @@ public abstract class BaseCall {
 	}
 
 
-
+	/**
+	 * Applies a return value in case a mapping operation fails
+	 */
 	public <T> ObservableTransformer<NetEvent<T>, NetEvent<T>> applyMapErrorResponse() {
 		return tObservable ->
 				tObservable.onErrorReturn(t ->
@@ -62,7 +64,7 @@ public abstract class BaseCall {
 	}
 
 	/**
-	 * Applies the default error return to an observable: <br />
+	 * Applies the default error return to an observable
 	 */
 	public <T> ObservableTransformer<Response<T>, Response<T>> applyErrorReturn() {
 		return tObservable ->
@@ -74,10 +76,10 @@ public abstract class BaseCall {
 	}
 
 	/**
-	 * Applies the following transformations to an observable: <br />
-	 * <br />
-	 * 1. Retry policy <br />
-	 * 2. Default error logging (@ warning level) <br />
+	 * Applies the following transformations to an observable:
+	 *
+	 * 1. Retry policy
+	 * 2. Default error logging (@ warning level)
 	 * 3. Default error return
 	 */
 	public <T> ObservableTransformer<Response<T>, Response<T>> applyTransformations(int retries) {
@@ -88,11 +90,17 @@ public abstract class BaseCall {
 	}
 
 
+	/**
+	 * Default error JSON response
+	 */
 	public <T> Response<T> makeErrorJsonResponse() {
 		return Response.error(500, emptyJSONResponseBody());
 	}
 
 
+	/**
+	 * Default error JSON body
+	 */
 	public ResponseBody emptyJSONResponseBody() {
 		return ResponseBody.create(MediaType.parse(MIME_JSON), "{}");
 	}
