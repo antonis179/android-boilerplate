@@ -8,7 +8,7 @@ class NetEvent<out T> {
     val errorMessage: String?
     val item: T?
 
-    constructor(error: Int, hasError: Boolean, item: T, errorMessage: String) {
+    constructor(error: Int?, hasError: Boolean, item: T?, errorMessage: String?) {
         this.error = error
         this.hasError = hasError
         this.item = item
@@ -31,4 +31,5 @@ class NetEvent<out T> {
 
     constructor(error: Int):        this(error, true, null)
     constructor(hasError: Boolean): this(null, hasError, null)
+    constructor(hasError: Boolean, item: T?): this(null, hasError, item, null)
 }

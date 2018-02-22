@@ -13,16 +13,12 @@ import retrofit2.http.POST
 import javax.inject.Inject
 
 
-/**
- * Created by antonis on 17/01/2018.
- */
-
 class ExampleNetCall
 @Inject
 constructor(private val service: ApiService) : BaseCall() {
 
     companion object {
-        private const val RETRIES = 3
+        private const val RETRIES: Long = 3
     }
 
     // =========================================================================================
