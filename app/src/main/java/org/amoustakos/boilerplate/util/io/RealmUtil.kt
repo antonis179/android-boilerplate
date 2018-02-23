@@ -4,6 +4,7 @@ import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
+import io.realm.kotlin.deleteFromRealm
 
 /**
  * Utility class to help with Realm IO.
@@ -24,7 +25,7 @@ object RealmUtil : RealmTraits() {
 
 
     // =========================================================================================
-    // CRUD
+    // Sync
     // =========================================================================================
 
     fun <T : RealmModel> add(realm: Realm, model: T, copy: Boolean): T? {
@@ -44,15 +45,15 @@ object RealmUtil : RealmTraits() {
     }
 
     fun remove(realm: Realm, model: RealmModel) = realm trans {
-        RealmObject.deleteFromRealm(model)
+        deleteNoTrans(model)
     }
 
     /** Max 100 objects (Realm limitation per transaction) **/
     fun remove(realm: Realm, models: List<RealmModel>) = realm trans {
-        models.forEach {
-            RealmObject.deleteFromRealm(it)
-        }
+        models.forEach { deleteNoTrans(it) }
     }
+
+    fun deleteNoTrans(model: RealmModel) = model.deleteFromRealm()
 
     fun clearAll(realm: Realm, model: Class<out RealmModel>) = realm trans {
         realm.delete(model)

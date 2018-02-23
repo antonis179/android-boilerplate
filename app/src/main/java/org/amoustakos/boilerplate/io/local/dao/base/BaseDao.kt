@@ -1,11 +1,13 @@
 package org.amoustakos.boilerplate.io.local.dao.base
 
+import io.reactivex.Observable
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
 import org.amoustakos.boilerplate.util.io.RealmTraits
 import org.amoustakos.boilerplate.util.io.RealmUtil
+import org.amoustakos.utils.android.RxUtil
 
 abstract class BaseDao<T : RealmModel> (
         @get:Synchronized protected val realm: Realm,
@@ -76,6 +78,9 @@ abstract class BaseDao<T : RealmModel> (
     // =========================================================================================
 
     /** This method overrides "finalize" even though it can't be declared in kotlin yet. */
-    protected fun finalize() = realm.close()
+    protected fun finalize() =
+            Observable.fromCallable{realm.close()}
+                    .compose(RxUtil.applyForegroundSchedulers())
+                    .subscribe()!!
 
 }
