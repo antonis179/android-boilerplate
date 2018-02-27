@@ -50,10 +50,10 @@ class MemoryUtil constructor (@NonNull context: Context) {
 
 
     companion object {
-        const val HIGH: Long = 0
-        const val MEDIUM: Long = 1
-        const val LOW: Long = 2
-        const val UNKNOWN: Long = Long.MIN_VALUE
+        const val HIGH: Int = 0
+        const val MEDIUM: Int = 1
+        const val LOW: Int = 2
+        const val UNKNOWN: Int = Int.MIN_VALUE
 
         /**
          * Returns free RAM in MB.
@@ -84,7 +84,7 @@ class MemoryUtil constructor (@NonNull context: Context) {
     // =========================================================================================
 
     @MemoryProfile
-    fun profile(): Long {
+    fun profile(): Int {
         val memory: Double = calculateRam(context.get())
 
         if (memory == java.lang.Double.NaN)

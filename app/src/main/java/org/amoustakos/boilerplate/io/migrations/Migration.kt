@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.io.local.migrations.base
+package org.amoustakos.boilerplate.io.migrations
 
 import io.realm.DynamicRealm
 import io.realm.RealmMigration

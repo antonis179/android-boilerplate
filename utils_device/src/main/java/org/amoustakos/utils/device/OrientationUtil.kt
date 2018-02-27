@@ -1,5 +1,6 @@
 package org.amoustakos.utils.device
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.DefaultLifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.content.Context
@@ -15,7 +16,7 @@ import android.support.annotation.IntDef
  * Calculates and reports device rotation based on accelerometer and magnetometer.
  */
 class OrientationUtil
-(context: Context, @Orientation defaultOrientation: Long) : DefaultLifecycleObserver {
+(context: Context, @Orientation defaultOrientation: Int) : DefaultLifecycleObserver {
 
     private val smoothness = 1
     private var averagePitch = 0f
@@ -78,9 +79,10 @@ class OrientationUtil
 
 
     @Orientation
-    private fun calculateOrientation(): Long {
+    private fun calculateOrientation(): Int {
         // finding local orientation dip
-        if ((orientation == ORIENTATION_PORTRAIT || orientation == ORIENTATION_PORTRAIT_REVERSE) && averageRoll > -30 && averageRoll < 30) {
+        if ((orientation == ORIENTATION_PORTRAIT || orientation == ORIENTATION_PORTRAIT_REVERSE)
+                && averageRoll > -30 && averageRoll < 30) {
             return if (averagePitch > 0)
                 ORIENTATION_PORTRAIT_REVERSE
             else
@@ -155,13 +157,14 @@ class OrientationUtil
     // =========================================================================================
 
     companion object {
-        const val ORIENTATION_PORTRAIT: Long = ExifInterface.ORIENTATION_ROTATE_90.toLong() // 6
-        const val ORIENTATION_LANDSCAPE_REVERSE: Long = ExifInterface.ORIENTATION_ROTATE_180.toLong() // 3
-        const val ORIENTATION_LANDSCAPE: Long = ExifInterface.ORIENTATION_NORMAL.toLong() // 1
-        const val ORIENTATION_PORTRAIT_REVERSE: Long = ExifInterface.ORIENTATION_ROTATE_270.toLong() // 8
+        const val ORIENTATION_PORTRAIT: Int = ExifInterface.ORIENTATION_ROTATE_90 // 6
+        const val ORIENTATION_LANDSCAPE_REVERSE: Int = ExifInterface.ORIENTATION_ROTATE_180 // 3
+        const val ORIENTATION_LANDSCAPE: Int = ExifInterface.ORIENTATION_NORMAL // 1
+        const val ORIENTATION_PORTRAIT_REVERSE: Int = ExifInterface.ORIENTATION_ROTATE_270 // 8
 
+        @SuppressLint("SwitchIntDef")
         @JvmStatic
-        fun getCameraRotationDegrees(@Orientation orientation: Long): Float {
+        fun getCameraRotationDegrees(@Orientation orientation: Int): Float {
             return when (orientation) {
                 ORIENTATION_LANDSCAPE -> -90f
                 ORIENTATION_PORTRAIT -> 0f

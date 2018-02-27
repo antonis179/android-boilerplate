@@ -1,18 +1,16 @@
-package org.amoustakos.boilerplate.util.preferences;
+package org.amoustakos.utils.io.preferences;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
-
-public abstract class SharedPreferencesHelper {
+public abstract class BaseSharedPreferences {
 
 	protected SharedPreferences prefs;
 
 
-	public SharedPreferencesHelper(@NonNull String fileName, int mode, @ApplicationContext Context con) {
+	public BaseSharedPreferences(@NonNull String fileName, int mode, Context con) {
 		prefs = con.getSharedPreferences(fileName, mode);
 	}
 

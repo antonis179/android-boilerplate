@@ -1,7 +1,7 @@
-package org.amoustakos.boilerplate.io.local
+package org.amoustakos.boilerplate.io
 
 import io.realm.RealmConfiguration
-import org.amoustakos.boilerplate.io.local.migrations.base.Migration
+import org.amoustakos.boilerplate.io.migrations.Migration
 
 object RealmConfig {
 

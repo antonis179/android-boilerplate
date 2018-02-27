@@ -4,7 +4,7 @@ package org.amoustakos.boilerplate.injection.module;
 import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm;
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig;
-import org.amoustakos.boilerplate.io.local.RealmConfig;
+import org.amoustakos.boilerplate.io.RealmConfig;
 
 import javax.inject.Singleton;
 

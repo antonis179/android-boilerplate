@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.io.remote
+package org.amoustakos.boilerplate.net
 
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer

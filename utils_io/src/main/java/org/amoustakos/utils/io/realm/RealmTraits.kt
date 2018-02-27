@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.io
+package org.amoustakos.utils.io.realm
 
 import io.realm.Realm
 import io.realm.RealmModel
@@ -8,14 +8,14 @@ import io.realm.RealmModel
  */
 open class RealmTraits {
 
-    infix fun Realm.transWithResp(transaction: () -> RealmModel?): RealmModel? {
+    inline infix fun Realm.transWithResp(transaction: () -> RealmModel?): RealmModel? {
         beginTransaction()
         val resp = transaction.invoke()
         commitTransaction()
         return resp
     }
 
-    infix fun Realm.trans(transaction: () -> Unit) {
+    inline infix fun Realm.trans(transaction: () -> Unit) {
         this.beginTransaction()
         transaction.invoke()
         this.commitTransaction()

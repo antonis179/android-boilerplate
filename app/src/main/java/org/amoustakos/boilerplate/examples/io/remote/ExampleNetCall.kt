@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.examples.io.remote
 
 import io.reactivex.Observable
-import org.amoustakos.boilerplate.io.remote.BaseCall
+import org.amoustakos.boilerplate.net.BaseCall
 import org.amoustakos.models.network.NetEvent
 import org.amoustakos.utils.network.Headers.HEADER_CONTENT_TYPE
 import org.amoustakos.utils.network.Headers.MIME_JSON

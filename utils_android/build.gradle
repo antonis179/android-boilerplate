@@ -33,6 +33,7 @@ android {
 
 kapt {
 	generateStubs true
+	useBuildCache true
 }
 
 dependencies {

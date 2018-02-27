@@ -1,13 +1,13 @@
-package org.amoustakos.boilerplate.io.local.dao.base
+package org.amoustakos.boilerplate.io.dao.base
 
 import io.reactivex.Observable
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
-import org.amoustakos.boilerplate.util.io.RealmTraits
-import org.amoustakos.boilerplate.util.io.RealmUtil
 import org.amoustakos.utils.android.RxUtil
+import org.amoustakos.utils.io.realm.RealmTraits
+import org.amoustakos.utils.io.realm.RealmUtil
 
 abstract class BaseDao<T : RealmModel> (
         @get:Synchronized protected val realm: Realm,
@@ -35,6 +35,10 @@ abstract class BaseDao<T : RealmModel> (
     // =========================================================================================
     // CRUD
     // =========================================================================================
+
+    fun update(body: () -> Unit) = realm trans { body() }
+
+    fun copyFromRealm(model: T, depth: Int): T? = RealmUtil.copyFromRealm(realm, model, depth)
 
     fun all(): RealmResults<T> = RealmUtil.getByModel(realm, modelType)
 

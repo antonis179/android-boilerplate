@@ -18,7 +18,7 @@ ext {
 
 	//Support
 	PLAY_SERVICES = '11.8.0'
-	SUPPORT = '27.0.2'
+	SUPPORT = '27.1.0'
 	CONSTRAINT_LAYOUT = '1.0.2'
 	LIFECYCLE = '1.1.0'
 	LIFECYCLE_JAVA8 = '1.1.0'

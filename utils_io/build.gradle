@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 android {
 	compileSdkVersion compileVersion
@@ -36,11 +37,20 @@ kapt {
 	useBuildCache true
 }
 
+
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	//Support
-	implementation "com.android.support:appcompat-v7:${SUPPORT}"
+	implementation "com.android.support:support-v4:${SUPPORT}"
+
+	//RX
+	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
+	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
+
+	//Realm
+	provided "io.realm:realm-android-library:${REALM}"
+	implementation "io.realm:android-adapters:${REALM_ANDROID_ADAPTERS}"
+	implementation "com.github.vicpinm:krealmextensions:${KOTLIN_REALM_EXT}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
