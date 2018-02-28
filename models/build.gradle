@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -28,12 +27,6 @@ android {
 	}
 
 }
-
-kapt {
-	generateStubs true
-	useBuildCache true
-}
-
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])

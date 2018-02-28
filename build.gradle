@@ -46,7 +46,7 @@ ext {
 	DEXTER = '4.1.1'
 
 	//Analytics
-	APPSEE = '2.3.3'
+	APPSEE = '2.3.4'
 	LOCALYTICS = '4.5.1'
 	FACEBOOK = '4.27.0'
 
