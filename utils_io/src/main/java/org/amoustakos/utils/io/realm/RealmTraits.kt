@@ -1,14 +1,13 @@
 package org.amoustakos.utils.io.realm
 
 import io.realm.Realm
-import io.realm.RealmModel
 
 /**
  * Created by Antonis Moustakos on 2/21/18.
  */
 open class RealmTraits {
 
-    inline infix fun Realm.transWithResp(transaction: () -> RealmModel?): RealmModel? {
+    inline infix fun <T> Realm.transWithResp(transaction: () -> T): T {
         beginTransaction()
         val resp = transaction.invoke()
         commitTransaction()

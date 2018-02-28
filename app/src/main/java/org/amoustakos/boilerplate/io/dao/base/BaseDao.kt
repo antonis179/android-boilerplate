@@ -1,18 +1,20 @@
 package org.amoustakos.boilerplate.io.dao.base
 
 import io.reactivex.Observable
-import io.realm.Realm
-import io.realm.RealmModel
-import io.realm.RealmObject
-import io.realm.RealmResults
-import org.amoustakos.utils.android.RxUtil
+import io.realm.*
 import org.amoustakos.utils.io.realm.RealmTraits
 import org.amoustakos.utils.io.realm.RealmUtil
+import timber.log.Timber
 
 abstract class BaseDao<T : RealmModel> (
         @get:Synchronized protected val realm: Realm,
         private val modelType: Class<T>)
     : RealmTraits() {
+
+    private val finalizer = Observable.fromCallable{realm.close()}
+            .doOnError {
+                Timber.e(it)
+            }!!
 
 
     // =========================================================================================
@@ -21,24 +23,38 @@ abstract class BaseDao<T : RealmModel> (
 
     fun has(): Boolean = RealmUtil.has(realm, modelType)
 
-    val count: Long
+    private val count: Long
         get() = RealmUtil.getCount(realm, modelType)
 
-    fun isAutoUpdate(): Boolean = realm.isAutoRefresh
+    fun isAutoUpdate() = realm.isAutoRefresh
 
-    fun isRealmClosed(): Boolean = realm.isClosed
+    fun isRealmClosed() = realm.isClosed
 
-    fun isValid(model: T): Boolean = RealmObject.isValid(model)
+    fun isValid(model: T) = RealmObject.isValid(model)
 
     fun isEmpty(): Boolean = count == 0L
 
+    fun sort(field: String, sort: Sort) =
+            realm.where(modelType).sort(field, sort).findAll()!!
+
     // =========================================================================================
-    // CRUD
+    // CRUD - Synced
     // =========================================================================================
 
-    fun update(body: () -> Unit) = realm trans { body() }
+    fun trans(body: () -> Unit) = realm trans { body() }
 
-    fun copyFromRealm(model: T, depth: Int): T? = RealmUtil.copyFromRealm(realm, model, depth)
+    fun copy(model: T, depth: Int) = RealmUtil.copyFrom(realm, model, depth)
+
+    fun copyAll(depth: Int) = RealmUtil.copyAllFrom(realm, all(), depth)
+
+    fun copyAll(models: Iterable<T>, depth: Int) =
+            RealmUtil.copyAllFrom(realm, models, depth)
+
+    fun copyToOrUpdate(model: T) =
+            RealmUtil.copyToOrUpdate(realm, model)
+
+    fun copyToOrUpdate(models: Iterable<T>) =
+            RealmUtil.copyToOrUpdate(realm, models)
 
     fun all(): RealmResults<T> = RealmUtil.getByModel(realm, modelType)
 
@@ -48,10 +64,11 @@ abstract class BaseDao<T : RealmModel> (
 
     fun remove(model: T) = RealmUtil.remove(realm, model)
 
-    /** Max 100 objects (Realm limitation per transaction) **/
     fun remove(models: List<T>) = RealmUtil.remove(realm, models)
 
     fun clearAll() = RealmUtil.clearAll(realm, modelType)
+
+
 
     fun getOneByColumn(column: String, value: String): T? =
             RealmUtil.getOneByColumn(realm, modelType, column, value)
@@ -65,6 +82,11 @@ abstract class BaseDao<T : RealmModel> (
     fun getOneByColumn(column: String, value: Float): T? =
             RealmUtil.getOneByColumn(realm, modelType, column, value)
 
+    fun getOneByColumn(column: String, value: Boolean): T? =
+            RealmUtil.getOneByColumn(realm, modelType, column, value)
+
+
+
     fun getByColumn(column: String, value: String): RealmResults<T> =
             RealmUtil.getByColumn(realm, modelType, column, value)
 
@@ -77,14 +99,14 @@ abstract class BaseDao<T : RealmModel> (
     fun getByColumn(column: String, value: Float): RealmResults<T> =
             RealmUtil.getByColumn(realm, modelType, column, value)
 
+    fun getByColumn(column: String, value: Boolean): RealmResults<T> =
+            RealmUtil.getByColumn(realm, modelType, column, value)
+
     // =========================================================================================
     // Overrides
     // =========================================================================================
 
     /** This method overrides "finalize" even though it can't be declared in kotlin yet. */
-    protected fun finalize() =
-            Observable.fromCallable{realm.close()}
-                    .compose(RxUtil.applyForegroundSchedulers())
-                    .subscribe()!!
+    protected fun finalize() = finalizer.subscribe()!!
 
 }
