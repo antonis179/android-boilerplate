@@ -43,6 +43,7 @@ android {
 
 kapt {
 	useBuildCache true
+	mapDiagnosticLocations true
 }
 
 

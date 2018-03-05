@@ -62,7 +62,7 @@ buildscript {
 	}
 
 	ext {
-		KOTLIN = '1.2.21'
+		KOTLIN = '1.2.30'
 		REALM = '4.3.4'
 	}
 
