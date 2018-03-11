@@ -21,10 +21,10 @@ object RealmUtil : RealmTraits() {
     // Helpers
     // =========================================================================================
 
-    @JvmStatic fun has(realm: Realm, model: Class<out RealmModel>) =
+    @JvmStatic fun has(realm: Realm, model: Class<out RealmModel>): Boolean =
             realm.where(model).count() > 0
 
-    @JvmStatic fun getCount(realm: Realm, model: Class<out RealmModel>) =
+    @JvmStatic fun getCount(realm: Realm, model: Class<out RealmModel>): Long =
             realm.where(model).count()
 
 
@@ -32,30 +32,34 @@ object RealmUtil : RealmTraits() {
     // CRUD - Synced
     // =========================================================================================
 
-    @JvmStatic fun <T : RealmModel> copyToOrUpdate(realm: Realm, model: T) = realm transWithResp {
-        realm.copyToRealmOrUpdate(model)
-    }
+    @JvmStatic fun <T : RealmModel> copyToOrUpdate(realm: Realm, model: T): T? =
+            realm transWithResp {
+                realm.copyToRealmOrUpdate(model)
+            }
 
-    @JvmStatic fun <T : RealmModel> copyToOrUpdate(realm: Realm, models: Iterable<T>) =
-        realm transWithResp {
-            realm.copyToRealmOrUpdate(models)
-        }
+    @JvmStatic fun <T : RealmModel> copyToOrUpdate(realm: Realm, models: Iterable<T>): List<RealmModel?> =
+            realm transWithResp {
+                realm.copyToRealmOrUpdate(models)
+            }
 
     @JvmStatic fun <T : RealmModel> copyAllFrom(
             realm: Realm, models: Iterable<T>, depth: Int): List<T?> = realm transWithResp {
         realm.copyFromRealm(models, depth)
     }
 
-    @JvmStatic fun <T : RealmModel> copyFrom(realm: Realm, model: T, depth: Int) = realm transWithResp {
+    @JvmStatic fun <T : RealmModel> copyFrom(
+            realm: Realm, model: T, depth: Int): T? = realm transWithResp {
         realm.copyFromRealm(model, depth)
     }
 
-    @JvmStatic fun <T : RealmModel> add(realm: Realm, model: T, copy: Boolean) = realm transWithResp {
-        if (copy)
-            realm.copyToRealm(model)
-        else {
-            realm.insert(model)
-            model
+    @JvmStatic fun <T : RealmModel> add(realm: Realm, model: T, copy: Boolean): T {
+        return realm transWithResp {
+            var obj: T = model
+            if (copy)
+                obj = realm.copyToRealm(model)
+            else
+                realm.insert(model)
+            obj
         }
     }
 
@@ -79,99 +83,127 @@ object RealmUtil : RealmTraits() {
     }
 
 
-    @JvmStatic fun <T : RealmModel> getByModel(realm: Realm, model: Class<T>) =
+    @JvmStatic fun <T : RealmModel> getByModel(realm: Realm, model: Class<T>): RealmResults<T> =
             realm.where(model).findAll()
 
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
-            realm: Realm, model: Class<T>, column: String, value: String) =
-        realm.where(model).equalTo(column, value).findFirst()
+            realm: Realm, model: Class<T>, column: String, value: String): T? =
+            realm.where(model).equalTo(column, value).findFirst()
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Int) =
-        realm.where(model).equalTo(column, value).findFirst()
+            realm: Realm, model: Class<T>, column: String, value: Int): T? =
+            realm.where(model).equalTo(column, value).findFirst()
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Double) =
-        realm.where(model).equalTo(column, value).findFirst()
+            realm: Realm, model: Class<T>, column: String, value: Double): T? =
+            realm.where(model).equalTo(column, value).findFirst()
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Float) =
-        realm.where(model).equalTo(column, value).findFirst()
+            realm: Realm, model: Class<T>, column: String, value: Float): T? =
+            realm.where(model).equalTo(column, value).findFirst()
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Boolean) =
-        realm.where(model).equalTo(column, value).findFirst()
+            realm: Realm, model: Class<T>, column: String, value: Boolean): T? =
+            realm.where(model).equalTo(column, value).findFirst()
 
 
     @JvmStatic fun <T : RealmModel> getByColumn(
-            realm: Realm, model: Class<T>, column: String, value: String) =
-        realm.where(model).equalTo(column, value).findAll()
+            realm: Realm, model: Class<T>, column: String, value: String): RealmResults<T> =
+            realm.where(model).equalTo(column, value).findAll()
 
     @JvmStatic fun <T : RealmModel> getByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Int) =
-        realm.where(model).equalTo(column, value).findAll()
+            realm: Realm, model: Class<T>, column: String, value: Int): RealmResults<T> =
+            realm.where(model).equalTo(column, value).findAll()
 
     @JvmStatic fun <T : RealmModel> getByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Double) =
-        realm.where(model).equalTo(column, value).findAll()
+            realm: Realm, model: Class<T>, column: String, value: Double): RealmResults<T> =
+            realm.where(model).equalTo(column, value).findAll()
 
     @JvmStatic fun <T : RealmModel> getByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Float) =
-        realm.where(model).equalTo(column, value).findAll()
+            realm: Realm, model: Class<T>, column: String, value: Float): RealmResults<T> =
+            realm.where(model).equalTo(column, value).findAll()
 
     @JvmStatic fun <T : RealmModel> getByColumn(
-            realm: Realm, model: Class<T>, column: String, value: Boolean) =
-        realm.where(model).equalTo(column, value).findAll()
+            realm: Realm, model: Class<T>, column: String, value: Boolean): RealmResults<T> =
+            realm.where(model).equalTo(column, value).findAll()
 
 
     // =========================================================================================
     // CRUD - Async
     // =========================================================================================
 
-    @JvmStatic fun <T : RealmModel> copyToOrUpdateAsync(realm: Realm, model: T) =
-        Observable.fromCallable { RealmUtil.copyToOrUpdate(realm, model) }
+    @JvmStatic fun <T : RealmModel> copyToOrUpdateAsync(
+            realm: Realm, model: T): Observable<RealmResponse<T?>> =
+            Observable.fromCallable {
+                return@fromCallable RealmResponse( realm transWithResp {
+                    RealmUtil.copyToOrUpdate(realm, model)
+                })
+            }
 
     @JvmStatic fun <T : RealmModel> copyToOrUpdateAsync(realm: Realm, models: Iterable<T>) =
-        Observable.fromCallable { RealmUtil.copyToOrUpdate(realm, models) }
+            Observable.fromCallable {
+                return@fromCallable realm transWithResp {
+                    RealmUtil.copyToOrUpdate(realm, models)
+                }
+            }!!
 
-    @JvmStatic fun <T : RealmModel> copyFromAsync(realm: Realm, model: T, depth: Int) =
-        Observable.fromCallable { copyFrom(realm, model, depth) }
+    @JvmStatic fun <T : RealmModel> copyFromAsync(
+            realm: Realm, model: T, depth: Int): Observable<RealmResponse<T?>> =
+            Observable.fromCallable {
+                return@fromCallable RealmResponse( realm transWithResp {
+                    copyFrom(realm, model, depth)
+                })
+            }
 
     @JvmStatic fun <T : RealmModel> copyAllFromAsync(realm: Realm, models: Iterable<T>, depth: Int) =
-        Observable.fromCallable { copyAllFrom(realm, models, depth) }
+            Observable.fromCallable {
+                return@fromCallable RealmListResponse( realm transWithResp {
+                    copyAllFrom(realm, models, depth)
+                })
+            }
 
 
-    @JvmStatic fun <T : RealmModel> addAsync(realm: Realm, model: T, copy: Boolean) =
-        Observable.fromCallable { add(realm, model, copy) }
+    @JvmStatic fun <T : RealmModel> addAsync(
+            realm: Realm, model: T, copy: Boolean): Observable<RealmResponse<T>> =
+            Observable.fromCallable {
+                return@fromCallable RealmResponse (realm transWithResp {
+                    var obj: T = model
+                    if (copy)
+                        obj = realm.copyToRealm(model)
+                    else
+                        realm.insert(model)
+                    obj
+                })
+            }
 
     @JvmStatic fun addOrUpdateAsync(realm: Realm, model: RealmModel): Observable<Boolean> =
-        Observable.fromCallable {
-            realm.insertOrUpdate(model)
-            return@fromCallable true
-        }
+            Observable.fromCallable {
+                realm trans { realm.insertOrUpdate(model) }
+                return@fromCallable true
+            }
 
     @JvmStatic fun removeAsync(realm: Realm, model: RealmModel): Observable<Boolean> =
-        Observable.fromCallable {
-            realm trans { deleteNoTrans(model) }
-            return@fromCallable true
-        }
+            Observable.fromCallable {
+                realm trans { deleteNoTrans(model) }
+                return@fromCallable true
+            }
 
 
     @JvmStatic fun removeAsync(realm: Realm, models: List<RealmModel>): Observable<Boolean> =
-        Observable.fromCallable {
-            realm trans {
-                models.forEach { deleteNoTrans(it) }
+            Observable.fromCallable {
+                realm trans {
+                    models.forEach { deleteNoTrans(it) }
+                }
+                return@fromCallable true
             }
-            return@fromCallable true
-        }
 
 
     @JvmStatic fun clearAllAsync(realm: Realm, model: Class<out RealmModel>): Observable<Boolean> =
-        Observable.fromCallable {
-            realm.delete(model)
-            return@fromCallable true
-        }
+            Observable.fromCallable {
+                realm trans { realm.delete(model) }
+                return@fromCallable true
+            }
 
 
     @JvmStatic fun <T : RealmModel> getByModelAsync(
@@ -180,44 +212,44 @@ object RealmUtil : RealmTraits() {
 
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: String) =
-            realm.where(model).equalTo(column, value).findFirstAsync()
+            realm: Realm, model: Class<T>, column: String, value: String): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOneByColumn(realm, model, column, value)) }
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Int) =
-            realm.where(model).equalTo(column, value).findFirstAsync()
+            realm: Realm, model: Class<T>, column: String, value: Int): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOneByColumn(realm, model, column, value)) }
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Double) =
-            realm.where(model).equalTo(column, value).findFirstAsync()
+            realm: Realm, model: Class<T>, column: String, value: Double): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOneByColumn(realm, model, column, value)) }
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Float) =
-            realm.where(model).equalTo(column, value).findFirstAsync()
+            realm: Realm, model: Class<T>, column: String, value: Float): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOneByColumn(realm, model, column, value)) }
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Boolean) =
-            realm.where(model).equalTo(column, value).findFirstAsync()
+            realm: Realm, model: Class<T>, column: String, value: Boolean): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOneByColumn(realm, model, column, value)) }
 
 
     @JvmStatic fun <T : RealmModel> getByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: String) =
+            realm: Realm, model: Class<T>, column: String, value: String): Flowable<RealmResults<T>> =
             realm.where(model).equalTo(column, value).findAllAsync().asFlowable()
 
     @JvmStatic fun <T : RealmModel> getByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Int) =
+            realm: Realm, model: Class<T>, column: String, value: Int): Flowable<RealmResults<T>> =
             realm.where(model).equalTo(column, value).findAllAsync().asFlowable()
 
     @JvmStatic fun <T : RealmModel> getByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Double) =
+            realm: Realm, model: Class<T>, column: String, value: Double): Flowable<RealmResults<T>> =
             realm.where(model).equalTo(column, value).findAllAsync().asFlowable()
 
     @JvmStatic fun <T : RealmModel> getByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Float) =
+            realm: Realm, model: Class<T>, column: String, value: Float): Flowable<RealmResults<T>> =
             realm.where(model).equalTo(column, value).findAllAsync().asFlowable()
 
     @JvmStatic fun <T : RealmModel> getByColumnAsync(
-            realm: Realm, model: Class<T>, column: String, value: Boolean) =
+            realm: Realm, model: Class<T>, column: String, value: Boolean): Flowable<RealmResults<T>> =
             realm.where(model).equalTo(column, value).findAllAsync().asFlowable()
 
 }

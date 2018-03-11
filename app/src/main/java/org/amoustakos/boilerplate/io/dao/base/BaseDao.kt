@@ -1,7 +1,10 @@
 package org.amoustakos.boilerplate.io.dao.base
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.realm.*
+import org.amoustakos.utils.io.realm.RealmListResponse
+import org.amoustakos.utils.io.realm.RealmResponse
 import org.amoustakos.utils.io.realm.RealmTraits
 import org.amoustakos.utils.io.realm.RealmUtil
 import timber.log.Timber
@@ -23,25 +26,26 @@ abstract class BaseDao<T : RealmModel> (
 
     fun has(): Boolean = RealmUtil.has(realm, modelType)
 
-    private val count: Long
-        get() = RealmUtil.getCount(realm, modelType)
+    fun getCount() = RealmUtil.getCount(realm, modelType)
+
+    fun realmMonitor(): Flowable<Realm> = realm.asFlowable()
 
     fun isAutoUpdate() = realm.isAutoRefresh
 
-    fun isRealmClosed() = realm.isClosed
+    fun isClosed() = realm.isClosed
 
-    fun isValid(model: T) = RealmObject.isValid(model)
+    fun isValid(model: T): Boolean = RealmObject.isValid(model)
 
-    fun isEmpty(): Boolean = count == 0L
+    fun isEmpty(): Boolean = getCount() == 0L
 
-    fun sort(field: String, sort: Sort) =
-            realm.where(modelType).sort(field, sort).findAll()!!
+    fun sort(field: String, sort: Sort): RealmResults<T> =
+            realm.where(modelType).sort(field, sort).findAll()
 
     // =========================================================================================
     // CRUD - Synced
     // =========================================================================================
 
-    fun trans(body: () -> Unit) = realm trans { body() }
+    fun update(body: () -> Unit) = realm trans { body() }
 
     fun copy(model: T, depth: Int) = RealmUtil.copyFrom(realm, model, depth)
 
@@ -101,6 +105,85 @@ abstract class BaseDao<T : RealmModel> (
 
     fun getByColumn(column: String, value: Boolean): RealmResults<T> =
             RealmUtil.getByColumn(realm, modelType, column, value)
+
+    // =========================================================================================
+    // CRUD - Async
+    // =========================================================================================
+
+    fun copyAllAsync(depth: Int) =
+            RealmUtil.copyAllFromAsync(realm, all(), depth)
+
+    fun copyAllAsync(models: Iterable<T>, depth: Int): Observable<RealmListResponse<T>> =
+            RealmUtil.copyAllFromAsync(realm, models, depth)
+
+    fun copyToOrUpdateAsync(model: T) =
+            RealmUtil.copyToOrUpdateAsync(realm, model)
+
+    fun copyToOrUpdateAsync(models: Iterable<T>): Observable<List<RealmModel?>> =
+            RealmUtil.copyToOrUpdateAsync(realm, models)
+
+    fun addAsync(model: T, copy: Boolean) =
+            RealmUtil.addAsync(realm, model, copy)
+
+    fun addOrUpdateAsync(model: T) =
+            RealmUtil.addOrUpdateAsync(realm, model)
+
+    fun removeAsync(model: T) =
+            RealmUtil.removeAsync(realm, model)
+
+    fun removeAsync(models: List<T>) =
+            RealmUtil.removeAsync(realm, models)
+
+    fun clearAllAsync() =
+            RealmUtil.clearAllAsync(realm, modelType)
+
+
+
+
+    fun makeObservable(): Observable<BaseDao<T>> =
+            Observable.just(this)
+
+    fun allAsync() =
+            RealmUtil.getByModelAsync(realm, modelType)
+
+    fun updateAsync(body: () -> Unit): Observable<Unit> =
+            Observable.fromCallable({realm trans { body() }})
+
+    fun copyAsync(model: T, depth: Int) =
+            RealmUtil.copyFromAsync(realm, model, depth)
+
+
+    fun getOneByColumnAsync(column: String, value: String): Observable<RealmResponse<T?>> =
+            RealmUtil.getOneByColumnAsync(realm, modelType, column, value)
+
+    fun getOneByColumnAsync(column: String, value: Int) =
+            RealmUtil.getOneByColumnAsync(realm, modelType, column, value)
+
+    fun getOneByColumnAsync(column: String, value: Double) =
+            RealmUtil.getOneByColumnAsync(realm, modelType, column, value)
+
+    fun getOneByColumnAsync(column: String, value: Float) =
+            RealmUtil.getOneByColumnAsync(realm, modelType, column, value)
+
+    fun getOneByColumnAsync(column: String, value: Boolean) =
+            RealmUtil.getOneByColumnAsync(realm, modelType, column, value)
+
+
+
+    fun getByColumnAsync(column: String, value: String) =
+            RealmUtil.getByColumnAsync(realm, modelType, column, value)
+
+    fun getByColumnAsync(column: String, value: Int) =
+            RealmUtil.getByColumnAsync(realm, modelType, column, value)
+
+    fun getByColumnAsync(column: String, value: Double) =
+            RealmUtil.getByColumnAsync(realm, modelType, column, value)
+
+    fun getByColumnAsync(column: String, value: Float) =
+            RealmUtil.getByColumnAsync(realm, modelType, column, value)
+
+    fun getByColumnAsync(column: String, value: Boolean) =
+            RealmUtil.getByColumnAsync(realm, modelType, column, value)
 
     // =========================================================================================
     // Overrides

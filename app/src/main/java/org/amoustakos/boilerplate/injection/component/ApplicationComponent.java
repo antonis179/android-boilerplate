@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
-import org.amoustakos.boilerplate.examples.io.local.dao.ExampleDao;
 import org.amoustakos.boilerplate.examples.io.remote.ExampleNetCall;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpClient;
@@ -54,13 +53,6 @@ public interface ApplicationComponent {
 
 	@DefaultRealmConfig
 	RealmConfiguration defaultRealmConfig();
-
-	// =========================================================================================
-	// DAOs
-	// =========================================================================================
-
-	ExampleDao exampleDao();
-
 
 	// =========================================================================================
 	// Network

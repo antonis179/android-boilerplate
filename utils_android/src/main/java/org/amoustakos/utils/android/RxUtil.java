@@ -1,6 +1,8 @@
 package org.amoustakos.utils.android;
 
+import io.reactivex.FlowableTransformer;
 import io.reactivex.ObservableTransformer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
@@ -8,10 +10,28 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxUtil {
 
+    public static final Scheduler REALM_SCHEDULER = Schedulers.io();
+
 
     // =========================================================================================
     // Schedulers
     // =========================================================================================
+
+	/**
+	 * Applies the default DB scheduler
+	 */
+	public static <T> ObservableTransformer<T, T> applyRealmObservableScheduler() {
+		return tObservable -> tObservable.subscribeOn(REALM_SCHEDULER)
+				.observeOn(REALM_SCHEDULER);
+	}
+
+	/**
+	 * Applies the default DB scheduler
+	 */
+	public static <T> FlowableTransformer<T, T> applyRealmFlowableScheduler() {
+		return tFlowable -> tFlowable.subscribeOn(REALM_SCHEDULER)
+				.observeOn(REALM_SCHEDULER);
+	}
 
     /**
      * Applies default IO schedulers on an Observable. <br />

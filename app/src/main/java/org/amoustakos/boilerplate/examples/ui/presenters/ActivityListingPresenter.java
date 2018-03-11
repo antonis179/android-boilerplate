@@ -1,8 +1,6 @@
 package org.amoustakos.boilerplate.examples.ui.presenters;
 
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel;
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract;
@@ -26,10 +24,10 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 	private PackageManager pm;
 
 
-	public ActivityListingPresenter(T view, @NonNull Context context) {
+	public ActivityListingPresenter(T view, String basePackage, PackageManager pm) {
 		super(view);
-		this.basePackage = context.getPackageName();
-		pm = context.getPackageManager();
+		this.basePackage = basePackage;
+		this.pm = pm;
 	}
 
 
@@ -39,26 +37,27 @@ public class ActivityListingPresenter<T extends ActivityListingContract.View> ex
 
 	@Override
 	public void load() {
-		Observable.fromCallable(() -> {
-				List<ActivityListingModel> models = new ArrayList<>();
-			List<Class<? extends BaseActivity>> activities = excludeCurrent(getActivities());
-
-			for (Class<? extends BaseActivity> act : activities) {
-					ActivityListingModel model = new ActivityListingModel(
-							act,
-							act.getName(),
-							act.getSuperclass().getName()
-					);
-					models.add(model);
-				}
-
-				Timber.i("Found " + activities.size() + " classes");
-
-				return models;
-			})
+		Observable.just(true)
 			.observeOn(Schedulers.computation())
-			.onErrorReturn(t -> new ArrayList<>())
+			.map(bool -> {
+				List<ActivityListingModel> models = new ArrayList<>();
+				List<Class<? extends BaseActivity>> activities = excludeCurrent(getActivities());
+
+				for (Class<? extends BaseActivity> act : activities) {
+						ActivityListingModel model = new ActivityListingModel(
+								act,
+								act.getName(),
+								act.getSuperclass().getName()
+						);
+						models.add(model);
+					}
+
+					Timber.i("Found " + activities.size() + " classes");
+
+					return models;
+			})
 			.doOnError(Timber::i)
+			.onErrorReturn(t -> new ArrayList<>())
 			.observeOn(AndroidSchedulers.mainThread())
 			.doOnNext(mView::onItemsCollected)
 			.subscribe();
