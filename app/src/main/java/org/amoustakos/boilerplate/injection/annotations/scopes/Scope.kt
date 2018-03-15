@@ -1,14 +1,13 @@
 package org.amoustakos.boilerplate.injection.annotations.scopes
 
-import javax.inject.Qualifier
-
+import javax.inject.Scope
 
 
 /**
  * A scoping annotation to permit dependencies conform to the life of the
  * [org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent]
  */
-@Qualifier
+@Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class ConfigPersistent
 
@@ -19,6 +18,6 @@ annotation class ConfigPersistent
  * conform to the life of the Activity to be memorised in the
  * correct component.
  */
-@Qualifier
+@Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class PerActivity

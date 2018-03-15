@@ -4,9 +4,7 @@ package org.amoustakos.boilerplate
 
 import android.content.Context
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
-import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
 import timber.log.Timber
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import java.lang.ref.WeakReference
@@ -15,9 +13,7 @@ import javax.inject.Singleton
 
 @Singleton
 class Environment @Inject
-constructor(
-        @ApplicationContext context: Context,
-        @DefaultRealmConfig private val realmConfig: RealmConfiguration){
+constructor(@ApplicationContext context: Context){
 
     private val context: WeakReference<Context> = WeakReference(context)
 
@@ -49,7 +45,11 @@ constructor(
 
     private fun initRealm() {
         Realm.init(context.get())
-        Realm.setDefaultConfiguration(realmConfig)
+
+        //Get config here or realm config will be requested before realm init = crash
+        Realm.setDefaultConfiguration(
+                BoilerplateApplication.get(context.get()).component.defaultRealmConfig()
+        )
     }
 
 }

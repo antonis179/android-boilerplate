@@ -5,13 +5,11 @@ import android.content.Context;
 
 import org.amoustakos.boilerplate.Environment;
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext;
-import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.realm.RealmConfiguration;
 
 /**
  * Provide application-level dependencies.
@@ -42,8 +40,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Environment provideEnvironment(@DefaultRealmConfig RealmConfiguration realmConfig) {
-        return new Environment(mApplication, realmConfig);
+    Environment provideEnvironment() {
+        return new Environment(mApplication);
     }
 
 

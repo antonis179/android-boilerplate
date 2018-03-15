@@ -105,7 +105,7 @@ dependencies {
 	kapt daggerCompiler
 	kapt daggerAndroidCompiler
 	testAnnotationProcessor daggerCompiler
-	androidTestAnnotationProcessor daggerCompiler
+	kaptTest daggerCompiler
 
 	//Retrofit
 	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
