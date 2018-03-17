@@ -11,44 +11,44 @@ object HttpStatusCode {
     /**
      * Status code for a successful request.
      */
-    val OK = 200
+    const val OK = 200
     /**
      * Status code for a resource corresponding to any one of a set of
      * representations.
      */
-    val MULTIPLE_CHOICES = 300
+    const val MULTIPLE_CHOICES = 300
     /**
      * Status code for a request that requires user authentication.
      */
-    val UNAUTHORIZED = 401
+    const val UNAUTHORIZED = 401
     /**
      * Status code for a server that understood the request, but is refusing to
      * fulfill it.
      */
-    val FORBIDDEN = 403
+    const val FORBIDDEN = 403
     /**
      * Status code for a server that has not found anything matching the
      * Request-URI.
      */
-    val NOT_FOUND = 404
+    const val NOT_FOUND = 404
     /**
      * Status code for a server that detects an error in the request such as
      * missing or inconsistent parameters
      */
-    val UNPROCESSABLE_ENTITY = 422
+    const val UNPROCESSABLE_ENTITY = 422
     /**
      * Status code for an internal server error. For example exception is thrown
      * at the back-end.
      */
-    val SERVER_ERROR = 500
+    const val SERVER_ERROR = 500
     /**
      * Status code for a bad gateway.
      */
-    val BAD_GATEWAY = 502
+    const val BAD_GATEWAY = 502
     /**
      * Status code for a service that is unavailable on the server.
      */
-    val SERVICE_UNAVAILABLE = 503
+    const val SERVICE_UNAVAILABLE = 503
 
 
     /**
@@ -56,7 +56,7 @@ object HttpStatusCode {
      * `>= 200 and < 300`.
      */
     @JvmStatic fun isSuccess(statusCode: Int): Boolean {
-        return statusCode >= OK && statusCode < MULTIPLE_CHOICES
+        return statusCode in OK..(MULTIPLE_CHOICES - 1)
     }
 
     /**
