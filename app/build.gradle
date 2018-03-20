@@ -104,8 +104,8 @@ dependencies {
 	implementation "com.google.dagger:dagger-android-support:${DAGGER}"
 	kapt daggerCompiler
 	kapt daggerAndroidCompiler
-	testAnnotationProcessor daggerCompiler
 	kaptTest daggerCompiler
+	kaptAndroidTest daggerAndroidCompiler
 
 	//Retrofit
 	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
@@ -141,7 +141,7 @@ dependencies {
 
 
 	//Tests
-	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
+	kaptAndroidTest("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	})
