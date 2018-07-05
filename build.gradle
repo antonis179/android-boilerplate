@@ -18,16 +18,16 @@ ext {
 
 	//Support
 	PLAY_SERVICES = '11.8.0'
-	SUPPORT = '27.1.0'
-	CONSTRAINT_LAYOUT = '1.0.2'
-	LIFECYCLE = '1.1.0'
+	SUPPORT = '27.1.1'
+	CONSTRAINT_LAYOUT = '1.1.2'
+	LIFECYCLE = '1.1.1'
 	LIFECYCLE_JAVA8 = '1.1.0'
 
 	//Annotation processors - injection - RX
-	DAGGER = '2.12'
+	DAGGER = '2.15'
 	RETROFIT = '2.3.0'
 	RX_JAVA = '2.1.3'
-	RX_ANDROID = '2.0.1'
+	RX_ANDROID = '2.0.2'
 	BUTTERKNIFE = '8.8.1'
 	JAVAX_ANNOTATIONS = '10.0-b28'
 
@@ -62,12 +62,12 @@ buildscript {
 	}
 
 	ext {
-		KOTLIN = '1.2.30'
-		REALM = '5.0.0'
+		KOTLIN = '1.2.50'
+		REALM = '5.3.1'
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.0.1'
+		classpath 'com.android.tools.build:gradle:3.1.3'
 
 		//Kotlin
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN}"
