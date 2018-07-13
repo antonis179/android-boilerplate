@@ -1,26 +1,21 @@
 package org.amoustakos.utils.device
 
-import android.Manifest
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.Application
+import android.arch.lifecycle.DefaultLifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
 import android.os.Looper
 import android.support.annotation.NonNull
 import android.support.annotation.RequiresPermission
-import android.support.v4.app.ActivityCompat
 import com.google.android.gms.location.*
 import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
 import java.lang.ref.WeakReference
 
 
-//TODO: Add lifecycle observer
-class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
+class LocationUtil : LocationCallback, DefaultLifecycleObserver {
 
 	// Defaults
 	var mUpdateInterval: Long = 120000
@@ -28,8 +23,8 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 	var mRequestPriority = LocationRequest.PRIORITY_LOW_POWER
 
 	//Publishers
-	val locationSubject = PublishSubject.create<Location>()
-	val availabilitySubject = PublishSubject.create<LocationAvailability?>()
+	val locationSubject = PublishSubject.create<Location>()!!
+	val availabilitySubject = PublishSubject.create<LocationAvailability?>()!!
 
 	//Client
 	private var mLocationRequest: LocationRequest? = null
@@ -41,34 +36,38 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 
 
 	//Internal variables
-	private val context: WeakReference<Context>
+	private val mContext: WeakReference<Context>
 
 
 	// =========================================================================================
 	// Constructors
 	// =========================================================================================
 
-	@Throws(NullPointerException::class) constructor(@NonNull context: Context) {
-		this.context = WeakReference(context)
+	@Throws(NullPointerException::class)
+	constructor(@NonNull context: Context) {
+		mContext = WeakReference(context)
 		init()
 	}
 
-	@Throws(NullPointerException::class) constructor(context: Context,
-													 mUpdateInterval: Long,
-													 mFastestUpdateInterval: Long,
-													 mRequestPriority: Int) {
-		this.mUpdateInterval = mUpdateInterval
-		this.mFastestUpdateInterval = mFastestUpdateInterval
-		this.mRequestPriority = mRequestPriority
-		this.context = WeakReference(context)
+	@Throws(NullPointerException::class)
+	constructor(
+			context: Context,
+			updateInterval: Long,
+			fastestUpdateInterval: Long,
+			requestPriority: Int) {
+		mUpdateInterval = updateInterval
+		mFastestUpdateInterval = fastestUpdateInterval
+		mRequestPriority = requestPriority
+		mContext = WeakReference(context)
 		init()
 	}
 
-	@Throws(NullPointerException::class) private fun init() {
+	@Throws(NullPointerException::class)
+	private fun init() {
 		mRequestingLocationUpdates = false
 		mLocationRequest = null
 		mCurrentLocation = null
-		mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context.get()!!)
+		mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext.get()!!)
 
 		if (mFusedLocationClient == null)
 			throw NullPointerException("Could not instantiate fused location client")
@@ -81,8 +80,9 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 	// Client
 	// =========================================================================================
 
+
 	private fun createLocationRequest() {
-		mLocationRequest = LocationRequest()
+		mLocationRequest = LocationRequest.create()
 		mLocationRequest!!.interval = mUpdateInterval
 		mLocationRequest!!.fastestInterval = mFastestUpdateInterval
 		mLocationRequest!!.priority = mRequestPriority
@@ -105,8 +105,8 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 			mFusedLocationClient!!.requestLocationUpdates(mLocationRequest, this, Looper.myLooper())
 			mRequestingLocationUpdates = true
 			Timber.d("Started location updates.")
-		} catch (se: Exception) {
-			Timber.w(se, se.message)
+		} catch (e: Exception) {
+			Timber.w(e)
 			mRequestingLocationUpdates = false
 		}
 
@@ -141,19 +141,15 @@ class LocationUtil : LocationCallback, Application.ActivityLifecycleCallbacks {
 	// Lifecycle
 	// =========================================================================================
 
-	override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle) {}
-	override fun onActivityStarted(activity: Activity) {}
-	override fun onActivityStopped(activity: Activity) {}
-	override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-	override fun onActivityDestroyed(activity: Activity) {}
+	override fun onCreate(owner: LifecycleOwner) {}
+	override fun onStart(owner: LifecycleOwner) {}
+	override fun onStop(owner: LifecycleOwner) {}
+	override fun onDestroy(owner: LifecycleOwner) {}
 
 	@SuppressLint("MissingPermission")
-	override fun onActivityResumed(activity: Activity) {
-		if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-			return
+	override fun onResume(owner: LifecycleOwner) {
 		startLocationUpdates()
 	}
 
-	override fun onActivityPaused(activity: Activity) = stopLocationUpdates()
-
+	override fun onPause(owner: LifecycleOwner) = stopLocationUpdates()
 }

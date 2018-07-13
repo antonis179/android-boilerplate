@@ -34,7 +34,6 @@ android {
 
 kapt {
 	useBuildCache true
-	mapDiagnosticLocations true
 }
 
 dependencies {
@@ -47,7 +46,7 @@ dependencies {
 	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
 
 	//Realm
-	provided "io.realm:realm-android-library:${REALM}"
+	compileOnly "io.realm:realm-android-library:${REALM}"
 	implementation "io.realm:android-adapters:${REALM_ANDROID_ADAPTERS}"
 	implementation "com.github.vicpinm:krealmextensions:${KOTLIN_REALM_EXT}"
 
@@ -56,12 +55,8 @@ dependencies {
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
 
-	//Tests
-	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	})
-	testCompile "junit:junit:${JUNIT}"
+	//Bus
+	implementation "org.greenrobot:eventbus:${EVENT_BUS}"
 }

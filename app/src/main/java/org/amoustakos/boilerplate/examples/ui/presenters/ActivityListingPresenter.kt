@@ -1,0 +1,59 @@
+package org.amoustakos.boilerplate.examples.ui.presenters
+
+import android.content.pm.PackageManager
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
+import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract
+import org.amoustakos.boilerplate.ui.activities.BaseActivity
+import org.amoustakos.boilerplate.ui.presenters.BasePresenter
+import org.amoustakos.utils.android.PackageManagerUtils.definedActivities
+import timber.log.Timber
+import java.util.*
+
+
+class ActivityListingPresenter<View : ActivityListingContract.View>(
+		view: View,
+		private val basePackage: String,
+		private val pm: PackageManager
+) : BasePresenter<View>(view), ActivityListingContract.Actions {
+
+
+	private val activities: List<Class<out BaseActivity>>
+		get() = definedActivities(pm, basePackage)
+
+
+
+	override fun load() {
+		Observable.just(true)
+				.observeOn(Schedulers.computation())
+				.map<List<ActivityListingModel>> { _ ->
+					val models = ArrayList<ActivityListingModel>()
+					val activities = excludeCurrent(activities)
+
+					for (act in activities) {
+						val model = ActivityListingModel(
+								act,
+								act.name,
+								act.superclass.name
+						)
+						models.add(model)
+					}
+
+					Timber.i("Found " + activities.size + " classes")
+
+					models
+				}
+				.doOnError { Timber.i(it) }
+				.onErrorReturn { ArrayList() }
+				.observeOn(AndroidSchedulers.mainThread())
+				.doOnNext { mView.onItemsCollected(it) }
+				.subscribe()
+	}
+
+
+	private fun excludeCurrent(classes: List<Class<out BaseActivity>>) =
+			classes.filter{ item -> mView.javaClass != item }
+
+}

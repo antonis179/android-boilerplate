@@ -1,11 +1,7 @@
-package org.amoustakos.models.network
+package org.amoustakos.models.bus
 
-
-data class NetEvent<out T>(
-
-        val errorCode: Int? = null,
+data class BusEvent<out T>(
         val hasError: Boolean = true,
         val errorMessage: String? = null,
         val item: T? = null
-
 )

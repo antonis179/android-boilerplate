@@ -2,10 +2,7 @@ package org.amoustakos.utils.io.realm
 
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.realm.Realm
-import io.realm.RealmModel
-import io.realm.RealmObject
-import io.realm.RealmResults
+import io.realm.*
 import io.realm.kotlin.deleteFromRealm
 
 /**
@@ -26,6 +23,16 @@ object RealmUtil : RealmTraits() {
 
     @JvmStatic fun getCount(realm: Realm, model: Class<out RealmModel>): Long =
             realm.where(model).count()
+
+    fun unsubscribe(realm: Realm) = realm.removeAllChangeListeners()
+
+    fun unsubscribe(realm: Realm, listener: RealmChangeListener<Realm>) =
+            realm.removeChangeListener(listener)
+
+    fun refresh(realm: Realm) = realm.refresh()
+
+    fun subscribeToChanges(realm: Realm, listener: RealmChangeListener<Realm>) =
+            realm.addChangeListener(listener)
 
 
     // =========================================================================================
@@ -68,6 +75,24 @@ object RealmUtil : RealmTraits() {
         realm.insertOrUpdate(model)
     }
 
+    @JvmStatic fun addOrUpdate(realm: Realm, models: Collection<RealmModel>) = realm trans {
+        realm.insertOrUpdate(models)
+    }
+
+    @JvmStatic fun addOrUpdateBatch(realm: Realm, models: Collection<RealmModel>) {
+        if (models.size <= 100) {
+            addOrUpdate(realm, models)
+            return
+        }
+
+        val size = models.size
+        for (i in 0..size step 100) {
+            val newSize = models.size - i
+            val get = if (newSize <= 100) newSize else 100
+            addOrUpdate(realm, models.drop(i).take(get))
+        }
+    }
+
     @JvmStatic fun remove(realm: Realm, model: RealmModel) = realm trans {
         deleteNoTrans(model)
     }
@@ -86,6 +111,8 @@ object RealmUtil : RealmTraits() {
     @JvmStatic fun <T : RealmModel> getByModel(realm: Realm, model: Class<T>): RealmResults<T> =
             realm.where(model).findAll()
 
+    @JvmStatic fun <T : RealmModel> getOne(realm: Realm, model: Class<T>): T? =
+            realm.where(model).findFirst()
 
     @JvmStatic fun <T : RealmModel> getOneByColumn(
             realm: Realm, model: Class<T>, column: String, value: String): T? =
@@ -136,51 +163,51 @@ object RealmUtil : RealmTraits() {
     @JvmStatic fun <T : RealmModel> copyToOrUpdateAsync(
             realm: Realm, model: T): Observable<RealmResponse<T?>> =
             Observable.fromCallable {
-                return@fromCallable RealmResponse( realm transWithResp {
+                RealmResponse(
                     RealmUtil.copyToOrUpdate(realm, model)
-                })
+                )
             }
 
     @JvmStatic fun <T : RealmModel> copyToOrUpdateAsync(realm: Realm, models: Iterable<T>) =
             Observable.fromCallable {
-                return@fromCallable realm transWithResp {
                     RealmUtil.copyToOrUpdate(realm, models)
-                }
             }!!
 
     @JvmStatic fun <T : RealmModel> copyFromAsync(
             realm: Realm, model: T, depth: Int): Observable<RealmResponse<T?>> =
             Observable.fromCallable {
-                return@fromCallable RealmResponse( realm transWithResp {
+                RealmResponse(
                     copyFrom(realm, model, depth)
-                })
+                )
             }
 
     @JvmStatic fun <T : RealmModel> copyAllFromAsync(realm: Realm, models: Iterable<T>, depth: Int) =
             Observable.fromCallable {
-                return@fromCallable RealmListResponse( realm transWithResp {
+                RealmListResponse(
                     copyAllFrom(realm, models, depth)
-                })
+                )
             }
 
 
     @JvmStatic fun <T : RealmModel> addAsync(
             realm: Realm, model: T, copy: Boolean): Observable<RealmResponse<T>> =
             Observable.fromCallable {
-                return@fromCallable RealmResponse (realm transWithResp {
-                    var obj: T = model
-                    if (copy)
-                        obj = realm.copyToRealm(model)
-                    else
-                        realm.insert(model)
-                    obj
-                })
+                var obj: T = model
+                if (copy)
+                    obj = realm.copyToRealm(model)
+                else
+                    realm.insert(model)
+                RealmResponse (obj)
             }
 
-    @JvmStatic fun addOrUpdateAsync(realm: Realm, model: RealmModel): Observable<Boolean> =
+    @JvmStatic fun addOrUpdateAsync(realm: Realm, model: RealmModel): Observable<Unit> =
             Observable.fromCallable {
-                realm trans { realm.insertOrUpdate(model) }
-                return@fromCallable true
+                addOrUpdate(realm, model)
+            }
+
+    @JvmStatic fun addOrUpdateBatchAsync(realm: Realm, models: Collection<RealmModel>): Observable<Unit> =
+            Observable.fromCallable {
+                addOrUpdateBatch(realm, models)
             }
 
     @JvmStatic fun removeAsync(realm: Realm, model: RealmModel): Observable<Boolean> =
@@ -199,10 +226,9 @@ object RealmUtil : RealmTraits() {
             }
 
 
-    @JvmStatic fun clearAllAsync(realm: Realm, model: Class<out RealmModel>): Observable<Boolean> =
+    @JvmStatic fun clearAllAsync(realm: Realm, model: Class<out RealmModel>): Observable<Unit> =
             Observable.fromCallable {
-                realm trans { realm.delete(model) }
-                return@fromCallable true
+                clearAll(realm, model)
             }
 
 
@@ -210,6 +236,9 @@ object RealmUtil : RealmTraits() {
             realm: Realm, model: Class<T>): Flowable<RealmResults<T>> =
             realm.where(model).findAllAsync().asFlowable()
 
+
+    @JvmStatic fun <T : RealmModel> getOneAsync(realm: Realm, model: Class<T>): Observable<RealmResponse<T?>> =
+            Observable.fromCallable{ RealmResponse(getOne(realm, model)) }
 
     @JvmStatic fun <T : RealmModel> getOneByColumnAsync(
             realm: Realm, model: Class<T>, column: String, value: String): Observable<RealmResponse<T?>> =

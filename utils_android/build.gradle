@@ -33,7 +33,6 @@ android {
 
 kapt {
 	useBuildCache true
-	mapDiagnosticLocations true
 }
 
 dependencies {
@@ -41,22 +40,22 @@ dependencies {
 
 	//Support
 	implementation "com.android.support:support-v4:${SUPPORT}"
+	implementation "com.android.support:recyclerview-v7:${SUPPORT}"
+	implementation "com.android.support:design:${SUPPORT}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
 
 	//RX
 	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
 	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
 
-	//Tests
-	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	})
-	testCompile "junit:junit:${JUNIT}"
+	//Lifecycle
+	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
+	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
+	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
 }

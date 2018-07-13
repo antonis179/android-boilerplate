@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
 	compileSdkVersion compileVersion
@@ -31,11 +30,6 @@ android {
 
 }
 
-kapt {
-	useBuildCache true
-	mapDiagnosticLocations true
-}
-
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -47,12 +41,5 @@ dependencies {
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
-
-	//Tests
-	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	})
-	testCompile "junit:junit:${JUNIT}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
 }

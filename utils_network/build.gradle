@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
 	compileSdkVersion compileVersion
@@ -31,10 +30,6 @@ android {
 
 }
 
-kapt {
-	useBuildCache true
-	mapDiagnosticLocations true
-}
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -54,24 +49,21 @@ dependencies {
 
 	//Retrofit
 	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
+//	implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT}"
 	implementation "com.squareup.retrofit2:converter-gson:${RETROFIT}"
 	implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT}"
 	implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: "${OKHTTP}"
+
+	//GSON
+	implementation "com.google.code.gson:gson:${GSON}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${KOTLIN}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
 
 	//Network tools - https://github.com/stealthcopter/AndroidNetworkTools/releases/
-	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.2.2'
-
-	//Tests
-	androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	})
-	testCompile "junit:junit:${JUNIT}"
+//	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.3.08'
 }

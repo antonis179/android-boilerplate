@@ -2,15 +2,13 @@
 <resources>
 
 
-    <style name="Card.Large" parent="CardView">
-        <item name="android:layout_marginTop">@dimen/margin_normal</item>
-        <item name="android:layout_marginBottom">@dimen/margin_normal</item>
-        <!--<item name="android:layout_marginLeft">@dimen/margin_large</item>-->
-        <!--<item name="android:layout_marginRight">@dimen/margin_large</item>-->
-
+    <style name="Card.Large" parent="@style/CardView">
         <item name="android:focusable">true</item>
         <item name="cardPreventCornerOverlap">false</item>
         <item name="cardUseCompatPadding">true</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/card_height</item>
 
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="cardCornerRadius">2dp</item>
@@ -18,10 +16,9 @@
         <item name="contentPadding">2dp</item>
     </style>
 
-    <style name="Card.Large.Toolbar" parent="Card.Large">
-        <item name="cardBackgroundColor">@android:color/white</item>
+
+    <style name="Card.CoinOverview" parent="@style/Card.Large">
+        <item name="cardBackgroundColor">@color/primary</item>
     </style>
-
-
 
 </resources>

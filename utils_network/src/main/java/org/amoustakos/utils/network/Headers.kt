@@ -10,7 +10,8 @@ object Headers {
      * Headers
      */
 
-    const val HEADER_CONTENT_TYPE = "Content-Type:"
+    const val HEADER_ACCEPT = "Accept"
+    const val HEADER_CONTENT_TYPE = "Content-Type"
 
 
     /*

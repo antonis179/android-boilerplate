@@ -15,8 +15,10 @@ import android.support.annotation.IntDef
 /**
  * Calculates and reports device rotation based on accelerometer and magnetometer.
  */
-class OrientationUtil
-(context: Context, @Orientation defaultOrientation: Int) : DefaultLifecycleObserver {
+class OrientationUtil(
+        context: Context,
+        @Orientation defaultOrientation: Int
+) : DefaultLifecycleObserver {
 
     private val smoothness = 1
     private var averagePitch = 0f
@@ -113,8 +115,8 @@ class OrientationUtil
     // =========================================================================================
 
     private val eventListener: SensorEventListener = object : SensorEventListener {
-        internal var mGravity: FloatArray? = null
-        internal var mGeomagnetic: FloatArray? = null
+        var mGravity: FloatArray? = null
+        var mGeomagnetic: FloatArray? = null
 
 
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}

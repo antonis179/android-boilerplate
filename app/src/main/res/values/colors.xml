@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">#4960e1</color>
-	<color name="colorPrimaryDark">#4256d2</color>
-	<color name="colorAccent">#de004b</color>
+	<color name="primary">#2d3a41</color>
+	<color name="primaryDark">#1d262b</color>
+	<color name="accent">#cf2569</color>
+	<color name="transparent">#00000000</color>
+
+	<!-- CTA -->
+	<color name="primaryCTA">#c9d3d7</color>
+	<color name="primaryCTAText">#202020</color>
+
+	<!-- Text -->
+	<color name="textWhite">#ffffff</color>
+
 
 	<!-- White -->
 	<color name="white">#ffffff</color>
@@ -12,6 +21,19 @@
 	<color name="gray">#505050</color>
 	<color name="gray_tr">#c8646464</color>
 	<color name="gray_light">#b9b9b9</color>
+
+	<!-- Red -->
+	<color name="red">#b71c1c</color>
+	<color name="red_dark">#3e2723</color>
+
+	<!-- Green -->
+	<color name="green">#1cb726</color>
+	<color name="green_dark">#233e27</color>
+
+	<!-- Specific to screens -->
+	<color name="background_generic">@color/primaryDark</color>
+
+
 
 
 </resources>

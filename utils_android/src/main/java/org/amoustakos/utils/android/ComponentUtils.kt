@@ -1,6 +1,5 @@
 package org.amoustakos.utils.android
 
-import android.app.ActivityManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
@@ -32,15 +31,15 @@ object ComponentUtils {
 
 
     //TODO: check android O compatibility
-    @Throws(NullPointerException::class)
-    fun isServiceRunning(context: Context, serviceClass: Class<*>): Boolean {
-        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        manager.getRunningServices(Integer.MAX_VALUE).forEach {
-            if (serviceClass.name == it.service.className)
-                return true
-        }
-        return false
-    }
+//    @Throws(NullPointerException::class)
+//    fun isServiceRunning(context: Context, serviceClass: Class<*>): Boolean {
+//        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//        manager.getRunningServices(Integer.MAX_VALUE).forEach {
+//            if (serviceClass.name == it.service.className)
+//                return true
+//        }
+//        return false
+//    }
 
 
 }
