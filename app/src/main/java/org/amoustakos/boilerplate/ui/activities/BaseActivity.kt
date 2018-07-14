@@ -13,7 +13,7 @@ import org.amoustakos.boilerplate.R
 import org.amoustakos.boilerplate.injection.component.ActivityComponent
 import org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent
 import org.amoustakos.boilerplate.injection.component.DaggerConfigPersistentComponent
-import org.amoustakos.boilerplate.injection.module.ActivityModule
+import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 

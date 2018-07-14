@@ -37,9 +37,9 @@ class ExampleDao @Inject constructor(@DefaultRealm realm: Realm) :
         @JvmStatic
         fun getObservableInstance(
                 @DefaultRealmConfig config: RealmConfiguration): Observable<ExampleDao> =
-                Observable.just(true)
+		        Observable.just {}
                         .compose(RxUtil.applyRealmObservableScheduler())
-                        .map({ ExampleDao(Realm.getInstance(config)) })
+				        .map { ExampleDao(Realm.getInstance(config)) }
 
 
     }

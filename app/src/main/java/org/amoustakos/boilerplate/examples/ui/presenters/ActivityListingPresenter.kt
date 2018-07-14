@@ -5,7 +5,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
-import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract
+import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingActions
+import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingView
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter
 import org.amoustakos.utils.android.PackageManagerUtils.definedActivities
@@ -13,17 +14,18 @@ import timber.log.Timber
 import java.util.*
 
 
-class ActivityListingPresenter<View : ActivityListingContract.View>(
-		view: View,
+class ActivityListingPresenter(
+		view: ActivityListingView,
 		private val basePackage: String,
 		private val pm: PackageManager
-) : BasePresenter<View>(view), ActivityListingContract.Actions {
+) : BasePresenter<ActivityListingView>(view), ActivityListingActions {
 
 
 	private val activities: List<Class<out BaseActivity>>
 		get() = definedActivities(pm, basePackage)
 
 
+	override fun init() {}
 
 	override fun load() {
 		Observable.just(true)

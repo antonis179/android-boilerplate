@@ -13,20 +13,12 @@ import retrofit2.http.POST
 import javax.inject.Inject
 
 
-class ExampleNetCall
-@Inject
-constructor(private val service: ApiService) : BaseCall() {
-
-    companion object {
-        private const val RETRIES: Long = 3
-    }
-
-    // =========================================================================================
-    // Implementation
-    // =========================================================================================
+class ExampleNetCall @Inject constructor(
+		private val service: ApiService
+) : BaseCall() {
 
 
-    fun post(): Observable<NetEvent<JSONObject>> {
+	fun call(): Observable<NetEvent<JSONObject>> {
         return service.makeCall()
                 .compose(applyTransformations(RETRIES))
                 .compose(applyErrorLogging())
@@ -49,13 +41,9 @@ constructor(private val service: ApiService) : BaseCall() {
     }
 
 
-    // =========================================================================================
-    // Inner classes
-    // =========================================================================================
-
     interface ApiService {
-        @Headers(HEADER_CONTENT_TYPE + " " + MIME_JSON)
         @POST("/endpoint")
+        @Headers("$HEADER_CONTENT_TYPE $MIME_JSON")
         fun makeCall(): Observable<Response<JSONObject>>
     }
 

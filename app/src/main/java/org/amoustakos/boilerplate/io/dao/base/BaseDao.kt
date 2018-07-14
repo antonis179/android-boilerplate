@@ -1,5 +1,6 @@
 package org.amoustakos.boilerplate.io.dao.base
 
+import com.crashlytics.android.Crashlytics
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.realm.*
@@ -14,10 +15,32 @@ abstract class BaseDao<T : RealmModel> (
         private val modelType: Class<T>)
     : RealmTraits() {
 
-    private val finalizer = Observable.fromCallable{realm.close()}
+	private val finalizer = Observable.fromCallable { close() }
+			.doOnNext { Timber.v("Successful Realm shutdown") }
             .doOnError {
                 Timber.e(it)
-            }!!
+	            Crashlytics.logException(it)
+            }
+			.onErrorReturn {}!!
+
+	fun close() {
+		try {
+			unsubscribe()
+		} catch (e: Exception) {
+			Timber.d("Error removing listeners from this realm instance")
+		} finally {
+			realm.close()
+		}
+	}
+
+	fun unsubscribe() = RealmUtil.unsubscribe(realm)
+
+	fun unsubscribe(listener: RealmChangeListener<Realm>) = RealmUtil.unsubscribe(realm, listener)
+
+	fun refresh() = RealmUtil.refresh(realm)
+
+	fun subscribeToChanges(listener: RealmChangeListener<Realm>) =
+			RealmUtil.subscribeToChanges(realm, listener)
 
 
     // =========================================================================================
@@ -66,6 +89,10 @@ abstract class BaseDao<T : RealmModel> (
 
     fun addOrUpdate(model: T) = RealmUtil.addOrUpdate(realm, model)
 
+	fun addOrUpdate(models: Collection<T>) = RealmUtil.addOrUpdate(realm, models)
+
+	fun addOrUpdateBatch(models: Collection<T>) = RealmUtil.addOrUpdateBatch(realm, models)
+
     fun remove(model: T) = RealmUtil.remove(realm, model)
 
     fun remove(models: List<T>) = RealmUtil.remove(realm, models)
@@ -73,6 +100,7 @@ abstract class BaseDao<T : RealmModel> (
     fun clearAll() = RealmUtil.clearAll(realm, modelType)
 
 
+	fun getOne(): T? = RealmUtil.getOne(realm, modelType)
 
     fun getOneByColumn(column: String, value: String): T? =
             RealmUtil.getOneByColumn(realm, modelType, column, value)
@@ -152,6 +180,8 @@ abstract class BaseDao<T : RealmModel> (
     fun copyAsync(model: T, depth: Int) =
             RealmUtil.copyFromAsync(realm, model, depth)
 
+
+	fun getOneAsync(): Observable<RealmResponse<T?>> = RealmUtil.getOneAsync(realm, modelType)
 
     fun getOneByColumnAsync(column: String, value: String): Observable<RealmResponse<T?>> =
             RealmUtil.getOneByColumnAsync(realm, modelType, column, value)

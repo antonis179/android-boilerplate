@@ -9,13 +9,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.widget.Toast
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.amoustakos.boilerplate.R
 import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
 import org.amoustakos.boilerplate.examples.ui.adapters.ActivityListingAdapter
-import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingContract
+import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingActions
+import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingView
 import org.amoustakos.boilerplate.examples.ui.presenters.ActivityListingPresenter
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import timber.log.Timber
@@ -27,22 +26,18 @@ import java.util.*
  */
 //adb shell am start -a com.google.android.gms.actions.SEARCH_ACTION -e query flights org.amoustakos.boilerplate
 //https://developers.google.com/voice-actions/system/#step_3_update_your_app_completion_status
-class MainActivity : BaseActivity(), ActivityListingContract.View {
+class MainActivity : BaseActivity(), ActivityListingView {
 
 	private var isDoubleBackToExitPressedOnce = false
-	private var mPresenter: ActivityListingContract.Actions? = null
+	private var mPresenter: ActivityListingActions? = null
 
 	private var exampleAdapter: ActivityListingAdapter? = null
-
-	private var unbinder: Unbinder? = null
-
 
 	@LayoutRes override fun layoutId() = R.layout.activity_main
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		unbinder = ButterKnife.bind(this)
 
 		Timber.d(intent.action + " | " + intent.dataString)
 
@@ -74,11 +69,6 @@ class MainActivity : BaseActivity(), ActivityListingContract.View {
 		isDoubleBackToExitPressedOnce = true
 		Toast.makeText(this, getString(R.string.toast_back_to_exit), Toast.LENGTH_SHORT).show()
 		Handler().postDelayed({ isDoubleBackToExitPressedOnce = false }, 2000)
-	}
-
-	override fun onDestroy() {
-		super.onDestroy()
-		unbinder!!.unbind()
 	}
 
 	// =========================================================================================
