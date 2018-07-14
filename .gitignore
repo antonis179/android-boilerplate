@@ -1,4 +1,4 @@
-########## Java/Android/InteliJ
+##########   Java/Android/InteliJ   ##########
 
 # Built application files
 *.apk
@@ -17,6 +17,7 @@ out/
 
 # Gradle files
 .gradle/
+gradle/
 # gradle.properties
 
 # Local configuration file (sdk path, etc)
@@ -45,7 +46,7 @@ captures/
 .externalNativeBuild
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
+#google-services.json
 
 # Freeline
 freeline.py
@@ -57,7 +58,7 @@ freeline_project_description.json
 
 
 
-###########   Swift
+###########   Swift   ##########
 
 
 ## Build generated
