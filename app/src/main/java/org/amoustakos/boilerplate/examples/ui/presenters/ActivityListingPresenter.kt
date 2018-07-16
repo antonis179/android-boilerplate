@@ -4,9 +4,9 @@ import android.content.pm.PackageManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingActions
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingView
+import org.amoustakos.boilerplate.examples.view.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter
 import org.amoustakos.utils.android.PackageManagerUtils.definedActivities
@@ -15,10 +15,10 @@ import java.util.*
 
 
 class ActivityListingPresenter(
-		view: ActivityListingView,
-		private val basePackage: String,
-		private val pm: PackageManager
-) : BasePresenter<ActivityListingView>(view), ActivityListingActions {
+	view: ActivityListingView,
+	private val basePackage: String,
+	private val pm: PackageManager
+): BasePresenter<ActivityListingView>(view), ActivityListingActions {
 
 
 	private val activities: List<Class<out BaseActivity>>
@@ -28,7 +28,7 @@ class ActivityListingPresenter(
 	override fun init() {}
 
 	override fun load() {
-		Observable.just(true)
+		addLifecycleDisposable(Observable.just {}
 				.observeOn(Schedulers.computation())
 				.map<List<ActivityListingModel>> { _ ->
 					val models = ArrayList<ActivityListingModel>()
@@ -36,10 +36,10 @@ class ActivityListingPresenter(
 
 					for (act in activities) {
 						val model = ActivityListingModel(
-								act,
-								act.name,
-								act.superclass.name
-						)
+                                act,
+                                act.name,
+                                act.superclass.name
+                        )
 						models.add(model)
 					}
 
@@ -51,7 +51,7 @@ class ActivityListingPresenter(
 				.onErrorReturn { ArrayList() }
 				.observeOn(AndroidSchedulers.mainThread())
 				.doOnNext { mView.onItemsCollected(it) }
-				.subscribe()
+				.subscribe())
 	}
 
 

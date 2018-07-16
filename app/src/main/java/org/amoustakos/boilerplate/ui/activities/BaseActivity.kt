@@ -96,7 +96,7 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
     // =========================================================================================
-    // Toolbar
+    // Toolbar / Navigation bar
     // =========================================================================================
 
     private fun setupToolbar() {
@@ -105,10 +105,6 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             setSupportActionBar(toolbar)
     }
 
-
-    // =========================================================================================
-    // Navigation bar
-    // =========================================================================================
 
 //    private fun setupNavBar() {
 //        if (drawer_layout == null)

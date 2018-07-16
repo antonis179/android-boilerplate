@@ -1,7 +1,12 @@
-package org.amoustakos.cryptoranker.ui.contracts.base
+package org.amoustakos.boilerplate.ui.contracts.base
+
+import android.arch.lifecycle.Lifecycle
 
 interface BaseContractActions {
-	fun init()
+	fun init() {}
+
+	fun subscribeToLifecycle(lifecycle: Lifecycle)
+	fun unsubscribeToLifecycle(lifecycle: Lifecycle)
 }
 
 interface BaseContractView

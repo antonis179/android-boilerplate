@@ -5,17 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.annotation.LayoutRes
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.amoustakos.boilerplate.R
-import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
-import org.amoustakos.boilerplate.examples.ui.adapters.ActivityListingAdapter
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingActions
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingView
 import org.amoustakos.boilerplate.examples.ui.presenters.ActivityListingPresenter
+import org.amoustakos.boilerplate.examples.view.adapters.ActivityListingAdapter
+import org.amoustakos.boilerplate.examples.view.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import timber.log.Timber
 import java.util.*
@@ -41,19 +40,25 @@ class MainActivity : BaseActivity(), ActivityListingView {
 
 		Timber.d(intent.action + " | " + intent.dataString)
 
-		if (toolbar != null)
-			toolbar!!.setTitle(R.string.title_activity_main)
+		toolbar?.setTitle(R.string.title_activity_main)
 
-		if (mPresenter == null)
+		if (mPresenter == null) {
 			mPresenter = ActivityListingPresenter(
 					this,
 					packageName,
 					packageManager)
+			mPresenter!!.subscribeToLifecycle(lifecycle)
+		}
 
 		setupRecycler()
 		mPresenter!!.load()
 
 		handleVoiceSearch(intent)
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+		mPresenter?.unsubscribeToLifecycle(lifecycle)
 	}
 
 	override fun onNewIntent(intent: Intent) {
@@ -93,23 +98,19 @@ class MainActivity : BaseActivity(), ActivityListingView {
 		refreshAdapter(items)
 	}
 
-
-	// =========================================================================================
-	// Setup
-	// =========================================================================================
-
 	private fun refreshAdapter(items: List<ActivityListingModel>) {
 		exampleAdapter!!.clean()
 		exampleAdapter!!.addAll(items)
 		exampleAdapter!!.notifyDataSetChanged()
 	}
 
+	// =========================================================================================
+	// Setup
+	// =========================================================================================
+
 	private fun setupRecycler() {
 		if (exampleAdapter == null)
 			exampleAdapter = ActivityListingAdapter(ArrayList())
-		val layoutManager = LinearLayoutManager(this)
-		layoutManager.orientation = LinearLayoutManager.VERTICAL
-		rv_activity_pool.layoutManager = layoutManager
 		rv_activity_pool.adapter = exampleAdapter
 	}
 

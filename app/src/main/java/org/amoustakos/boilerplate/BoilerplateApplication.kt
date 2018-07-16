@@ -6,6 +6,8 @@ import android.content.Context
 import org.amoustakos.boilerplate.injection.component.ApplicationComponent
 import org.amoustakos.boilerplate.injection.component.DaggerApplicationComponent
 import org.amoustakos.boilerplate.injection.module.ApplicationModule
+import org.amoustakos.boilerplate.injection.module.DBModule
+import org.amoustakos.boilerplate.injection.module.NetworkModule
 import timber.log.Timber
 
 
@@ -33,6 +35,8 @@ class BoilerplateApplication : Application() {
 	private fun makeComponent() {
 		component = DaggerApplicationComponent.builder()
 				.applicationModule(ApplicationModule(this))
+				.dBModule(DBModule)
+				.networkModule(NetworkModule)
 				.build()
 	}
 

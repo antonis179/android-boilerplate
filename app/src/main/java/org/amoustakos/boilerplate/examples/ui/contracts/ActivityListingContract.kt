@@ -1,8 +1,8 @@
 package org.amoustakos.boilerplate.examples.ui.contracts
 
-import org.amoustakos.boilerplate.examples.io.local.models.ActivityListingModel
-import org.amoustakos.cryptoranker.ui.contracts.base.BaseContractActions
-import org.amoustakos.cryptoranker.ui.contracts.base.BaseContractView
+import org.amoustakos.boilerplate.examples.view.models.ActivityListingModel
+import org.amoustakos.boilerplate.ui.contracts.base.BaseContractActions
+import org.amoustakos.boilerplate.ui.contracts.base.BaseContractView
 
 
 interface ActivityListingView : BaseContractView {

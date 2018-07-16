@@ -3,7 +3,6 @@ package org.amoustakos.boilerplate.injection.component
 import android.app.Application
 import android.content.Context
 import dagger.Component
-import io.realm.Realm
 import io.realm.RealmConfiguration
 import okhttp3.OkHttpClient
 import org.amoustakos.boilerplate.Environment
@@ -13,7 +12,6 @@ import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpCli
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions
-import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealm
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
 import org.amoustakos.boilerplate.injection.module.ApplicationModule
 import org.amoustakos.boilerplate.injection.module.DBModule
@@ -46,9 +44,6 @@ interface ApplicationComponent {
 	// =========================================================================================
 	// DB
 	// =========================================================================================
-
-	@DefaultRealm
-	fun realm(): Realm
 
 	@DefaultRealmConfig
 	fun defaultRealmConfig(): RealmConfiguration
