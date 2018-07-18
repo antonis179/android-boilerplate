@@ -13,8 +13,8 @@ protected constructor(protected val mView: T) : DefaultLifecycleObserver, BaseCo
 
 	@set:Synchronized
 	@get:Synchronized
-	var disposables: LifecycleDisposableList = LifecycleDisposableList(
-			LifecycleDisposableOpts(false, false, true))
+	var disposables: LifecycleDisposableList = LifecycleDisposableList(disposeOpts())
+
 
 	init {
 		disposables.initSubscriptions()
@@ -35,6 +35,9 @@ protected constructor(protected val mView: T) : DefaultLifecycleObserver, BaseCo
 	// =========================================================================================
 	// Subscriptions
 	// =========================================================================================
+
+	protected open fun disposeOpts(): LifecycleDisposableOpts =
+			LifecycleDisposableOpts(false, false, true)
 
 	private fun initSubscriptions() {
 		disposables.initSubscriptions()
