@@ -7,7 +7,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class Environment @Inject constructor(
-        @ApplicationContext val context: Context
+    @ApplicationContext val context: Context
 ) {
 
     fun init() {
