@@ -1,4 +1,4 @@
-package org.amoustakos.cryptoranker.view.adapters.base
+package org.amoustakos.boilerplate.view.adapters.base
 
 import android.support.annotation.NonNull
 import android.support.v7.widget.RecyclerView

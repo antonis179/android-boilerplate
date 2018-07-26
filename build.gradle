@@ -61,6 +61,7 @@ ext {
 buildscript {
 	repositories {
 		jcenter()
+		mavenCentral()
 		google()
 		maven {	url 'https://plugins.gradle.org/m2/' }
 		maven {	url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }

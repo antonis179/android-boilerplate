@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import org.amoustakos.boilerplate.view.holders.base.BaseViewHolder
 import org.amoustakos.boilerplate.view.models.base.BaseViewModel
 import org.amoustakos.boilerplate.view.models.base.PublisherItem
-import org.amoustakos.cryptoranker.view.adapters.base.BaseRecyclerAdapter
 
 abstract class RecyclerAdapter<Holder: BaseViewHolder<Model>, Model: BaseViewModel<Holder, Model>>(
     mItems: MutableList<Model>,
