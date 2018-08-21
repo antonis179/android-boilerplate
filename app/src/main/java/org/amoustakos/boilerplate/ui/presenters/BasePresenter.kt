@@ -26,7 +26,7 @@ protected constructor(protected val mView: T) : DefaultLifecycleObserver, BaseCo
 		disposables.subscribeToLifecycle(lifecycle)
 	}
 
-	override fun unsubscribeToLifecycle(lifecycle: Lifecycle) {
+	override fun unsubscribeFromLifecycle(lifecycle: Lifecycle) {
 		lifecycle.removeObserver(this)
 		disposables.unsubscribeToLifecycle(lifecycle)
 	}

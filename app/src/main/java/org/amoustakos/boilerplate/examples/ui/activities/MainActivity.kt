@@ -58,7 +58,7 @@ class MainActivity : BaseActivity(), ActivityListingView {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		mPresenter?.unsubscribeToLifecycle(lifecycle)
+		mPresenter?.unsubscribeFromLifecycle(lifecycle)
 	}
 
 	override fun onNewIntent(intent: Intent) {
