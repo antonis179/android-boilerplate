@@ -126,6 +126,7 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     // Getters
     // =========================================================================================
 
+    @Throws(IllegalStateException::class)
     fun activityComponent(): ActivityComponent {
         return mActivityComponent ?:
                 throw IllegalStateException("Activity component not instantiated")
