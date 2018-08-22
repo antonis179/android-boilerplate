@@ -68,8 +68,8 @@ buildscript {
 	}
 
 	ext {
-		KOTLIN = '1.2.51'
-		REALM = '5.4.0'
+		KOTLIN = '1.2.61'
+		REALM = '5.4.2'
 
 		//Analytics
 		FIREBASE = '3.2.0'

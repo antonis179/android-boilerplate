@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.util.text
+package org.amoustakos.utils.android.text
 
 import android.text.TextUtils
 
