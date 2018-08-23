@@ -10,6 +10,7 @@ object RealmConfig {
 
     @JvmStatic fun defaultConfig(): RealmConfiguration =
 		    RealmConfiguration.Builder()
+				    .name("general")
 				    .schemaVersion(DEFAULT_VERSION)
 				    .deleteRealmIfMigrationNeeded()
 				    .compactOnLaunch(Compact())
