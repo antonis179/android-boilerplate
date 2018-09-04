@@ -17,7 +17,7 @@ protected constructor(protected val mView: T) : DefaultLifecycleObserver, BaseCo
 
 
 	init {
-		disposables.initSubscriptions()
+		initSubscriptions()
 	}
 
 
