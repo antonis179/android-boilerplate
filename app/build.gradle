@@ -124,7 +124,7 @@ dependencies {
 
 	//Image
 
-	//    implementation 'com.github.bumptech.glide:glide:3.7.0'
+	//    implementation "com.github.bumptech.glide:glide:${GLIDE}"
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:${TIMBER}"

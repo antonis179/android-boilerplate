@@ -56,6 +56,9 @@ ext {
 
 	//Bus
 	EVENT_BUS = '3.1.1'
+
+	//Image
+//	GLIDE = '4.8.0'
 }
 
 buildscript {
