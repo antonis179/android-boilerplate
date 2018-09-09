@@ -38,7 +38,7 @@ class MainActivity : BaseActivity(), ActivityListingView {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		Timber.d(intent.action + " | " + intent.dataString)
+		Timber.d("${intent.action} | ${intent.dataString}")
 
 		toolbar?.setTitle(R.string.title_activity_main)
 

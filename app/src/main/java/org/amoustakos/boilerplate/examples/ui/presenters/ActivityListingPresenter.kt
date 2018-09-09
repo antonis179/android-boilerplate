@@ -43,7 +43,7 @@ class ActivityListingPresenter(
 						models.add(model)
 					}
 
-					Timber.i("Found " + activities.size + " classes")
+					Timber.i("Found ${activities.size} classes")
 
 					models
 				}

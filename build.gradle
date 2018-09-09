@@ -39,7 +39,7 @@ ext {
 	OKHTTP = '3.10.0'
 
 	//Logging
-	TIMBER = '4.6.0'
+	TIMBER = '4.7.1'
 
 	//Testing
 	ESPRESSO = '2.2.2'
