@@ -5,7 +5,7 @@
 
 ## Technologies / Architecture
 
-### Arcitecture
+### Architecture
 	MVP is used as the architecture.
 	
 ### Technologies

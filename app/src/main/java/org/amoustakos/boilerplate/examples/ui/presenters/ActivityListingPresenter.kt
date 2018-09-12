@@ -50,7 +50,7 @@ class ActivityListingPresenter(
 				.doOnError { Timber.i(it) }
 				.onErrorReturn { ArrayList() }
 				.observeOn(AndroidSchedulers.mainThread())
-				.doOnNext { mView.onItemsCollected(it) }
+				.doOnNext { view().onItemsCollected(it) }
 				.subscribe())
 	}
 

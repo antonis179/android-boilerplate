@@ -7,19 +7,23 @@ import org.amoustakos.boilerplate.ui.contracts.base.BaseContractActions
 import org.amoustakos.boilerplate.ui.contracts.base.BaseContractView
 import org.amoustakos.utils.android.LifecycleDisposableList
 import org.amoustakos.utils.android.LifecycleDisposableOpts
+import java.lang.ref.WeakReference
 
 open class BasePresenter<out T : BaseContractView>
-protected constructor(protected val mView: T) : DefaultLifecycleObserver, BaseContractActions {
+protected constructor (view: T) : DefaultLifecycleObserver, BaseContractActions {
 
 	@set:Synchronized
 	@get:Synchronized
 	var disposables: LifecycleDisposableList = LifecycleDisposableList(disposeOpts())
+
+	protected val mView: WeakReference<out T> = WeakReference(view)
 
 
 	init {
 		initSubscriptions()
 	}
 
+	protected fun view() = mView.get()!!
 
 	override fun subscribeToLifecycle(lifecycle: Lifecycle) {
 		lifecycle.addObserver(this)
