@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.io
 
-import io.realm.CompactOnLaunchCallback
 import io.realm.RealmConfiguration
+import org.amoustakos.utils.io.realm.policies.DefaultCompactPolicy
 
 object RealmConfig {
 
@@ -13,21 +13,7 @@ object RealmConfig {
 				    .name("general")
 				    .schemaVersion(DEFAULT_VERSION)
 				    .deleteRealmIfMigrationNeeded()
-				    .compactOnLaunch(Compact())
+				    .compactOnLaunch(DefaultCompactPolicy())
 				    .build()
-
-
-	class Compact : CompactOnLaunchCallback {
-
-		override fun equals(other: Any?) =
-				other != null && other is Compact
-
-		override fun hashCode() = 0
-
-		override fun shouldCompact(totalBytes: Long, usedBytes: Long): Boolean {
-			val thresholdSize = (10 * 1024 * 1024).toLong()
-			return totalBytes > thresholdSize && usedBytes.toDouble() / totalBytes.toDouble() < 0.5
-		}
-	}
 
 }
