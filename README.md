@@ -25,61 +25,63 @@
 	
 ## Setup ##
 
-### Easy ###
+### Without Firebase ###
 
 - Remove signing configuration from app level gradle
 	```groovy
-		signingConfigs {
-				debug {
-					def props = getPasswords()
-					def loc = getAttribute(props, "${KEY_SIGNING_LOC}")
-					def pwd = getAttribute(props, "${KEY_SIGNING_PWD}")
-					def alias = getAttribute(props, "${KEY_SIGNING_ALIAS}")
-					def aliasPwd = getAttribute(props, "${KEY_SIGNING_ALIAS_PWD}")
-		
-					storeFile file(loc)
-					storePassword pwd
-					keyAlias alias
-					keyPassword aliasPwd
-				}
-		
-				release {
-					def props = getPasswords()
-					def loc = getAttribute(props, "${RELEASE_KEY_SIGNING_LOC}")
-					def pwd = getAttribute(props, "${RELEASE_KEY_SIGNING_PWD}")
-					def alias = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS}")
-					def aliasPwd = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS_PWD}")
-		
-					storeFile file(loc)
-					storePassword pwd
-					keyAlias alias
-					keyPassword aliasPwd
-				}
+	signingConfigs {
+			debug {
+				def props = getPasswords()
+				def loc = getAttribute(props, "${KEY_SIGNING_LOC}")
+				def pwd = getAttribute(props, "${KEY_SIGNING_PWD}")
+				def alias = getAttribute(props, "${KEY_SIGNING_ALIAS}")
+				def aliasPwd = getAttribute(props, "${KEY_SIGNING_ALIAS_PWD}")
+	
+				storeFile file(loc)
+				storePassword pwd
+				keyAlias alias
+				keyPassword aliasPwd
 			}
-		
-		
-			buildTypes {
-				debug {
-					//...
-					signingConfig signingConfigs.debug
-				}
-				release {
-					//...
-					signingConfig signingConfigs.release
-				}
+	
+			release {
+				def props = getPasswords()
+				def loc = getAttribute(props, "${RELEASE_KEY_SIGNING_LOC}")
+				def pwd = getAttribute(props, "${RELEASE_KEY_SIGNING_PWD}")
+				def alias = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS}")
+				def aliasPwd = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS_PWD}")
+	
+				storeFile file(loc)
+				storePassword pwd
+				keyAlias alias
+				keyPassword aliasPwd
 			}
+		}
+	
+	
+		buildTypes {
+			debug {
+				//...
+				signingConfig signingConfigs.debug
+			}
+			release {
+				//...
+				signingConfig signingConfigs.release
+			}
+		}
 	```
 
 
 
 - Remove all firebase implementation
 	- From project level gradle:
+	
 		```groovy
 		//Analytics
 		classpath "com.google.gms:google-services:${FIREBASE}"
 		classpath "com.google.firebase:firebase-plugins:${FIREBASE_PERFORMANCE}"
 		```
 	- From app level gradle
+	
 		```groovy
 		apply plugin: 'com.google.firebase.firebase-perf'
 		//...
@@ -93,38 +95,38 @@
 	- Remove "FCMService" (from manifest as well)
 	- Remove Firebase metadata from manifest
 	```xml
-		<application>
-			<!-- FCM -->
-		    <meta-data
-		        android:name="com.google.firebase.messaging.default_notification_channel_id"
-		        android:value="@string/notif_default_channel_id"/>
-		
-		    <meta-data
-		        android:name="com.google.firebase.messaging.default_notification_icon"
-		        android:resource="@android:drawable/ic_menu_info_details" />
-		
-		    <meta-data
-		        android:name="com.google.firebase.messaging.default_notification_color"
-		        android:resource="@color/accent" />
-        </application>
+	<application>
+		<!-- FCM -->
+	    <meta-data
+	        android:name="com.google.firebase.messaging.default_notification_channel_id"
+	        android:value="@string/notif_default_channel_id"/>
+	
+	    <meta-data
+	        android:name="com.google.firebase.messaging.default_notification_icon"
+	        android:resource="@android:drawable/ic_menu_info_details" />
+	
+	    <meta-data
+	        android:name="com.google.firebase.messaging.default_notification_color"
+	        android:resource="@color/accent" />
+    </application>
 	```
 	
-### Complete ###
+### With Firebase ###
 
 - Setup a signing key through android studio
 - Setup a firebase project and add google-services.json as per instructions
 - Add "\_SENSITIVE_HIDE_FROM_GIT_" folder in project root
 - Add password.properties in "\_SENSITIVE_HIDE_FROM_GIT_":
 	```properties
-		debug.key.location=
-		debug.key.password=
-		debug.key.alias=
-		debug.key.alias.password=
-		
-		release.key.location=
-		release.key.password=
-		release.key.alias=
-		release.key.alias.password=
+	debug.key.location=
+	debug.key.password=
+	debug.key.alias=
+	debug.key.alias.password=
+	
+	release.key.location=
+	release.key.password=
+	release.key.alias=
+	release.key.alias.password=
 	```
 
 ## Donations ##
