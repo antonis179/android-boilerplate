@@ -134,4 +134,4 @@
 So you liked my code and want to buy me coffee and pizza? That's awesome!
 
 - BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
-- Paypal: **neo179@protonmail.com**
+- Paypal: **https://www.paypal.me/neo179**
