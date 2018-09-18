@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.util.LongSparseArray
 import android.view.View
 import android.view.ViewGroup
 import org.amoustakos.boilerplate.BoilerplateApplication
-import org.amoustakos.boilerplate.R
 import org.amoustakos.boilerplate.injection.component.ActivityComponent
 import org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent
 import org.amoustakos.boilerplate.injection.component.DaggerConfigPersistentComponent
 import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
+import org.amoustakos.boilerplate.view.base.IActivityViewComponent
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 
@@ -30,8 +29,14 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     protected val rootView: View
         get() = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0)
 
-    protected val toolbar: Toolbar?
-        get() = findViewById<View>(R.id.toolbar) as Toolbar
+    protected fun setupViewComponents(components: List<IActivityViewComponent>) {
+	    components.forEach { setupViewComponent(it) }
+    }
+
+	protected fun setupViewComponent(component: IActivityViewComponent) {
+		component.setup(this)
+	}
+
 
     // =========================================================================================
     // Overridden
@@ -43,7 +48,6 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         makeID(savedInstanceState)
         makeComponents(mActivityId)
 
-        setupToolbar()
 //        setupNavBar()
     }
 
@@ -98,13 +102,6 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     // =========================================================================================
     // Toolbar / Navigation bar
     // =========================================================================================
-
-    private fun setupToolbar() {
-        val toolbar = toolbar
-        if (toolbar != null)
-            setSupportActionBar(toolbar)
-    }
-
 
 //    private fun setupNavBar() {
 //        if (drawer_layout == null)
