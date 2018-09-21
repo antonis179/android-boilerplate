@@ -5,8 +5,6 @@ import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.LongSparseArray
-import android.view.View
-import android.view.ViewGroup
 import org.amoustakos.boilerplate.BoilerplateApplication
 import org.amoustakos.boilerplate.injection.component.ActivityComponent
 import org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent
@@ -26,8 +24,8 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     private var mActivityComponent: ActivityComponent? = null
     private var mActivityId: Long = 0
 
-    protected val rootView: View
-        get() = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0)
+//    protected val rootView: View
+//        get() = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0)
 
     protected fun setupViewComponents(components: List<IActivityViewComponent>) {
 	    components.forEach { setupViewComponent(it) }
@@ -47,8 +45,6 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         setContentView(layoutId())
         makeID(savedInstanceState)
         makeComponents(mActivityId)
-
-//        setupNavBar()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -97,27 +93,6 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     @LayoutRes
     protected abstract fun layoutId(): Int
-
-
-    // =========================================================================================
-    // Toolbar / Navigation bar
-    // =========================================================================================
-
-//    private fun setupNavBar() {
-//        if (drawer_layout == null)
-//            return
-//
-//        val toggle = ActionBarDrawerToggle(
-//                this,
-//                drawer_layout,
-//                toolbar,
-//                R.string.navigation_drawer_open,
-//                R.string.navigation_drawer_close)
-//        drawer_layout.addDrawerListener(toggle)
-//        toggle.syncState()
-//
-//        nav_view.setNavigationItemSelectedListener(this)
-//    }
 
     // =========================================================================================
     // Getters
