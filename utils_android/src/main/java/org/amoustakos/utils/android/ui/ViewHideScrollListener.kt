@@ -31,7 +31,7 @@ class ViewHideScrollListener(
     }
 
 
-    override fun onScrolled(rv: RecyclerView?, dx: Int, dy: Int) {
+    override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(rv, dx, dy)
 
         chooseAnimation(rv)
@@ -60,7 +60,7 @@ class ViewHideScrollListener(
             val linearLayoutManager = this.layoutManager as LinearLayoutManager
             val pos = linearLayoutManager.findFirstVisibleItemPosition()
 
-            linearLayoutManager.findViewByPosition(pos).top == 0 && pos == 0
+            linearLayoutManager.findViewByPosition(pos)?.top == 0 && pos == 0
         }
         catch (e: ClassCastException){
             Timber.e(e)

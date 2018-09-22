@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.amoustakos.utils.network
 
 import android.content.Context
@@ -5,6 +7,7 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 
 
+@Deprecated("To be replaced with high/low bandwidth utility")
 object WifiUtil {
 
     /**

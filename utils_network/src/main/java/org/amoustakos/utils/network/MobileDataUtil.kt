@@ -1,3 +1,4 @@
+@file:Suppress("DEPRECATION")
 package org.amoustakos.utils.network
 
 import android.annotation.SuppressLint
@@ -9,11 +10,8 @@ import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
 
-/**
- * <h1>WARNING</h1>
- * NOTE: NEED TO INSTALL AS SYSTEM APP FOR THIS UTILITY TO WORK.
- */
 @SuppressLint("PrivateApi")
+@Deprecated("To be replaced with high/low bandwidth utility")
 object MobileDataUtil {
 
     /**
@@ -62,7 +60,7 @@ object MobileDataUtil {
                     getDeclaredMethod("setMobileDataEnabled",
                             Boolean::class.javaPrimitiveType)
         } catch (e: NoSuchMethodException) {
-            Timber.w(e, e.message)
+            Timber.w(e)
             return false
         }
 
@@ -94,30 +92,29 @@ object MobileDataUtil {
      * Checks if the connection is fast
      */
     fun isConnectionFast(type: Int, subType: Int): Boolean {
-        return if (type == ConnectivityManager.TYPE_WIFI)
-            true
-        else if (type == ConnectivityManager.TYPE_MOBILE)
-            when (subType) {
-                TelephonyManager.NETWORK_TYPE_1xRTT -> false // ~ 50-100 kbps
-                TelephonyManager.NETWORK_TYPE_CDMA -> false // ~ 14-64 kbps
-                TelephonyManager.NETWORK_TYPE_EDGE -> false // ~ 50-100 kbps
-                TelephonyManager.NETWORK_TYPE_EVDO_0 -> true // ~ 400-1000 kbps
-                TelephonyManager.NETWORK_TYPE_EVDO_A -> true // ~ 600-1400 kbps
-                TelephonyManager.NETWORK_TYPE_GPRS -> false // ~ 100 kbps
-                TelephonyManager.NETWORK_TYPE_HSDPA -> true // ~ 2-14 Mbps
-                TelephonyManager.NETWORK_TYPE_HSPA -> true // ~ 700-1700 kbps
-                TelephonyManager.NETWORK_TYPE_HSUPA -> true // ~ 1-23 Mbps
-                TelephonyManager.NETWORK_TYPE_UMTS -> true // ~ 400-7000 kbps
-                TelephonyManager.NETWORK_TYPE_EHRPD -> true // ~ 1-2 Mbps
-                TelephonyManager.NETWORK_TYPE_EVDO_B -> true // ~ 5 Mbps
-                TelephonyManager.NETWORK_TYPE_HSPAP -> true // ~ 10-20 Mbps
-                TelephonyManager.NETWORK_TYPE_IDEN -> false // ~25 kbps
-                TelephonyManager.NETWORK_TYPE_LTE -> true // ~ 10+ Mbps
-            // Unknown
-            //TelephonyManager.NETWORK_TYPE_UNKNOWN:
-                else -> false
-            }
-        else
-            false
+        return when (type) {
+		        ConnectivityManager.TYPE_WIFI -> true
+		        ConnectivityManager.TYPE_MOBILE -> when (subType) {
+		        TelephonyManager.NETWORK_TYPE_1xRTT -> false // ~ 50-100 kbps
+		        TelephonyManager.NETWORK_TYPE_CDMA -> false // ~ 14-64 kbps
+		        TelephonyManager.NETWORK_TYPE_EDGE -> false // ~ 50-100 kbps
+		        TelephonyManager.NETWORK_TYPE_EVDO_0 -> true // ~ 400-1000 kbps
+		        TelephonyManager.NETWORK_TYPE_EVDO_A -> true // ~ 600-1400 kbps
+		        TelephonyManager.NETWORK_TYPE_GPRS -> false // ~ 100 kbps
+		        TelephonyManager.NETWORK_TYPE_HSDPA -> true // ~ 2-14 Mbps
+		        TelephonyManager.NETWORK_TYPE_HSPA -> true // ~ 700-1700 kbps
+		        TelephonyManager.NETWORK_TYPE_HSUPA -> true // ~ 1-23 Mbps
+		        TelephonyManager.NETWORK_TYPE_UMTS -> true // ~ 400-7000 kbps
+		        TelephonyManager.NETWORK_TYPE_EHRPD -> true // ~ 1-2 Mbps
+		        TelephonyManager.NETWORK_TYPE_EVDO_B -> true // ~ 5 Mbps
+		        TelephonyManager.NETWORK_TYPE_HSPAP -> true // ~ 10-20 Mbps
+		        TelephonyManager.NETWORK_TYPE_IDEN -> false // ~25 kbps
+		        TelephonyManager.NETWORK_TYPE_LTE -> true // ~ 10+ Mbps
+		        // Unknown
+		        //TelephonyManager.NETWORK_TYPE_UNKNOWN:
+		        else -> false
+	        }
+	        else -> false
+	    }
     }
 }
