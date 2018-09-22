@@ -2,6 +2,10 @@
 
 - More info
 - More boilerplate!
+	- ViewModel
+	- LiveData
+	- WorkManager
+	- NetworkCapabilities utility
 
 ## Technologies / Architecture ##
 
