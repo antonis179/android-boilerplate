@@ -38,7 +38,7 @@ class ActivityListingPresenter(
 						val model = ActivityListingModel(
                                 act,
                                 act.name,
-                                act.superclass.name
+                                act.superclass?.name
                         )
 						models.add(model)
 					}
