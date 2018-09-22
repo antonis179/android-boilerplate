@@ -217,13 +217,13 @@ private Properties getProperties(String filename) {
 }
 
 
-private String getAttribute(Properties props, String key) {
+private static String getAttribute(Properties props, String key) {
 	String attribute = props.get(key)
 	checkAttribute(attribute)
 	return attribute
 }
 
-private String getStringifiedAttribute(Properties props, String key) {
+private static String getStringifiedAttribute(Properties props, String key) {
 	String attribute = props.get(key)
 	checkAttribute(attribute)
 	return stringify(attribute)
