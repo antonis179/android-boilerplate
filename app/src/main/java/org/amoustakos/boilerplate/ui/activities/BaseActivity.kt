@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
  */
-abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+abstract class BaseActivity : AppCompatActivity() {
 
     private var mActivityComponent: ActivityComponent? = null
     private var mActivityId: Long = 0

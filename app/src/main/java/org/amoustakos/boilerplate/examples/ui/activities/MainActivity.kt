@@ -122,9 +122,6 @@ class MainActivity : BaseActivity(), ActivityListingView {
 		rv_activity_pool.adapter = adapter
 	}
 
-
-	override fun onNavigationItemSelected(item: MenuItem) = false
-
 	companion object {
 		private const val ACTION_VOICE_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION"
 	}
