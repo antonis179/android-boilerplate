@@ -4,6 +4,15 @@
 	<color name="primaryDark">#4256d2</color>
 	<color name="accent">#de004b</color>
 
+	<color name="transparent">#00000000</color>
+
+	<!-- CTA -->
+	<color name="primaryCTA">#c9d3d7</color>
+	<color name="primaryCTAText">#202020</color>
+
+	<!-- Text -->
+	<color name="textWhite">#ffffff</color>
+
 	<!-- White -->
 	<color name="white">#ffffff</color>
 
