@@ -16,11 +16,12 @@ abstract class BaseRequest {
         val mapping = HashMap<String, String>()
         val fields = javaClass.declaredFields
         val fieldsList = ArrayList(Arrays.asList(*fields))
-        var current: Class<*> = javaClass
+        var current: Class<in BaseRequest>? = javaClass
 
-        while (current.superclass != null && current.superclass != BaseRequest::class.java) {
-            current = javaClass.superclass
-            fieldsList.addAll(Arrays.asList(*current.declaredFields))
+        // Loop through all inheritance levels and get fields
+        while (current?.superclass != BaseRequest::class.java) {
+            current = current?.superclass
+            fieldsList.addAll(Arrays.asList(*current?.declaredFields))
         }
 
         for (f in fieldsList) {
