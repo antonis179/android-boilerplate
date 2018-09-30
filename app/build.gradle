@@ -83,6 +83,13 @@ android {
 
 	lintOptions {
 		abortOnError false
+
+		/*
+		 * Disables deep linking warnings.
+		 * If your app is indexable remove this and add deep links
+		 * to the activities you want to be crawlable
+		 */
+		disable 'GoogleAppIndexingWarning'
 	}
 
 }
@@ -130,7 +137,7 @@ dependencies {
 	implementation "com.google.android.gms:play-services-awareness:${PLAY_SERVICES}"
 
 	//Assistant
-	implementation "com.google.firebase:firebase-appindexing:${FIREBASE_INDEX}"
+//	implementation "com.google.firebase:firebase-appindexing:${FIREBASE_INDEX}"
 
 	//UI
 	implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
