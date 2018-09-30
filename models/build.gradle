@@ -31,6 +31,10 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	libraryVariants.all { variant ->
+		variant.assemble.finalizedBy(copyAARs)
+	}
 }
 
 kapt {
@@ -53,4 +57,9 @@ dependencies {
 	compileOnly "io.realm:realm-android-library:${REALM}"
 	implementation "io.realm:android-adapters:${REALM_ANDROID_ADAPTERS}"
 	implementation "com.github.vicpinm:krealmextensions:${KOTLIN_REALM_EXT}"
+}
+
+task copyAARs(type: Copy) {
+	from('build/outputs/aar')
+	into("${rootDir}/genLibs/${project.name}")
 }

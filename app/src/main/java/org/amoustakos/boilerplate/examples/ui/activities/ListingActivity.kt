@@ -14,7 +14,6 @@ import org.amoustakos.boilerplate.examples.view.adapters.ActivityListingAdapter
 import org.amoustakos.boilerplate.examples.view.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.view.toolbars.BasicToolbar
-import timber.log.Timber
 import java.util.*
 
 /**
@@ -41,8 +40,6 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 		setupViewComponent(toolbar)
 		toolbar.setTitle(R.string.title_activity_listing)
 		toolbar.setAsActionbar(this)
-
-		Timber.d("${intent.action} | ${intent.dataString}")
 
 		if (presenter == null) {
 			presenter = ActivityListingPresenter(

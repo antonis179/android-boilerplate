@@ -31,6 +31,10 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	libraryVariants.all { variant ->
+		variant.assemble.finalizedBy(copyAARs)
+	}
 }
 
 
@@ -69,4 +73,9 @@ dependencies {
 
 	//Network tools - https://github.com/stealthcopter/AndroidNetworkTools/releases/
 //	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.3.08'
+}
+
+task copyAARs(type: Copy) {
+	from('build/outputs/aar')
+	into("${rootDir}/genLibs/${project.name}")
 }

@@ -32,6 +32,10 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	libraryVariants.all { variant ->
+		variant.assemble.finalizedBy(copyAARs)
+	}
 }
 
 kapt {
@@ -61,4 +65,9 @@ dependencies {
 	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
 	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
 	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
+}
+
+task copyAARs(type: Copy) {
+	from('build/outputs/aar')
+	into("${rootDir}/genLibs/${project.name}")
 }

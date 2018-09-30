@@ -58,6 +58,9 @@ freeline_project_description.json
 # Hidden
 _SENSITIVE_HIDE_FROM_GIT_/
 
+# Generated libs
+genLibs/
+
 
 ###########   Swift   ##########
 

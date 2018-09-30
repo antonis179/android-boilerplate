@@ -7,6 +7,24 @@
 	- WorkManager
 	- NetworkCapabilities utility
 
+
+## Build notes ##
+
+### AAR generation ###
+
+To generate an aar for every module in the project run one of the following commands at project root:
+-   ```groovy
+    ./gradlew assemble
+    ```
+-   ```groovy
+    ./gradlew assembleDebug
+    ```
+-   ```groovy
+    ./gradlew assembleRelease
+    ```
+
+The libraries will be stored in /root/genLibs
+
 ## Technologies / Architecture ##
 
 ### Architecture ###

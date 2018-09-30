@@ -33,6 +33,10 @@ android {
 	lintOptions {
 		abortOnError false
 	}
+
+	libraryVariants.all { variant ->
+		variant.assemble.finalizedBy(copyAARs)
+	}
 }
 
 kapt {
@@ -62,4 +66,9 @@ dependencies {
 
 	//Bus
 	implementation "org.greenrobot:eventbus:${EVENT_BUS}"
+}
+
+task copyAARs(type: Copy) {
+	from('build/outputs/aar')
+	into("${rootDir}/genLibs/${project.name}")
 }
