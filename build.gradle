@@ -14,7 +14,6 @@ ext {
 	compileVersion = 28
 	minVersion = 21
 	targetVersion = 28
-	buildToolsVersion = '28.0.2'
 
 	//Support
 	PLAY_SERVICES = '15.0.1'

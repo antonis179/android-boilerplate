@@ -8,8 +8,6 @@ apply plugin: 'io.fabric'
 
 android {
 	compileSdkVersion compileVersion
-	buildToolsVersion buildToolsVersion
-
 
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
