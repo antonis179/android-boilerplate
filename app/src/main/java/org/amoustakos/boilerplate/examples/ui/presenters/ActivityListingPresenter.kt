@@ -28,34 +28,32 @@ class ActivityListingPresenter(
 	override fun init() {}
 
 	override fun load() {
-		addLifecycleDisposable(Observable.just {}
-				.observeOn(Schedulers.computation())
-				.map<List<ActivityListingModel>> { _ ->
-					val models = ArrayList<ActivityListingModel>()
-					val activities = excludeCurrent(activities)
+		Observable.just {}
+			.doOnSubscribe { d -> addLifecycleDisposable(d) }
+			.observeOn(Schedulers.computation())
+			.map<List<ActivityListingModel>> { _ ->
+				val models = ArrayList<ActivityListingModel>()
+				val activities = excludeCurrent(activities)
 
-					for (act in activities) {
-						val model = ActivityListingModel(
-                                act,
-                                act.name,
-                                act.superclass?.name
-                        )
-						models.add(model)
-					}
-
-					Timber.i("Found ${activities.size} classes")
-
-					models
+				for (act in activities) {
+					val model = ActivityListingModel(
+                            act,
+                            act.simpleName,
+                            act.superclass?.name
+                    )
+					models.add(model)
 				}
-				.doOnError { Timber.i(it) }
-				.onErrorReturn { ArrayList() }
-				.observeOn(AndroidSchedulers.mainThread())
-				.doOnNext { view().onItemsCollected(it) }
-				.subscribe())
+				models
+			}
+			.doOnError { Timber.i(it) }
+			.onErrorReturn { ArrayList() }
+			.observeOn(AndroidSchedulers.mainThread())
+			.doOnNext { view().onItemsCollected(it) }
+			.subscribe()
 	}
 
 
 	private fun excludeCurrent(classes: List<Class<out BaseActivity>>) =
-			classes.filter{ item -> mView.javaClass != item }
+			classes.filter{ item -> mView.get()?.javaClass != item }
 
 }
