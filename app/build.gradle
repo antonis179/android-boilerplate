@@ -90,6 +90,11 @@ android {
 		 * to the activities you want to be crawlable
 		 */
 		disable 'GoogleAppIndexingWarning'
+
+		/*
+		 * lint checks for java/kotlin interoperability
+		 */
+		check 'Interoperability'
 	}
 
 }
