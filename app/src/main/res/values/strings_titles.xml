@@ -6,7 +6,7 @@
 
 
 	<!-- Activities - Fragments -->
-	<string name="title_activity_main">MainActivity</string>
+	<string name="title_activity_listing">Listing</string>
 
 
 </resources>

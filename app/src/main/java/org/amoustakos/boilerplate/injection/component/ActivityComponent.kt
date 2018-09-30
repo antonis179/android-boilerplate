@@ -3,7 +3,7 @@ package org.amoustakos.boilerplate.injection.component
 
 import android.app.Activity
 import dagger.Subcomponent
-import org.amoustakos.boilerplate.examples.ui.activities.MainActivity
+import org.amoustakos.boilerplate.examples.ui.activities.ListingActivity
 import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext
 import org.amoustakos.boilerplate.injection.annotations.scopes.PerActivity
 import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
@@ -24,7 +24,7 @@ interface ActivityComponent {
 	// =========================================================================================
 
 	fun inject(activity: Activity)
-	fun inject(activity: MainActivity)
+	fun inject(activity: ListingActivity)
 
 
 	// =========================================================================================

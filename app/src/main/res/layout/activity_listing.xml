@@ -6,7 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
-	tools:context="org.amoustakos.boilerplate.examples.ui.activities.MainActivity">
+	tools:context="org.amoustakos.boilerplate.examples.ui.activities.ListingActivity">
 
 	<include
 		layout="@layout/toolbar_main"/>
@@ -18,8 +18,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior"
-		tools:context="org.amoustakos.boilerplate.examples.ui.activities.MainActivity"
-		tools:showIn="@layout/activity_main">
+		tools:context="org.amoustakos.boilerplate.examples.ui.activities.ListingActivity"
+		tools:showIn="@layout/activity_listing">
 
 
 		<android.support.v7.widget.RecyclerView

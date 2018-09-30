@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
-import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_listing.*
 import org.amoustakos.boilerplate.R
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingActions
 import org.amoustakos.boilerplate.examples.ui.contracts.ActivityListingView
@@ -26,7 +25,7 @@ import java.util.*
  */
 //adb shell am start -a com.google.android.gms.actions.SEARCH_ACTION -e query flights org.amoustakos.boilerplate
 //https://developers.google.com/voice-actions/system/#step_3_update_your_app_completion_status
-class MainActivity : BaseActivity(), ActivityListingView {
+class ListingActivity : BaseActivity(), ActivityListingView {
 
 	private var isDoubleBackToExitPressedOnce = false
 	private var presenter: ActivityListingActions? = null
@@ -36,7 +35,7 @@ class MainActivity : BaseActivity(), ActivityListingView {
 	private val toolbar = BasicToolbar(R.id.toolbar)
 
 
-	@LayoutRes override fun layoutId() = R.layout.activity_main
+	@LayoutRes override fun layoutId() = R.layout.activity_listing
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,7 @@ class MainActivity : BaseActivity(), ActivityListingView {
 		activityComponent().inject(this)
 
 		setupViewComponent(toolbar)
-		toolbar.setTitle(R.string.title_activity_main)
+		toolbar.setTitle(R.string.title_activity_listing)
 		toolbar.setAsActionbar(this)
 
 		Timber.d("${intent.action} | ${intent.dataString}")
