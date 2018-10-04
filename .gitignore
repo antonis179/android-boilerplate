@@ -1,3 +1,6 @@
+##########   Mainframer             ##########
+.mainframer/config
+
 ##########   Java/Android/InteliJ   ##########
 
 # Built application files
@@ -60,6 +63,8 @@ _SENSITIVE_HIDE_FROM_GIT_/
 
 # Generated libs
 genLibs/
+
+!/gradle.properties
 
 
 ###########   Swift   ##########
@@ -128,4 +133,3 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
-!/gradle.properties
