@@ -30,7 +30,7 @@ The libraries will be stored in /root/genLibs
 This project takes a lot to build so when working on a slow machine I prefer to use a remote machine for my builds. Mainframer does just this. You can set it up via docker on a more powerful machine and sync using ssh/rsync. Additionally there is a studio plugin (yay!).
 
 - Setup Docker using the README file in `mainframer_docker`
-- **NOTE:** If you are using my signing setup make sure you use relative paths in `SENSITIVE_HIDE_FROM_GIT_` properties files (e.g. `../_SENSITIVE_HIDE_FROM_GIT_/key`)
+- **NOTE:** If you are using my signing setup make sure you use relative paths in `_SENSITIVE_HIDE_FROM_GIT_` properties files (e.g. `../_SENSITIVE_HIDE_FROM_GIT_/key`)
 
 
 ## Technologies / Architecture ##
