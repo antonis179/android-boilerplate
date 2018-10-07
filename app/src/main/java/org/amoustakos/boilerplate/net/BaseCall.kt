@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import org.amoustakos.models.network.NetEvent
+import org.amoustakos.models.network.NetResult
 import org.amoustakos.utils.network.Headers.MIME_JSON
 import org.amoustakos.utils.network.HttpStatusCode
 import org.amoustakos.utils.network.retrofit.AuthInterface
@@ -55,9 +55,9 @@ abstract class BaseCall {
 	/**
 	 * Applies a return value in case a mapping operation fails
 	 */
-	fun <T> applyMapErrorResponse():
-			ObservableTransformer<NetEvent<T>, NetEvent<T>> = ObservableTransformer {
-		it.onErrorReturn { NetEvent(-1, true, null) }
+	fun <T : Any> applyMapErrorResponse():
+			ObservableTransformer<NetResult<T>, NetResult<T>> = ObservableTransformer {
+		it.onErrorReturn { NetResult.Error(Exception(it)) }
 	}
 
 	/**

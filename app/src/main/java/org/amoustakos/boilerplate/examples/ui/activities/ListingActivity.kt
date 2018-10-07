@@ -17,7 +17,7 @@ import org.amoustakos.boilerplate.view.toolbars.BasicToolbar
 import java.util.*
 
 /**
- * Activity that lists all the activities in the same package and creates <br></br>
+ * Activity that lists all the activities in the same package and creates
  * a [RecyclerView] that starts each one on click.
  */
 class ListingActivity : BaseActivity(), ActivityListingView {
@@ -28,7 +28,6 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 	private var adapter: ActivityListingAdapter? = null
 
 	private val toolbar = BasicToolbar(R.id.toolbar)
-
 
 	@LayoutRes override fun layoutId() = R.layout.activity_listing
 
