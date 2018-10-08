@@ -106,7 +106,7 @@ kapt {
 dependencies {
 	def daggerCompiler = "com.google.dagger:dagger-compiler:${DAGGER}"
 	def daggerAndroidCompiler = "com.google.dagger:dagger-android-processor:${DAGGER}"
-	implementation fileTree(include: ['*.jar'], dir: 'libs')
+	implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
 	//Inner modules
 	implementation project(':utils_android')
