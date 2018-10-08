@@ -78,7 +78,7 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 
 	private fun refreshAdapter(items: List<ActivityListingModel>) {
 		adapter!!.clean()
-		adapter!!.addAll(items)
+		adapter!!.add(items)
 		adapter!!.notifyDataSetChanged()
 	}
 
