@@ -9,7 +9,7 @@ import java.util.Arrays.asList
 
 
 /**
- * Use this class to provide arguments for [RetrofitBuilder.getRetrofitEngine].
+ * Use this class to provide arguments for [RetrofitFactory.getRetrofitEngine].
  *
  * By default a [GsonConverterFactory] and an [RxJava2CallAdapterFactory] are used.
  *

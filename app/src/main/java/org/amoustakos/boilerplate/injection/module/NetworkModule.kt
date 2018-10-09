@@ -9,9 +9,9 @@ import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpCli
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine
 import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions
-import org.amoustakos.boilerplate.net.RetrofitConfig
+import org.amoustakos.boilerplate.net.NetworkConfigFactory
 import org.amoustakos.utils.network.retrofit.OkhttpOptions
-import org.amoustakos.utils.network.retrofit.RetrofitBuilder
+import org.amoustakos.utils.network.retrofit.RetrofitFactory
 import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions
 import retrofit2.Retrofit
 
@@ -25,16 +25,18 @@ object NetworkModule {
 
 	@Provides
 	@DefaultRetrofitOptions
-	internal fun provideDefaultRetrofitOptions() = RetrofitConfig.defaultOptions()
+	internal fun provideDefaultRetrofitOptions() =
+			NetworkConfigFactory.defaultRetrofitOptions()
 
 	@Provides
 	@DefaultOkHttpOptions
-	internal fun provideDefaultOkHttpOptions() = OkhttpOptions(BuildConfig.DEBUG)
+	internal fun provideDefaultOkHttpOptions() =
+			NetworkConfigFactory.defaultOkhttpOptions(BuildConfig.DEBUG)
 
 	@Provides
 	@DefaultOkHttpClient
 	internal fun provideDefaultOkHttpClient(@DefaultOkHttpOptions opts: OkhttpOptions): OkHttpClient {
-		return RetrofitBuilder.getHttpClient(opts)
+		return RetrofitFactory.getHttpClient(opts)
 	}
 
 	@Provides
@@ -42,7 +44,7 @@ object NetworkModule {
 	internal fun provideDefaultRetrofitEngine(
 			@DefaultOkHttpClient client: OkHttpClient,
 			@DefaultRetrofitOptions opts: RetrofitEngineOptions): Retrofit {
-		return RetrofitBuilder.getRetrofitEngine(client, opts)
+		return RetrofitFactory.getRetrofitEngine(client, opts)
 	}
 
 
@@ -53,7 +55,7 @@ object NetworkModule {
 
 	@Provides
 	internal fun provideExampleApiService(@DefaultRetrofitEngine engine: Retrofit) =
-			RetrofitBuilder.newService(engine, ExampleNetCall.ApiService::class.java)
+			RetrofitFactory.newService(engine, ExampleNetCall.ApiService::class.java)
 
 
 }

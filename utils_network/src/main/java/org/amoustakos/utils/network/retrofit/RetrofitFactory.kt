@@ -5,10 +5,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.io.File
-import java.util.concurrent.TimeUnit
 
 
-object RetrofitBuilder {
+object RetrofitFactory {
 
 
     @JvmStatic
@@ -17,8 +16,10 @@ object RetrofitBuilder {
                 .baseUrl(opts.baseUrl)
                 .client(okHttpClient)
 
-        opts.adapterFactories.forEach { adapter -> builder.addCallAdapterFactory(adapter) }
-        opts.converterFactories.forEach { converter -> builder.addConverterFactory(converter) }
+        opts.adapterFactories
+		        .forEach { builder.addCallAdapterFactory(it) }
+        opts.converterFactories
+		        .forEach { builder.addConverterFactory(it) }
 
         return builder.build()
     }
@@ -33,40 +34,37 @@ object RetrofitBuilder {
         val client = OkHttpClient.Builder()
 
         // Cache
+	    val isCacheSizeValid =
+			    opts.cacheSizeMb?.let { it > 0 } == true
 
-        if (opts.cacheSize > 0 && opts.cacheDir != null) {
+	    if (isCacheSizeValid && (opts.cacheDir == null || opts.cacheSubDirectory == null))
+		    throw IllegalArgumentException("You need to provide a directory to enable caching")
+	    else {
+	        val cacheSize: Long = opts.cacheSizeMb
+			        ?: throw NullPointerException("cache size was null")
             val cache = Cache(
-                    File(opts.cacheDir, opts.cacheSubDirectory),
-                    opts.cacheSize)
+		            File(opts.cacheDir, opts.cacheSubDirectory),
+		            cacheSize
+            )
             client.cache(cache)
-        } else if (opts.cacheSize > 0 && opts.cacheDir == null)
-            throw IllegalArgumentException("You need to provide a directory to enable caching")
-
+        }
 
         // Connection
-
-        client.connectTimeout(opts.connectTimeout.toLong(), TimeUnit.SECONDS)
-        client.readTimeout(opts.readTimeout.toLong(), TimeUnit.SECONDS)
-        client.writeTimeout(opts.writeTimeout.toLong(), TimeUnit.SECONDS)
-
+        client.connectTimeout(opts.connectTimeout.toLong(), opts.timeUnit)
+        client.readTimeout(opts.readTimeout.toLong(), opts.timeUnit)
+        client.writeTimeout(opts.writeTimeout.toLong(), opts.timeUnit)
 
         // Logging interceptor
-
         val loggingInterceptor = HttpLoggingInterceptor()
-        if (opts.isDebug)
+        if (opts.logEnabled)
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        else
-        // every time you log in production a puppy dies.
+        else // every time you log in production a puppy dies.
             loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
 
         client.addInterceptor(loggingInterceptor)
 
-
         // Provided interceptors
-
-        if (opts.interceptors != null)
-            opts.interceptors.forEach { interceptor -> client.addInterceptor(interceptor) }
-
+        opts.interceptors?.forEach { client.addInterceptor(it) }
 
         return client.build()
     }

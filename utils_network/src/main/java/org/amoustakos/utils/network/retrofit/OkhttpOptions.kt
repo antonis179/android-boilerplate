@@ -2,30 +2,23 @@ package org.amoustakos.utils.network.retrofit
 
 import okhttp3.Interceptor
 import java.io.File
+import java.util.concurrent.TimeUnit
 
-
-/**
- * Use this class to provide options for [RetrofitBuilder.getHttpClient].
- *
- * Defaults are provided for all options.
- */
-
-data class OkhttpOptions @JvmOverloads constructor(
-
+data class OkhttpOptions (
         // Debug
-        val isDebug: Boolean = false,
+		val logEnabled: Boolean,
 
         // Caching
-        val cacheSize: Long = -1L,                      // MB
-        val cacheDir: File? = null,                     // Root folder
-        val cacheSubDirectory: String = "http",         // Subfolder
+		val cacheSizeMb: Long?,
+		val cacheDir: File?,
+		val cacheSubDirectory: String?,
 
         // Connection
-        val connectTimeout: Int = 15,                   // Seconds
-        val readTimeout: Int = 15,                      // Seconds
-        val writeTimeout: Int = 15,                     // Seconds
+		val connectTimeout: Int,
+		val readTimeout: Int,
+		val writeTimeout: Int,
+		val timeUnit: TimeUnit,
 
         // Interceptors
-        val interceptors: List<Interceptor>? = null
-
+		val interceptors: List<Interceptor>?
 )
