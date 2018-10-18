@@ -10,6 +10,11 @@
 
 ## Build notes ##
 
+### Gradle ###
+The project specifies a local gradle.properties file which you should adjust to fit your specs.
+Options `org.gradle.jvmargs` and `org.gradle.parallel.threads` are commented as you should set these
+in your global `gradle.properties` file
+
 ### AAR generation ###
 
 To generate an aar for every module in the project run one of the following commands at project root:
