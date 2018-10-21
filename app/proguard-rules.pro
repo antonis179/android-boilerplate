@@ -1,16 +1,17 @@
--keepattributes SourceFile,LineNumberTable, *Annotation*, EnclosingMethod
+#TODO: -keep, includedescriptorclasses for all util modules
+-keepattributes SourceFile, LineNumberTable, *Annotation*, EnclosingMethod
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -optimizations code/removal/simple, code/removal/advanced, class/unboxing/enum
--optimizationpasses 3
+-optimizationpasses 5
 #-dontobfuscate
 #-dontwarn **
--ignorewarnings
+#-ignorewarnings
 
 ### Speed things up!
--libraryjars <java.home>/lib/rt.jar
+#-libraryjars <java.home>/lib/rt.jar
 
 
 ### Keep
@@ -48,8 +49,8 @@
 -keep class io.realm.internal.Keep
 -keep @io.realm.internal.Keep class * { *; }
 -dontwarn javax.**
--dontwarn io.realm.**
--keep class com.vicpin.krealmextensions.**
+-keep class io.realm.**
+#-keep class com.vicpin.krealmextensions.**
 
 ### Butterknife
 -keep @interface butterknife.*
@@ -72,10 +73,10 @@
 }
 
 
-### Firebase
+### Firebase / GMS
 -keepattributes Signature
 -keep class com.firebase.** { *; }
--keep class org.apache.** { *; }
+#-keep class org.apache.** { *; }
 -keepnames class com.fasterxml.jackson.** { *; }
 -keepnames class javax.servlet.** { *; }
 -keepnames class org.ietf.jgss.** { *; }
@@ -84,6 +85,16 @@
 -dontwarn org.shaded.apache.**
 -dontwarn org.ietf.jgss.**
 
+-keep class com.google.errorprone.annotations.** { *; }
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn com.google.protobuf.**
+-dontnote com.google.protobuf.**
+-dontwarn org.robolectric.**
+-dontwarn com.google.android.gms.**
+
+
+# Event bus
+-keep class org.greenrobot.eventbus.**
 
 ### Dagger
 -keepclassmembers, allowobfuscation class * {
@@ -97,14 +108,6 @@
 -keep class **$$StaticInjection
 
 -keepnames class dagger.Lazy
-
-
-### Generic
--keep class com.google.errorprone.annotations.** { *; }
--dontwarn com.google.errorprone.annotations.**
-
-
-### Drawable fixes
 
 
 ### GSON / Models
@@ -130,7 +133,6 @@
     @retrofit2.http.* <methods>;
 }
 -dontwarn retrofit2.adapter.rxjava.CompletableHelper$** # https://github.com/square/retrofit/issues/2034
--keepnames class rx.Single
 
 ### OkHttp3
 -dontwarn okhttp3.**
@@ -176,3 +178,8 @@
   **[] $VALUES;
   public *;
 }
+
+
+###Kotlin
+-dontwarn kotlin.reflect.jvm.**
+-keep class kotlin.jvm.internal.**

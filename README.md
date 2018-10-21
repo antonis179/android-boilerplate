@@ -1,11 +1,20 @@
+## Donations ##
+
+So you liked my code and want to buy me coffee and pizza? That's awesome!
+
+- BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
+- Paypal: **https://www.paypal.me/neo179**
+
 ## Coming soon ##
 
-- More info
-- More boilerplate!
-	- ViewModel
-	- LiveData
-	- WorkManager
-	- NetworkCapabilities utility
+- Networking: All available options will be added to okhttp/retrofit option classes
+- ViewModel / LiveData / WorkManager
+- NetworkCapabilities utility
+- Realm restructuring
+- Proguard / Gradle restructuring
+
+### Frozen due to unresolved bugs ###
+- AndroidX migration
 
 
 ## Build notes ##
@@ -28,7 +37,7 @@ To generate an aar for every module in the project run one of the following comm
     ./gradlew assembleRelease
     ```
 
-The libraries will be stored in /root/genLibs
+The libraries will be stored in `/root/genLibs`
 
 ### Mainframer
 
@@ -145,10 +154,3 @@ MVP is used as the architecture.
     release.key.alias=
     release.key.alias.password=
     ```
-
-## Donations ##
-
-So you liked my code and want to buy me coffee and pizza? That's awesome!
-
-- BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
-- Paypal: **https://www.paypal.me/neo179**

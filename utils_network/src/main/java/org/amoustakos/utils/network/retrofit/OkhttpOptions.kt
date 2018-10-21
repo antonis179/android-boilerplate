@@ -1,17 +1,22 @@
 package org.amoustakos.utils.network.retrofit
 
 import okhttp3.Interceptor
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.util.concurrent.TimeUnit
 
+/**
+ * Class used to provide arguments to [RetrofitFactory.getHttpClient]
+ */
 data class OkhttpOptions (
         // Debug
 		val logEnabled: Boolean,
+		val logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY,
 
         // Caching
-		val cacheSizeMb: Long?,
-		val cacheDir: File?,
-		val cacheSubDirectory: String?,
+		val cacheSizeMb: Long? = null,
+		val cacheDir: File? = null,
+		val cacheSubDirectory: String? = null,
 
         // Connection
 		val connectTimeout: Int,
@@ -20,5 +25,6 @@ data class OkhttpOptions (
 		val timeUnit: TimeUnit,
 
         // Interceptors
-		val interceptors: List<Interceptor>?
+		val interceptors: List<Interceptor>? = null,
+		val networkInterceptors: List<Interceptor>? = null
 )

@@ -21,6 +21,7 @@ object RetrofitFactory {
         opts.converterFactories
 		        .forEach { builder.addConverterFactory(it) }
 
+
         return builder.build()
     }
 
@@ -35,13 +36,12 @@ object RetrofitFactory {
 
         // Cache
 	    val isCacheSizeValid =
-			    opts.cacheSizeMb?.let { it > 0 } == true
+			    opts.cacheSizeMb?.let { it > 0L } == true
+			    && opts.cacheDir != null
+	            && opts.cacheSubDirectory != null
 
-	    if (isCacheSizeValid && (opts.cacheDir == null || opts.cacheSubDirectory == null))
-		    throw IllegalArgumentException("You need to provide a directory to enable caching")
-	    else {
-	        val cacheSize: Long = opts.cacheSizeMb
-			        ?: throw NullPointerException("cache size was null")
+	    if (isCacheSizeValid) {
+	        val cacheSize: Long = opts.cacheSizeMb!!
             val cache = Cache(
 		            File(opts.cacheDir, opts.cacheSubDirectory),
 		            cacheSize
@@ -57,7 +57,7 @@ object RetrofitFactory {
         // Logging interceptor
         val loggingInterceptor = HttpLoggingInterceptor()
         if (opts.logEnabled)
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            loggingInterceptor.level = opts.logLevel
         else // every time you log in production a puppy dies.
             loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
 
@@ -65,6 +65,7 @@ object RetrofitFactory {
 
         // Provided interceptors
         opts.interceptors?.forEach { client.addInterceptor(it) }
+	    opts.networkInterceptors?.forEach { client.addNetworkInterceptor(it) }
 
         return client.build()
     }

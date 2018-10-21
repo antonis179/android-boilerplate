@@ -28,7 +28,7 @@ class Environment @Inject constructor(
     private fun initRealm() {
         Realm.init(context)
 
-        //Get config here or realm config will be requested before realm init = crash
+        //Get config here or realm config will be requested before realm init and crash
         Realm.setDefaultConfiguration(
                 BoilerplateApplication[context].component.defaultRealmConfig()
         )

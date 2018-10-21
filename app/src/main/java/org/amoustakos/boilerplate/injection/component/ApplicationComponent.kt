@@ -6,18 +6,17 @@ import dagger.Component
 import io.realm.RealmConfiguration
 import okhttp3.OkHttpClient
 import org.amoustakos.boilerplate.Environment
-import org.amoustakos.boilerplate.examples.io.remote.ExampleNetCall
 import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpClient
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions
+import org.amoustakos.boilerplate.injection.annotations.network.*
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
 import org.amoustakos.boilerplate.injection.module.ApplicationModule
 import org.amoustakos.boilerplate.injection.module.DBModule
 import org.amoustakos.boilerplate.injection.module.NetworkModule
 import org.amoustakos.utils.network.retrofit.OkhttpOptions
 import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPostPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPrePolicyApplier
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -64,6 +63,17 @@ interface ApplicationComponent {
 	@DefaultRetrofitEngine
 	fun defaultRetrofitEngine(): Retrofit
 
-	fun exampleApiService(): ExampleNetCall.ApiService
+	// =========================================================================================
+	// Network Policies
+	// =========================================================================================
+
+	@IDefaultPrePolicyApplier
+	fun defaultPrePolicyApplier(): IPrePolicyApplier
+
+	@IDefaultPostPolicyApplier
+	fun defaultPostPolicyApplier(): IPostPolicyApplier
+
+	@IDefaultDecoratorPolicyApplier
+	fun defaultDecoratorPolicyApplier(): IDecoratorPolicyApplier
 
 }
