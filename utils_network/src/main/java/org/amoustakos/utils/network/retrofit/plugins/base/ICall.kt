@@ -26,11 +26,11 @@ interface ICall {
 	/**
 	 * Interface to implement when making calls that don't require a request
 	 */
-	interface NoRequest<Model: Any>: ICall {
+	interface NoRequest<Model: Any, MappedModel: Any>: ICall {
 
 		val serviceCall: () -> Observable<Response<Model>>
 
-		fun perform(): Observable<NetResult<Model>> {
+		fun perform(): Observable<NetResult<MappedModel>> {
 			val init = initialize()
 			var call = initToServiceCall(init)
 
@@ -54,18 +54,18 @@ interface ICall {
 			}
 		}
 
-		fun map(): Function<Response<Model>, NetResult<Model>>
+		fun map(): Function<Response<Model>, NetResult<MappedModel>>
 	}
 
 
 	/**
 	 * Interface to implement when making calls that require a request
 	 */
-	interface WithRequest<Request: Any, Model: Any>: ICall {
+	interface WithRequest<Request: Any, Model: Any, MappedModel: Any>: ICall {
 
 		val serviceCall: (request: Request) -> Observable<Response<Model>>
 
-		fun perform(request: Request): Observable<NetResult<Model>> {
+		fun perform(request: Request): Observable<NetResult<MappedModel>> {
 			val init = initialize()
 			var call = initToServiceCall(init, request)
 
@@ -92,7 +92,7 @@ interface ICall {
 		}
 
 
-		fun map(): Function<Response<Model>, NetResult<Model>>
+		fun map(): Function<Response<Model>, NetResult<MappedModel>>
 	}
 
 }

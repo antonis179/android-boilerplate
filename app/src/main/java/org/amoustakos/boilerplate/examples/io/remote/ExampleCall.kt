@@ -34,7 +34,7 @@ class ExampleCall @Inject constructor(
 		@IDefaultDecoratorPolicyApplier
 		override val decoratorPoliciesApplier: IDecoratorPolicyApplier
 ) :
-		ICall.NoRequest<JsonObject>
+		ICall.NoRequest<JsonObject, JsonObject>
 {
 
 	private var service: ApiService? = null
