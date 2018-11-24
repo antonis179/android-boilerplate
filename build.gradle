@@ -47,7 +47,7 @@ ext {
 	JUNIT = '4.12'
 
 	//Analytics
-	CRASHLYTICS = '2.9.5'
+	CRASHLYTICS = '2.9.6'
 //	FIREBASE_INDEX = '16.0.1'
 	FIREBASE_CORE = '16.0.5'
 	FIREBASE_PERF = '16.2.0'
@@ -87,7 +87,7 @@ buildscript {
 	}
 
 	ext {
-		KOTLIN = '1.3.0'
+		KOTLIN = '1.3.10'
 		REALM = '5.4.2'
 
 		//Analytics
