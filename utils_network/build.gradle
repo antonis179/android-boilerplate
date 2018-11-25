@@ -1,13 +1,16 @@
+apply from: '../config/dependencies.gradle'
+apply from: '../config/config.gradle'
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion compileVersion
+	compileSdkVersion build_params.compile_version
 
 	defaultConfig {
-		minSdkVersion minVersion
-		targetSdkVersion targetVersion
+		minSdkVersion build_params.min_version
+		targetSdkVersion build_params.target_version
 		versionCode 1000
 		versionName "0.1"
 
@@ -42,32 +45,19 @@ dependencies {
 	//Inner modules
 	implementation project(":utils_android")
 
-	//Support
-	implementation "com.android.support:appcompat-v7:${SUPPORT}"
 
-	//Retrofit
-	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
-
-	//RX
-	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
-	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
-
-	//Retrofit
-	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
-//	implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT}"
-	implementation "com.squareup.retrofit2:converter-gson:${RETROFIT}"
-	implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT}"
-	implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: "${OKHTTP}"
-
-	//GSON
-	implementation "com.google.code.gson:gson:${GSON}"
-
-	//Timber
-	implementation "com.jakewharton.timber:timber:${TIMBER}"
-
-	//Kotlin
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
+	implementation libraries.timber
+	implementation libraries.kotlin_stdlib
+	implementation libraries.kotlin_stdlib_java8
+	implementation libraries.rx_java2
+	implementation libraries.rx_android
+	implementation libraries.appcompat
+	implementation libraries.retrofit
+//	implementation libraries.retrofit_scalars
+	implementation libraries.retrofit_gson
+	implementation libraries.retrofit_rx_java2
+	implementation libraries.okhttp_logging
+	implementation libraries.gson
 
 	//Network tools - https://github.com/stealthcopter/AndroidNetworkTools/releases/
 //	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.3.08'

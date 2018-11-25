@@ -1,14 +1,17 @@
+apply from: '../config/dependencies.gradle'
+apply from: '../config/config.gradle'
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-	compileSdkVersion compileVersion
+	compileSdkVersion build_params.compile_version
 
 	defaultConfig {
-		minSdkVersion minVersion
-		targetSdkVersion targetVersion
+		minSdkVersion build_params.min_version
+		targetSdkVersion build_params.target_version
 		versionCode 1000
 		versionName "0.1"
 
@@ -43,26 +46,19 @@ kapt {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	//Support
-	implementation "com.android.support:support-v4:${SUPPORT}"
-	implementation "com.android.support:recyclerview-v7:${SUPPORT}"
-	implementation "com.android.support:design:${SUPPORT_DESIGN}"
+	annotation_processors.lifecycle
 
-	//Timber
-	implementation "com.jakewharton.timber:timber:${TIMBER}"
+	implementation libraries.support_v4
+	implementation libraries.recyclerview_v7
+	implementation libraries.support_design
+	implementation libraries.timber
+	implementation libraries.kotlin_stdlib
+	implementation libraries.kotlin_stdlib_java8
+	implementation libraries.rx_java2
+	implementation libraries.rx_android
+	implementation libraries.lifecycle_java8
+	implementation libraries.lifecycle
 
-	//Kotlin
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
-
-	//RX
-	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
-	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
-
-	//Lifecycle
-	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
-	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
-	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
 }
 
 task copyAARs(type: Copy) {

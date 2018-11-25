@@ -6,47 +6,28 @@ apply plugin: 'realm-android'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'io.fabric'
 
+apply from: '../config/dependencies.gradle'
+apply from: '../config/config.gradle'
+
+
 android {
-	compileSdkVersion compileVersion
+
+	compileSdkVersion build_params.compile_version
 
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
-		minSdkVersion minVersion
-		targetSdkVersion targetVersion
-		versionCode 2000
-		versionName "0.2"
+		minSdkVersion build_params.min_version
+		targetSdkVersion build_params.target_version
+		versionCode 2001
+		versionName "0.2.1"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
 	signingConfigs {
-		debug {
-			def props = getPasswords()
-			def loc = getAttribute(props, "${KEY_SIGNING_LOC}")
-			def pwd = getAttribute(props, "${KEY_SIGNING_PWD}")
-			def alias = getAttribute(props, "${KEY_SIGNING_ALIAS}")
-			def aliasPwd = getAttribute(props, "${KEY_SIGNING_ALIAS_PWD}")
-
-			storeFile file(loc)
-			storePassword pwd
-			keyAlias alias
-			keyPassword aliasPwd
-		}
-
-		release {
-			def props = getPasswords()
-			def loc = getAttribute(props, "${RELEASE_KEY_SIGNING_LOC}")
-			def pwd = getAttribute(props, "${RELEASE_KEY_SIGNING_PWD}")
-			def alias = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS}")
-			def aliasPwd = getAttribute(props, "${RELEASE_KEY_SIGNING_ALIAS_PWD}")
-
-			storeFile file(loc)
-			storePassword pwd
-			keyAlias alias
-			keyPassword aliasPwd
-		}
+		debug signing_configs.debug
+		release signing_configs.release
 	}
-
 
 	buildTypes {
 		debug {
@@ -100,7 +81,6 @@ android {
 
 }
 
-
 kapt {
 	useBuildCache true
 }
@@ -112,10 +92,7 @@ tasks.withType(JavaCompile) {
 	]
 }
 
-
 dependencies {
-	def daggerCompiler = "com.google.dagger:dagger-compiler:${DAGGER}"
-	def daggerAndroidCompiler = "com.google.dagger:dagger-android-processor:${DAGGER}"
 	implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
 	//Inner modules
@@ -126,136 +103,16 @@ dependencies {
 	implementation project(':utils_network')
 	implementation project(':utils_analytics')
 
-	//GSON
-	implementation "com.google.code.gson:gson:${GSON}"
+	kapt annotation_processors.values()
+	implementation libraries.values()
 
-	//Support
-//	implementation 'com.android.support:multidex:1.0.3'
-	implementation "com.android.support:appcompat-v7:${SUPPORT}"
-	implementation "com.android.support:support-v4:${SUPPORT}"
-	implementation "com.android.support:recyclerview-v7:${SUPPORT}"
-	implementation "com.android.support:cardview-v7:${SUPPORT}"
-	implementation "com.android.support:design:${SUPPORT_DESIGN}"
-
-	//Lifecycle
-	implementation "android.arch.lifecycle:common-java8:${LIFECYCLE_JAVA8}"
-	implementation "android.arch.lifecycle:extensions:${LIFECYCLE}"
-	kapt "android.arch.lifecycle:compiler:${LIFECYCLE}"
-
-	//Play
-	implementation "com.google.android.gms:play-services-gcm:${PLAY_SERVICES}"
-	implementation "com.google.android.gms:play-services-maps:${PLAY_SERVICES}"
-	implementation "com.google.android.gms:play-services-location:${PLAY_SERVICES}"
-	implementation "com.google.android.gms:play-services-awareness:${PLAY_SERVICES}"
-
-	//Assistant
-//	implementation "com.google.firebase:firebase-appindexing:${FIREBASE_INDEX}"
-
-	//UI
-	implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
-
-	//Realm
-	implementation "io.realm:realm-android-library:${REALM}"
-	implementation "io.realm:android-adapters:${REALM_ANDROID_ADAPTERS}"
-	implementation "com.github.vicpinm:krealmextensions:${KOTLIN_REALM_EXT}"
-
-	//Dagger
-	implementation "com.google.dagger:dagger:${DAGGER}"
-	implementation "com.google.dagger:dagger-android:${DAGGER}"
-	implementation "com.google.dagger:dagger-android-support:${DAGGER}"
-	kapt daggerCompiler
-	kapt daggerAndroidCompiler
-
-	//Retrofit
-	implementation "com.squareup.retrofit2:retrofit:${RETROFIT}"
-//	implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT}"
-	implementation "com.squareup.retrofit2:converter-gson:${RETROFIT}"
-	implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT}"
-	implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: "${OKHTTP}"
-
-	//RX
-	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "${RX_JAVA}"
-	implementation group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: "${RX_KOTLIN}"
-	implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: "${RX_ANDROID}"
-
-	//Image
-
-	//    implementation "com.github.bumptech.glide:glide:${GLIDE}"
-
-	//Timber
-	implementation "com.jakewharton.timber:timber:${TIMBER}"
-
-	//Butterknife
-	implementation "com.jakewharton:butterknife:${BUTTERKNIFE}"
-	kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
-
-	//Kotlin
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KOTLIN}"
-	implementation "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN}"
-
-	//Analytics
-	implementation "com.google.firebase:firebase-core:${FIREBASE_CORE}"
-	implementation "com.google.firebase:firebase-perf:${FIREBASE_PERF}"
-	implementation "com.crashlytics.sdk.android:crashlytics:${CRASHLYTICS}"
-
-	//Job dispatcher
-	implementation "com.firebase:firebase-jobdispatcher:${JOB_DISPATCHER}"
-
-	//FCM
-	implementation "com.google.firebase:firebase-messaging:${FIREBASE_CLOUD_MESSSAGING}"
-
-	//Bus
-	implementation "org.greenrobot:eventbus:${EVENT_BUS}"
 
 	//Tests
-	kaptAndroidTest("com.android.support.test.espresso:espresso-core:${ESPRESSO}", {
+	kaptAndroidTest("com.android.support.test.espresso:espresso-core:${lib_versions.espresso}", {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	})
-	testImplementation "junit:junit:${JUNIT}"
+	testImplementation "junit:junit:${lib_versions.junit}"
 }
-
-
-// Access to assets properties
-
-private Properties getEnv() {
-	return getProperties("environment.properties")
-}
-
-private Properties getPasswords() {
-	return getProperties("passwords.properties")
-}
-
-private Properties getProperties(String filename) {
-	Properties props = new Properties()
-	props.load(
-			new FileInputStream(
-					"${rootDir}/_SENSITIVE_HIDE_FROM_GIT_/${filename}"))
-	props
-}
-
-
-private static String getAttribute(Properties props, String key) {
-	String attribute = props.get(key)
-	checkAttribute(attribute)
-	return attribute
-}
-
-private static String getStringifiedAttribute(Properties props, String key) {
-	String attribute = props.get(key)
-	checkAttribute(attribute)
-	return stringify(attribute)
-}
-
-private static void checkAttribute(String attribute) {
-	if (attribute == null || attribute.size() < 1)
-		throw new GradleException("Missing Attribute")
-}
-
-private static String stringify(String string) {
-	return "\"" + string + "\""
-}
-
 
 apply plugin: 'com.google.gms.google-services'
