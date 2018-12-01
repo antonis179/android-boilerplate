@@ -47,27 +47,27 @@ ext {
 
 }
 
-public Properties getPasswords() {
+Properties getPasswords() {
 	return getProperties("passwords.properties")
 }
 
-public static String getAttribute(Properties props, String key) {
+static String getAttribute(Properties props, String key) {
 	String attribute = props.get(key)
 	checkAttribute(attribute)
 	return attribute
 }
 
-public static void checkAttribute(String attribute) {
+static void checkAttribute(String attribute) {
 	if (attribute == null || attribute.size() < 1)
 		throw new GradleException("Missing Attribute")
 }
 
 
-public Properties getEnv() {
+Properties getEnv() {
 	return getProperties("environment.properties")
 }
 
-public Properties getProperties(String filename) {
+Properties getProperties(String filename) {
 	Properties props = new Properties()
 	props.load(
 			new FileInputStream(
@@ -76,13 +76,13 @@ public Properties getProperties(String filename) {
 }
 
 
-public static String getStringifiedAttribute(Properties props, String key) {
+static String getStringifiedAttribute(Properties props, String key) {
 	String attribute = props.get(key)
 	checkAttribute(attribute)
 	return stringify(attribute)
 }
 
 
-public static String stringify(String string) {
+static String stringify(String string) {
 	return "\"" + string + "\""
 }

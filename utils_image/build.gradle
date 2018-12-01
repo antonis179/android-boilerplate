@@ -1,5 +1,5 @@
-apply from: '../config/dependencies.gradle'
-apply from: '../config/config.gradle'
+apply from: "$project.rootDir/config/dependencies.gradle"
+apply from: "$project.rootDir/config/config.gradle"
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'

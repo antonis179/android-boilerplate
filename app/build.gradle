@@ -1,3 +1,6 @@
+apply from: "$project.rootDir/config/dependencies.gradle"
+apply from: "$project.rootDir/config/config.gradle"
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -6,8 +9,6 @@ apply plugin: 'realm-android'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'io.fabric'
 
-apply from: '../config/dependencies.gradle'
-apply from: '../config/config.gradle'
 
 
 android {

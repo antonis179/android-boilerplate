@@ -35,12 +35,12 @@ object RetrofitFactory {
         val client = OkHttpClient.Builder()
 
         // Cache
-	    val isCacheSizeValid =
+	    val cacheOptionsValid =
 			    opts.cacheSizeMb?.let { it > 0L } == true
 			    && opts.cacheDir != null
 	            && opts.cacheSubDirectory != null
 
-	    if (isCacheSizeValid) {
+	    if (cacheOptionsValid) {
 	        val cacheSize: Long = opts.cacheSizeMb!!
             val cache = Cache(
 		            File(opts.cacheDir, opts.cacheSubDirectory),
