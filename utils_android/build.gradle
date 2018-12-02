@@ -46,18 +46,19 @@ kapt {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	annotation_processors.lifecycle
+	kapt annotation_processors.lifecycle
 
-	implementation libraries.support_v4
-	implementation libraries.recyclerview_v7
-	implementation libraries.support_design
-	implementation libraries.timber
-	implementation libraries.kotlin_stdlib
-	implementation libraries.kotlin_stdlib_java8
-	implementation libraries.rx_java2
-	implementation libraries.rx_android
-	implementation libraries.lifecycle_java8
-	implementation libraries.lifecycle
+	implementation libs_support.support_v4
+	implementation libs_support.recyclerview_v7
+	implementation libs_support.support_design
+
+	implementation libs_logging.values()
+
+	implementation libs_kotlin.kotlin_stdlib
+	implementation libs_kotlin.kotlin_stdlib_java8
+	implementation libs_rx.values()
+	implementation libs_support.lifecycle
+	implementation libs_support.lifecycle_java8
 
 }
 

@@ -45,19 +45,13 @@ dependencies {
 	//Inner modules
 	implementation project(":utils_android")
 
-
-	implementation libraries.timber
-	implementation libraries.kotlin_stdlib
-	implementation libraries.kotlin_stdlib_java8
-	implementation libraries.rx_java2
-	implementation libraries.rx_android
-	implementation libraries.appcompat
-	implementation libraries.retrofit
-//	implementation libraries.retrofit_scalars
-	implementation libraries.retrofit_gson
-	implementation libraries.retrofit_rx_java2
-	implementation libraries.okhttp_logging
-	implementation libraries.gson
+	implementation libs_logging.values()
+	implementation libs_kotlin.kotlin_stdlib
+	implementation libs_kotlin.kotlin_stdlib_java8
+	implementation libs_rx.values()
+	implementation libs_support.appcompat
+	implementation libs_remote_io.values()
+	implementation libs_mapping.gson
 
 	//Network tools - https://github.com/stealthcopter/AndroidNetworkTools/releases/
 //	implementation 'com.github.stealthcopter:AndroidNetworkTools:0.3.08'

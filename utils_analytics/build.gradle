@@ -41,12 +41,13 @@ android {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	implementation libraries.rx_java2
-	implementation libraries.rx_android
-	implementation libraries.timber
-	implementation libraries.kotlin_stdlib
-	implementation libraries.kotlin_stdlib_java8
-	implementation libraries.firebase_core
+	implementation libs_logging.values()
+
+	implementation libs_rx.values()
+
+	implementation libs_kotlin.kotlin_stdlib
+	implementation libs_kotlin.kotlin_stdlib_java8
+	implementation libs_firebase.firebase_core
 }
 
 task copyAARs(type: Copy) {

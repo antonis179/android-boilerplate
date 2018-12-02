@@ -5,11 +5,10 @@ buildscript {
 	apply from: 'config/config.gradle'
 
 	repositories repos
+	allprojects { repositories repos}
 
 	dependencies { classpath gradle_plugins.values() }
 }
-
-allprojects { repositories repos }
 
 
 task clean(type: Delete) {

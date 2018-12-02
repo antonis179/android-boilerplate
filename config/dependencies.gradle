@@ -85,90 +85,105 @@ ext {
 	annotation_processors = [
 		    lifecycle       : "android.arch.lifecycle:compiler:${lib_versions.lifecycle}",
 		    dagger          : "com.google.dagger:dagger-compiler:${lib_versions.dagger}",
-		    dagger_android  : "com.google.dagger:dagger-android-processor:${lib_versions.dagger}",
+//		    dagger_android  : "com.google.dagger:dagger-android-processor:${lib_versions.dagger}",
 		    butterknife     : "com.jakewharton:butterknife-compiler:${lib_versions.butterknife}"
 	]
 
-	libraries = [
-			//GSON
-			gson                        : "com.google.code.gson:gson:${lib_versions.gson}",
 
-			//Support
-//			multidex                    : "com.android.support:multidex:${lib_versions.multidex}",
-			appcompat: "com.android.support:appcompat-v7:${lib_versions.support}",
-			support_v4: "com.android.support:support-v4:${lib_versions.support}",
-			recyclerview_v7: "com.android.support:recyclerview-v7:${lib_versions.support}",
-			cardview_v7: "com.android.support:cardview-v7:${lib_versions.support}",
-			support_design: "com.android.support:design:${lib_versions.support_design}",
-
-			//Lifecycle
-			lifecycle_java8: "android.arch.lifecycle:common-java8:${lib_versions.lifecycle_java_8}",
-			lifecycle: "android.arch.lifecycle:extensions:${lib_versions.lifecycle}",
-
-			//Play
-			play_gcm: "com.google.android.gms:play-services-gcm:${lib_versions.play_services}",
-			play_maps: "com.google.android.gms:play-services-maps:${lib_versions.play_services}",
-			play_location: "com.google.android.gms:play-services-location:${lib_versions.play_services}",
-			play_awareness: "com.google.android.gms:play-services-awareness:${lib_versions.play_services}",
-
-			//Assistant
-//			firebase_index: "com.google.firebase:firebase-appindexing:${lib_versions.firebase_index}",
-
-			//UI
-			constraint_layout: "com.android.support.constraint:constraint-layout:${lib_versions.constraint_layout}",
-
-			//Realm
-			realm: "io.realm:realm-android-library:${plugin_versions.realm}",
-			realm_android_adapters:  "io.realm:android-adapters:${lib_versions.realm_android_adapters}",
-			realm_kotlin_ext: "com.github.vicpinm:krealmextensions:${lib_versions.kotlin_realm_ext}",
-
-			//Dagger
-			dagger: "com.google.dagger:dagger:${lib_versions.dagger}",
-			dagger_android: "com.google.dagger:dagger-android:${lib_versions.dagger}",
-			dagger_android_support: "com.google.dagger:dagger-android-support:${lib_versions.dagger}",
-
-			//Retrofit
-			retrofit: "com.squareup.retrofit2:retrofit:${lib_versions.retrofit}",
-//			retrofit_scalars: "com.squareup.retrofit2:converter-scalars:${lib_versions.retrofit}",
-			retrofit_gson: "com.squareup.retrofit2:converter-gson:${lib_versions.retrofit}",
-			retrofit_rx_java2: "com.squareup.retrofit2:adapter-rxjava2:${lib_versions.retrofit}",
-			okhttp_logging: "com.squareup.okhttp3:logging-interceptor:${lib_versions.okhttp}",
-
-			//RX
-			rx_java2: "io.reactivex.rxjava2:rxjava:${lib_versions.rx_java}",
-			rx_kotlin: "io.reactivex.rxjava2:rxkotlin:${lib_versions.rx_kotlin}",
-			rx_android: "io.reactivex.rxjava2:rxandroid:${lib_versions.rx_android}",
-
-			//Image
-
-//			glide: "com.github.bumptech.glide:glide:${lib_versions.glide}",
-
-			//Timber
-			timber: "com.jakewharton.timber:timber:${lib_versions.timber}",
-
-			//Butterknife
-			butterknife: "com.jakewharton:butterknife:${lib_versions.butterknife}",
-
-			//Kotlin
-			kotlin_stdlib: "org.jetbrains.kotlin:kotlin-stdlib:${plugin_versions.kotlin}",
-			kotlin_stdlib_java8: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${plugin_versions.kotlin}",
-			kotlin_reflect: "org.jetbrains.kotlin:kotlin-reflect:${plugin_versions.kotlin}",
-
-			//Analytics
-			firebase_core: "com.google.firebase:firebase-core:${lib_versions.firebase_core}",
-			firebase_perf: "com.google.firebase:firebase-perf:${lib_versions.firebase_performance}",
-			crashlytics: "com.crashlytics.sdk.android:crashlytics:${lib_versions.crashlytics}",
-
-			//Job dispatcher
-			jobdispatcher: "com.firebase:firebase-jobdispatcher:${lib_versions.job_dispatcher}",
-
-			//FCM
-			firebase_cloud_messaging: "com.google.firebase:firebase-messaging:${lib_versions.firebase_cloud_messaging}",
-
-			//Bus
-			event_bus: "org.greenrobot:eventbus:${lib_versions.event_bus}"
+	libs_mapping = [
+		//GSON
+		gson                    : "com.google.code.gson:gson:${lib_versions.gson}",
 	]
 
+	libs_support = [
+//			multidex            : "com.android.support:multidex:${lib_versions.multidex}",
+			appcompat           : "com.android.support:appcompat-v7:${lib_versions.support}",
+			support_v4          : "com.android.support:support-v4:${lib_versions.support}",
+
+			//Lifecycle
+			lifecycle_java8     : "android.arch.lifecycle:common-java8:${lib_versions.lifecycle_java_8}",
+			lifecycle           : "android.arch.lifecycle:extensions:${lib_versions.lifecycle}",
+
+			//UI
+			recyclerview_v7     : "com.android.support:recyclerview-v7:${lib_versions.support}",
+			cardview_v7         : "com.android.support:cardview-v7:${lib_versions.support}",
+			support_design      : "com.android.support:design:${lib_versions.support_design}",
+			constraint_layout   : "com.android.support.constraint:constraint-layout:${lib_versions.constraint_layout}",
+	]
+
+	libs_play_services = [
+			play_gcm            : "com.google.android.gms:play-services-gcm:${lib_versions.play_services}",
+			play_maps           : "com.google.android.gms:play-services-maps:${lib_versions.play_services}",
+			play_location       : "com.google.android.gms:play-services-location:${lib_versions.play_services}",
+			play_awareness      : "com.google.android.gms:play-services-awareness:${lib_versions.play_services}",
+	]
+
+	libs_firebase = [
+			//Assistant
+//			firebase_index      : "com.google.firebase:firebase-appindexing:${lib_versions.firebase_index}",
+
+			//Analytics
+			firebase_core       : "com.google.firebase:firebase-core:${lib_versions.firebase_core}",
+			firebase_perf       : "com.google.firebase:firebase-perf:${lib_versions.firebase_performance}",
+			crashlytics         : "com.crashlytics.sdk.android:crashlytics:${lib_versions.crashlytics}",
+
+			//Job dispatcher
+			jobdispatcher       : "com.firebase:firebase-jobdispatcher:${lib_versions.job_dispatcher}",
+
+			//FCM
+			fcm                 : "com.google.firebase:firebase-messaging:${lib_versions.firebase_cloud_messaging}",
+	]
+
+	libs_local_io = [
+			//Realm
+			realm               : "io.realm:realm-android-library:${plugin_versions.realm}",
+			realm_adapters      : "io.realm:android-adapters:${lib_versions.realm_android_adapters}",
+			realm_kotlin_ext    : "com.github.vicpinm:krealmextensions:${lib_versions.kotlin_realm_ext}",
+
+			//Bus
+			event_bus           : "org.greenrobot:eventbus:${lib_versions.event_bus}"
+	]
+
+	libs_remote_io = [
+			//Retrofit
+			retrofit            : "com.squareup.retrofit2:retrofit:${lib_versions.retrofit}",
+//			retrofit_scalars    : "com.squareup.retrofit2:converter-scalars:${lib_versions.retrofit}",
+			retrofit_gson       : "com.squareup.retrofit2:converter-gson:${lib_versions.retrofit}",
+			retrofit_rx_java2   : "com.squareup.retrofit2:adapter-rxjava2:${lib_versions.retrofit}",
+			okhttp_logging      : "com.squareup.okhttp3:logging-interceptor:${lib_versions.okhttp}",
+	]
+
+	libs_rx = [
+			//RX
+			rx_java2            : "io.reactivex.rxjava2:rxjava:${lib_versions.rx_java}",
+			rx_kotlin           : "io.reactivex.rxjava2:rxkotlin:${lib_versions.rx_kotlin}",
+			rx_android          : "io.reactivex.rxjava2:rxandroid:${lib_versions.rx_android}",
+	]
+
+	libs_injection = [
+			//Dagger
+			dagger              : "com.google.dagger:dagger:${lib_versions.dagger}",
+			dagger_android      : "com.google.dagger:dagger-android:${lib_versions.dagger}",
+//			dagger_android_support: "com.google.dagger:dagger-android-support:${lib_versions.dagger}",
+
+			//Butterknife
+			butterknife         : "com.jakewharton:butterknife:${lib_versions.butterknife}",
+	]
+
+	libs_image = [
+			glide               : "com.github.bumptech.glide:glide:${lib_versions.glide}",
+	]
+
+	libs_logging = [
+			//Timber
+			timber              : "com.jakewharton.timber:timber:${lib_versions.timber}",
+	]
+
+	libs_kotlin = [
+			kotlin_stdlib       : "org.jetbrains.kotlin:kotlin-stdlib:${plugin_versions.kotlin}",
+			kotlin_stdlib_java8 : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${plugin_versions.kotlin}",
+			kotlin_reflect      : "org.jetbrains.kotlin:kotlin-reflect:${plugin_versions.kotlin}",
+	]
 
 }
 

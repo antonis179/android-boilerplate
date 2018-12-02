@@ -105,7 +105,20 @@ dependencies {
 	implementation project(':utils_analytics')
 
 	kapt annotation_processors.values()
-	implementation libraries.values()
+
+	implementation libs_support.values()
+	implementation libs_play_services.values()
+	implementation libs_firebase.values()
+	implementation libs_logging.values()
+	implementation libs_injection.values()
+
+	implementation libs_kotlin.values()
+	implementation libs_rx.values()
+
+	implementation libs_local_io.values()
+
+	implementation libs_mapping.values()
+	implementation libs_remote_io.values()
 
 
 	//Tests

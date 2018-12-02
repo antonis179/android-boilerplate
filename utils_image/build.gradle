@@ -41,10 +41,10 @@ android {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	implementation libraries.timber
-	implementation libraries.kotlin_stdlib
-	implementation libraries.kotlin_stdlib_java8
-	implementation libraries.appcompat
+	implementation libs_logging.values()
+	implementation libs_support.appcompat
+	implementation libs_kotlin.kotlin_stdlib
+	implementation libs_kotlin.kotlin_stdlib_java8
 }
 
 task copyAARs(type: Copy) {
