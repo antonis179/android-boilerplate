@@ -154,3 +154,16 @@ MVP is used as the architecture.
     release.key.alias=
     release.key.alias.password=
     ```
+
+
+
+## Other Instructions ##
+
+### Dependency updates ###
+
+To check available dependency updates you can run:
+```
+gradlew dependencyUpdates
+```
+
+More info [here](https://github.com/ben-manes/gradle-versions-plugin)

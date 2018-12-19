@@ -10,6 +10,8 @@ buildscript {
 	dependencies { classpath gradle_plugins.values() }
 }
 
+apply plugin: "com.github.ben-manes.versions"
+
 
 task clean(type: Delete) {
 	delete rootProject.buildDir
