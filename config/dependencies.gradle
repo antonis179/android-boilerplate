@@ -2,11 +2,10 @@ ext {
 
 	repos = {
 		google()
-		jcenter()
 		mavenCentral()
 		maven { url 'https://jitpack.io' }
-		maven {	url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 		maven { url 'https://maven.fabric.io/public' }
+		maven { url 'https://dl.bintray.com/realm/maven' }
 	}
 
 	plugin_versions = [
