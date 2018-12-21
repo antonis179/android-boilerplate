@@ -1,50 +1,50 @@
-ext {
+
+project.ext {
 
 	build_params = [
-		compile_version   : 28,
-		min_version       : 21,
-		target_version    : 28
+			compile_version: 28,
+			min_version    : 21,
+			target_version : 28
 	]
 
 	key_config = [
-			debug_location              : 'debug.key.location',
-			debug_pwd                   : 'debug.key.password',
-			debug_alias                 : 'debug.key.alias',
-			debug_alias_pwd             : 'debug.key.alias.password',
+			debug_location   : 'debug.key.location',
+			debug_pwd        : 'debug.key.password',
+			debug_alias      : 'debug.key.alias',
+			debug_alias_pwd  : 'debug.key.alias.password',
 
-			release_location            : 'release.key.location',
-			release_pwd                 : 'release.key.password',
-			release_alias               : 'release.key.alias',
-			release_alias_pwd           : 'release.key.alias.password'
+			release_location : 'release.key.location',
+			release_pwd      : 'release.key.password',
+			release_alias    : 'release.key.alias',
+			release_alias_pwd: 'release.key.alias.password'
 	]
 
 	signing_configs = [
-		debug : {
-			def props = getPasswords()
-			def loc = getAttribute(props, "${key_config.debug_location}")
-			def pwd = getAttribute(props, "${key_config.debug_pwd}")
-			def alias = getAttribute(props, "${key_config.debug_alias}")
-			def aliasPwd = getAttribute(props, "${key_config.debug_alias_pwd}")
+			debug  : {
+				def props = getPasswords()
+				def loc = getAttribute(props, "${key_config.debug_location}")
+				def pwd = getAttribute(props, "${key_config.debug_pwd}")
+				def alias = getAttribute(props, "${key_config.debug_alias}")
+				def aliasPwd = getAttribute(props, "${key_config.debug_alias_pwd}")
 
-			storeFile file(loc)
-			storePassword pwd
-			keyAlias alias
-			keyPassword aliasPwd
-		},
-		release : {
-			def props = getPasswords()
-			def loc = getAttribute(props, "${key_config.release_location}")
-			def pwd = getAttribute(props, "${key_config.release_pwd}")
-			def alias = getAttribute(props, "${key_config.release_alias}")
-			def aliasPwd = getAttribute(props, "${key_config.release_alias_pwd}")
+				storeFile file(loc)
+				storePassword pwd
+				keyAlias alias
+				keyPassword aliasPwd
+			},
+			release: {
+				def props = getPasswords()
+				def loc = getAttribute(props, "${key_config.release_location}")
+				def pwd = getAttribute(props, "${key_config.release_pwd}")
+				def alias = getAttribute(props, "${key_config.release_alias}")
+				def aliasPwd = getAttribute(props, "${key_config.release_alias_pwd}")
 
-			storeFile file(loc)
-			storePassword pwd
-			keyAlias alias
-			keyPassword aliasPwd
-		}
+				storeFile file(loc)
+				storePassword pwd
+				keyAlias alias
+				keyPassword aliasPwd
+			}
 	]
-
 }
 
 Properties getPasswords() {

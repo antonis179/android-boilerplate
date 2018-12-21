@@ -2,7 +2,6 @@
 buildscript {
 	//Needs to be applied here - buildscript executed first
 	apply from: 'config/dependencies.gradle'
-	apply from: 'config/config.gradle'
 
 	repositories repos
 	allprojects { repositories repos}
@@ -10,7 +9,7 @@ buildscript {
 	dependencies { classpath gradle_plugins.values() }
 }
 
-apply plugin: "com.github.ben-manes.versions"
+apply plugin: ext.plugins.dependencyUpdates
 
 
 task clean(type: Delete) {

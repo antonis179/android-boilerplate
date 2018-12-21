@@ -1,11 +1,11 @@
 apply from: "$project.rootDir/config/dependencies.gradle"
 apply from: "$project.rootDir/config/config.gradle"
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'realm-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: ext.plugins.library
+apply plugin: ext.plugins.kotlin
+apply plugin: ext.plugins.kapt
+apply plugin: ext.plugins.kotlinAndroidExtentions
+apply plugin: ext.plugins.realm
 
 android {
 	compileSdkVersion build_params.compile_version
@@ -15,8 +15,6 @@ android {
 		targetSdkVersion build_params.target_version
 		versionCode 1000
 		versionName "0.1"
-
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
 	buildTypes {
