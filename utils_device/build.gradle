@@ -48,7 +48,6 @@ dependencies {
 
 	implementation libs_logging.values()
 
-	implementation libs_kotlin.kotlin_stdlib
 	implementation libs_kotlin.kotlin_stdlib_java8
 	implementation libs_rx.values()
 	implementation libs_support.lifecycle_java8

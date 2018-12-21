@@ -46,7 +46,6 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 	implementation libs_support.support_v4
-	implementation libs_kotlin.kotlin_stdlib
 	implementation libs_kotlin.kotlin_stdlib_java8
 
 	implementation libs_logging.values()

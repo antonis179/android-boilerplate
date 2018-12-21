@@ -41,7 +41,6 @@ dependencies {
 
 	implementation libs_logging.values()
 	implementation libs_support.appcompat
-	implementation libs_kotlin.kotlin_stdlib
 	implementation libs_kotlin.kotlin_stdlib_java8
 }
 

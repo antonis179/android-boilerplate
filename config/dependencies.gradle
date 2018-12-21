@@ -193,7 +193,6 @@ project.ext {
 	]
 
 	libs_kotlin = [
-			kotlin_stdlib       : "org.jetbrains.kotlin:kotlin-stdlib:${plugin_versions.kotlin}",
 			kotlin_stdlib_java8 : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${plugin_versions.kotlin}",
 			kotlin_reflect      : "org.jetbrains.kotlin:kotlin-reflect:${plugin_versions.kotlin}",
 	]
