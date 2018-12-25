@@ -98,7 +98,6 @@ project.ext {
 	annotation_processors = [
 		    lifecycle       : "android.arch.lifecycle:compiler:${lib_versions.lifecycle}",
 		    dagger          : "com.google.dagger:dagger-compiler:${lib_versions.dagger}",
-//		    dagger_android  : "com.google.dagger:dagger-android-processor:${lib_versions.dagger}",
 		    butterknife     : "com.jakewharton:butterknife-compiler:${lib_versions.butterknife}"
 	]
 
@@ -176,8 +175,6 @@ project.ext {
 	libs_injection = [
 			//Dagger
 			dagger              : "com.google.dagger:dagger:${lib_versions.dagger}",
-			dagger_android      : "com.google.dagger:dagger-android:${lib_versions.dagger}",
-//			dagger_android_support: "com.google.dagger:dagger-android-support:${lib_versions.dagger}",
 
 			//Butterknife
 			butterknife         : "com.jakewharton:butterknife:${lib_versions.butterknife}",
