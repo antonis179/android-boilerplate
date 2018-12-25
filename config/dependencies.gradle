@@ -51,10 +51,10 @@ project.ext {
 			lifecycle_java_8            : '1.1.1',
 
 			//Annotation processors - injection - RX
-			dagger                      : '2.19',
-			rx_java                     : '2.1.12',
-			rx_kotlin                   : '2.2.0',
-			rx_android                  : '2.0.2',
+			dagger                      : '2.20',
+			rx_java                     : '2.2.4',
+			rx_kotlin                   : '2.3.0',
+			rx_android                  : '2.1.0',
 			butterknife                 : '8.8.1',
 
 			//Realm
@@ -64,7 +64,7 @@ project.ext {
 			//Net
 			retrofit                    : '2.5.0',
 			gson                        : '2.8.5',
-			okhttp                      : '3.12.0',
+			okhttp                      : '3.12.1',
 
 			//Logging
 			timber                      : '4.7.1',
@@ -74,10 +74,10 @@ project.ext {
 			junit                       : '4.12',
 
 			//Analytics
-			crashlytics                 : '2.9.7',
+			crashlytics                 : '2.9.8',
 //			firebase_index              : '16.0.1',
 			firebase_core               : '16.0.6',
-			firebase_performance        : '16.2.2',
+			firebase_performance        : '16.2.3',
 
 			//FCM
 			firebase_cloud_messaging    : '17.3.4',
@@ -103,8 +103,7 @@ project.ext {
 
 
 	libs_mapping = [
-		//GSON
-		gson                    : "com.google.code.gson:gson:${lib_versions.gson}",
+			gson                : "com.google.code.gson:gson:${lib_versions.gson}",
 	]
 
 	libs_support = [
@@ -147,17 +146,13 @@ project.ext {
 	]
 
 	libs_local_io = [
-			//Realm
 			realm               : "io.realm:realm-android-library:${plugin_versions.realm}",
 			realm_adapters      : "io.realm:android-adapters:${lib_versions.realm_android_adapters}",
 			realm_kotlin_ext    : "com.github.vicpinm:krealmextensions:${lib_versions.kotlin_realm_ext}",
-
-			//Bus
 			event_bus           : "org.greenrobot:eventbus:${lib_versions.event_bus}"
 	]
 
 	libs_remote_io = [
-			//Retrofit
 			retrofit            : "com.squareup.retrofit2:retrofit:${lib_versions.retrofit}",
 //			retrofit_scalars    : "com.squareup.retrofit2:converter-scalars:${lib_versions.retrofit}",
 			retrofit_gson       : "com.squareup.retrofit2:converter-gson:${lib_versions.retrofit}",
@@ -166,17 +161,13 @@ project.ext {
 	]
 
 	libs_rx = [
-			//RX
 			rx_java2            : "io.reactivex.rxjava2:rxjava:${lib_versions.rx_java}",
 			rx_kotlin           : "io.reactivex.rxjava2:rxkotlin:${lib_versions.rx_kotlin}",
 			rx_android          : "io.reactivex.rxjava2:rxandroid:${lib_versions.rx_android}",
 	]
 
 	libs_injection = [
-			//Dagger
 			dagger              : "com.google.dagger:dagger:${lib_versions.dagger}",
-
-			//Butterknife
 			butterknife         : "com.jakewharton:butterknife:${lib_versions.butterknife}",
 	]
 
@@ -185,7 +176,6 @@ project.ext {
 	]
 
 	libs_logging = [
-			//Timber
 			timber              : "com.jakewharton.timber:timber:${lib_versions.timber}",
 	]
 
