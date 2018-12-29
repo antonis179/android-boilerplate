@@ -1,9 +1,6 @@
-## Donations ##
+## Thanks ##
 
-So you liked my code and want to buy me coffee and pizza? That's awesome!
-
-- BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
-- Paypal: **https://www.paypal.me/neo179**
+- https://github.com/sellmair/disposer for lifecycle disposer!
 
 ## Coming soon ##
 
@@ -167,3 +164,11 @@ gradlew dependencyUpdates
 ```
 
 More info [here](https://github.com/ben-manes/gradle-versions-plugin)
+
+
+## Donations ##
+
+So you liked my code and want to buy me coffee and pizza? That's awesome!
+
+- BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
+- Paypal: **https://www.paypal.me/neo179**

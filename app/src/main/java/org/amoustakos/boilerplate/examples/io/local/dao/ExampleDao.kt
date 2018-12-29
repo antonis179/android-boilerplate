@@ -9,7 +9,7 @@ import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.I
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.NAME
 import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
 import org.amoustakos.boilerplate.io.dao.base.BaseDao
-import org.amoustakos.utils.android.RxUtil
+import org.amoustakos.utils.android.rx.RxUtil
 
 
 class ExampleDao(realm: Realm):

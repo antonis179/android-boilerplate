@@ -44,19 +44,15 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 			presenter = ActivityListingPresenter(
 					this,
 					packageName,
-					packageManager)
-			presenter!!.subscribeToLifecycle(lifecycle)
+					packageManager,
+					lifecycle
+			)
 		}
 
 		setupRecycler()
 		presenter!!.load()
 	}
 
-
-	override fun onDestroy() {
-		super.onDestroy()
-		presenter?.unsubscribeFromLifecycle(lifecycle)
-	}
 
 	override fun onBackPressed() {
 		if (isDoubleBackToExitPressedOnce) {
@@ -91,4 +87,5 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 			adapter = ActivityListingAdapter(ArrayList())
 		rv_activity_pool.adapter = adapter
 	}
+
 }

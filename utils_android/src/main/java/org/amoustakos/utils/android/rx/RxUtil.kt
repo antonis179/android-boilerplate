@@ -1,4 +1,4 @@
-package org.amoustakos.utils.android
+package org.amoustakos.utils.android.rx
 
 import io.reactivex.FlowableTransformer
 import io.reactivex.ObservableTransformer
@@ -65,13 +65,6 @@ object RxUtil {
     fun <T> applyRetryPolicy(retry: Int): ObservableTransformer<T, T> = ObservableTransformer {
         it.retry(retry.toLong())
     }
-
-
-    // =========================================================================================
-    // Subscriptions
-    // =========================================================================================
-    //TODO: Make subscription handling utility methods to be used in activity cancellations etc.
-
 
     // =========================================================================================
     // Testing

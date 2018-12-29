@@ -1,4 +1,4 @@
-package org.amoustakos.utils.android
+package org.amoustakos.utils.android.kotlin
 
 object Do {
 

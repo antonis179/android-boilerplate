@@ -1,5 +1,6 @@
 package org.amoustakos.boilerplate.examples.ui.presenters
 
+import android.arch.lifecycle.Lifecycle
 import android.content.pm.PackageManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,6 +11,9 @@ import org.amoustakos.boilerplate.examples.view.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter
 import org.amoustakos.utils.android.PackageManagerUtils.definedActivities
+import org.amoustakos.utils.android.rx.disposer.LifecycleDisposers
+import org.amoustakos.utils.android.rx.disposer.disposeBy
+import org.amoustakos.utils.android.rx.disposer.onDestroy
 import timber.log.Timber
 import java.util.*
 
@@ -17,8 +21,9 @@ import java.util.*
 class ActivityListingPresenter(
 	view: ActivityListingView,
 	private val basePackage: String,
-	private val pm: PackageManager
-): BasePresenter<ActivityListingView>(view), ActivityListingActions {
+	private val pm: PackageManager,
+	lifecycle: Lifecycle
+): BasePresenter<ActivityListingView>(view, lifecycle), ActivityListingActions {
 
 
 	private val activities: List<Class<out BaseActivity>>
@@ -29,9 +34,9 @@ class ActivityListingPresenter(
 
 	override fun load() {
 		Observable.just {}
-			.doOnSubscribe { d -> addLifecycleDisposable(d) }
+			.disposeBy(lifecycle.onDestroy)
 			.observeOn(Schedulers.computation())
-			.map<List<ActivityListingModel>> { _ ->
+			.map<List<ActivityListingModel>> {
 				val models = ArrayList<ActivityListingModel>()
 				val activities = excludeCurrent(activities)
 
