@@ -21,6 +21,8 @@ object RetrofitFactory {
         opts.converterFactories
 		        .forEach { builder.addConverterFactory(it) }
 
+	    opts.validateEagerly?.let   { builder.validateEagerly(it) }
+	    opts.callbackExecutor?.let  { builder.callbackExecutor(it) }
 
         return builder.build()
     }
@@ -34,40 +36,81 @@ object RetrofitFactory {
     fun getHttpClient(opts: OkhttpOptions): OkHttpClient {
         val client = OkHttpClient.Builder()
 
-        // Cache
-	    val cacheOptionsValid =
-			    opts.cacheSizeMb?.let { it > 0L } == true
-			    && opts.cacheDir != null
-	            && opts.cacheSubDirectory != null
-
-	    if (cacheOptionsValid) {
-	        val cacheSize: Long = opts.cacheSizeMb!!
-            val cache = Cache(
-		            File(opts.cacheDir, opts.cacheSubDirectory),
-		            cacheSize
-            )
-            client.cache(cache)
-        }
-
-        // Connection
-        client.connectTimeout(opts.connectTimeout.toLong(), opts.timeUnit)
-        client.readTimeout(opts.readTimeout.toLong(), opts.timeUnit)
-        client.writeTimeout(opts.writeTimeout.toLong(), opts.timeUnit)
-
-        // Logging interceptor
-        val loggingInterceptor = HttpLoggingInterceptor()
-        if (opts.logEnabled)
-            loggingInterceptor.level = opts.logLevel
-        else // every time you log in production a puppy dies.
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-
-        client.addInterceptor(loggingInterceptor)
-
-        // Provided interceptors
-        opts.interceptors?.forEach { client.addInterceptor(it) }
-	    opts.networkInterceptors?.forEach { client.addNetworkInterceptor(it) }
+	    client.configureAuthentication(opts)
+	    client.configureCache(opts)
+	    client.configureEvents(opts)
+	    client.configureConnection(opts)
+	    client.configureInterceptors(opts)
+	    client.configureLogging(opts)
 
         return client.build()
     }
+
+
+
+
+	// =========================================================================================
+	// Internal helpers
+	// =========================================================================================
+
+	private fun OkHttpClient.Builder.configureAuthentication(opts: OkhttpOptions) {
+		opts.authenticator?.let { authenticator(it) }
+		opts.certificatePinner?.let { certificatePinner(it) }
+	}
+
+	private fun OkHttpClient.Builder.configureCache(opts: OkhttpOptions) {
+		val cacheOptionsValid =
+				opts.cacheSizeMb?.let { it > 0L } == true
+						&& opts.cacheDir != null
+						&& opts.cacheSubDirectory != null
+
+		if (cacheOptionsValid) {
+			val cacheSize: Long = opts.cacheSizeMb!!
+			val cache = Cache(
+					File(opts.cacheDir, opts.cacheSubDirectory),
+					cacheSize
+			)
+			cache(cache)
+		}
+	}
+
+	private fun OkHttpClient.Builder.configureEvents(opts: OkhttpOptions) {
+		opts.eventListenerFactory?.let { eventListenerFactory(it) }
+		opts.eventListener?.let { eventListener(it) }
+	}
+
+	private fun OkHttpClient.Builder.configureConnection(opts: OkhttpOptions) {
+		opts.connectionSpecs?.let { connectionSpecs(it) }
+		opts.connectionPool?.let { connectionPool(it) }
+		opts.dns?.let { dns(it) }
+		opts.dispatcher?.let { dispatcher(it) }
+		opts.cookieJar?.let { cookieJar(it) }
+
+		opts.timeUnit?.let { timeUnit ->
+			opts.callTimeout?.let { timeout -> callTimeout(timeout, timeUnit) }
+			opts.connectTimeout?.let { timeout -> connectTimeout(timeout, timeUnit) }
+			opts.readTimeout?.let { timeout -> readTimeout(timeout, timeUnit) }
+			opts.writeTimeout?.let { timeout -> writeTimeout(timeout, timeUnit) }
+		}
+	}
+
+	private fun OkHttpClient.Builder.configureInterceptors(opts: OkhttpOptions) {
+		opts.interceptors?.forEach {
+			when (it.type) {
+				InterceptorType.INTERCEPTOR         -> addInterceptor(it.interceptor)
+				InterceptorType.NETWORK_INTERCEPTOR -> addNetworkInterceptor(it.interceptor)
+			}
+		}
+	}
+
+	private fun OkHttpClient.Builder.configureLogging(opts: OkhttpOptions) {
+		val loggingInterceptor = HttpLoggingInterceptor()
+		if (opts.logEnabled)
+			loggingInterceptor.level = opts.logLevel
+		else // every time you log in production a puppy dies.
+			loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
+
+		addInterceptor(loggingInterceptor)
+	}
 
 }

@@ -15,19 +15,20 @@ object NetworkConfigFactory {
 
 	@DefaultRetrofitOptions
 	@JvmStatic
-	fun defaultRetrofitOptions() =
-			RetrofitEngineOptions(
-					"https://jsonplaceholder.typicode.com",
-					Arrays.asList( GsonConverterFactory.create(Gson()) ),
-					Arrays.asList( RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()) )
+	fun defaultRetrofitOptions() = RetrofitEngineOptions(
+			baseUrl = "https://jsonplaceholder.typicode.com",
+			converterFactories = Arrays.asList( GsonConverterFactory.create(Gson()) ),
+			adapterFactories = Arrays.asList(
+					RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
 			)
+	)
 
 
 
 	@DefaultOkHttpOptions
 	@JvmStatic
-	fun defaultOkhttpOptions(debug: Boolean) = OkhttpOptions(
-			debug,
+	fun defaultOkhttpOptions(logEnabled: Boolean) = OkhttpOptions(
+			logEnabled = logEnabled,
 			connectTimeout = 15,
 			readTimeout = 15,
 			writeTimeout = 15,

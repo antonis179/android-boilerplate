@@ -2,6 +2,7 @@ package org.amoustakos.utils.network.retrofit
 
 import retrofit2.CallAdapter
 import retrofit2.Converter
+import java.util.concurrent.Executor
 
 
 /**
@@ -10,5 +11,7 @@ import retrofit2.Converter
 data class RetrofitEngineOptions (
         val baseUrl: String,
         val converterFactories: List<Converter.Factory>,
-        val adapterFactories: List<CallAdapter.Factory>
+        val adapterFactories: List<CallAdapter.Factory>,
+        val validateEagerly: Boolean? = null,
+        val callbackExecutor: Executor? = null
 )

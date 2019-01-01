@@ -1,6 +1,6 @@
 package org.amoustakos.utils.network.retrofit
 
-import okhttp3.Interceptor
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -18,13 +18,38 @@ data class OkhttpOptions (
 		val cacheDir: File? = null,
 		val cacheSubDirectory: String? = null,
 
-        // Connection
-		val connectTimeout: Int,
-		val readTimeout: Int,
-		val writeTimeout: Int,
-		val timeUnit: TimeUnit,
+		// Authentication
+		val authenticator: Authenticator? = null,
+		val certificatePinner: CertificatePinner? = null,
+
+		// DNS
+		val dns: Dns? = null,
+
+        // Connection options
+		val connectTimeout: Long? = null,
+		val readTimeout: Long? = null,
+		val writeTimeout: Long? = null,
+		val callTimeout: Long? = null,
+		val timeUnit: TimeUnit? = null,
+		val connectionSpecs: List<ConnectionSpec>? = null,
+		val dispatcher: Dispatcher? = null,
+		val cookieJar: CookieJar? = null,
+		val connectionPool: ConnectionPool? = null,
+
+		// Events
+		val eventListener: EventListener? = null,
+		val eventListenerFactory: EventListener.Factory? = null,
 
         // Interceptors
-		val interceptors: List<Interceptor>? = null,
-		val networkInterceptors: List<Interceptor>? = null
+		val interceptors: List<InterceptorWithType>? = null
+)
+
+
+enum class InterceptorType {
+	INTERCEPTOR, NETWORK_INTERCEPTOR
+}
+
+data class InterceptorWithType(
+		val type: InterceptorType,
+		val interceptor: Interceptor
 )
