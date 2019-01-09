@@ -2,9 +2,9 @@ package org.amoustakos.utils.device
 
 import android.app.ActivityManager
 import android.content.Context
-import android.support.annotation.IntDef
-import android.support.annotation.NonNull
-import android.support.annotation.RequiresApi
+import androidx.annotation.IntDef
+import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import timber.log.Timber
 import java.lang.Exception
 import java.lang.ref.WeakReference

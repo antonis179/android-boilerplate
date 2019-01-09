@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.view.adapters.base
 
-import android.support.annotation.NonNull
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 import org.amoustakos.boilerplate.view.holders.base.BaseViewHolder
 import org.amoustakos.boilerplate.view.models.base.BaseViewModel
 import org.amoustakos.boilerplate.view.models.base.PublisherItem
@@ -10,7 +10,7 @@ import org.amoustakos.boilerplate.view.models.base.PublisherItem
 abstract class BaseRecyclerAdapter<Holder : BaseViewHolder<Model>, Model: BaseViewModel<Holder, Model>>(
         @NonNull private var mItems: MutableList<Model>,
         val publishers: List<PublisherItem<Model>>
-): RecyclerView.Adapter<Holder>() {
+): androidx.recyclerview.widget.RecyclerView.Adapter<Holder>() {
 
     private val mLock = Any()
 

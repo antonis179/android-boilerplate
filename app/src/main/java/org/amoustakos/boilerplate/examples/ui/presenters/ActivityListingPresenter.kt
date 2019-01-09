@@ -1,6 +1,6 @@
 package org.amoustakos.boilerplate.examples.ui.presenters
 
-import android.arch.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle
 import android.content.pm.PackageManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

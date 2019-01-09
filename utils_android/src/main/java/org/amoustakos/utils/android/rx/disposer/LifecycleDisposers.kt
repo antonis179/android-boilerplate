@@ -2,7 +2,7 @@
 
 package org.amoustakos.utils.android.rx.disposer
 
-import android.arch.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle
 import java.util.*
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock

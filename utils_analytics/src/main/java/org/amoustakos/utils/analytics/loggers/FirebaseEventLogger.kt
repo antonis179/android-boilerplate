@@ -2,7 +2,7 @@ package org.amoustakos.utils.analytics.loggers
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.amoustakos.utils.analytics.EventAction
 import org.amoustakos.utils.analytics.EventLogger

@@ -1,8 +1,8 @@
 package org.amoustakos.utils.device
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.DefaultLifecycleObserver
-import android.arch.lifecycle.LifecycleOwner
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import android.content.Context
 import android.content.Context.SENSOR_SERVICE
 import android.hardware.Sensor
@@ -10,7 +10,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.media.ExifInterface
-import android.support.annotation.IntDef
+import androidx.annotation.IntDef
 
 /**
  * Calculates and reports device rotation based on accelerometer and magnetometer.

@@ -1,8 +1,8 @@
 package org.amoustakos.utils.android.rx.disposer
 
-import android.arch.lifecycle.GenericLifecycleObserver
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
+import androidx.lifecycle.GenericLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 
 
 internal class LifecycleDisposer(

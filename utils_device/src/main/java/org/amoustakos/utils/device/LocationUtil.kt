@@ -2,13 +2,13 @@ package org.amoustakos.utils.device
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
-import android.arch.lifecycle.DefaultLifecycleObserver
-import android.arch.lifecycle.LifecycleOwner
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import android.content.Context
 import android.location.Location
 import android.os.Looper
-import android.support.annotation.NonNull
-import android.support.annotation.RequiresPermission
+import androidx.annotation.NonNull
+import androidx.annotation.RequiresPermission
 import com.google.android.gms.location.*
 import io.reactivex.subjects.PublishSubject
 import timber.log.Timber

@@ -46,18 +46,18 @@ project.ext {
 	lib_versions = [
 			//Support
 			play_services               : '16.0.0',
-			support                     : '28.0.0',
-			support_design              : '28.0.0',
-			constraint_layout           : '2.0.0-alpha3',
-			lifecycle                   : '1.1.1',
-			lifecycle_java_8            : '1.1.1',
+			support                     : '1.0.0',
+			support_design              : '1.0.0-rc01',
+			constraint_layout           : '1.1.2',
+			lifecycle                   : '2.0.0-rc01',
+			lifecycle_java_8            : '2.0.0-rc01',
 
 			//Annotation processors - injection - RX
 			dagger                      : '2.20',
 			rx_java                     : '2.2.5',
 			rx_kotlin                   : '2.3.0',
 			rx_android                  : '2.1.0',
-			butterknife                 : '9.0.0',
+			butterknife                 : '10.0.0',
 
 			//Realm
 			realm_android_adapters      : '3.1.0',
@@ -94,11 +94,11 @@ project.ext {
 //			glide                       : '4.8.0',
 
 			//Multidex
-			multidex                    : '1.0.3'
+			multidex                    : '2.0.0'
 	]
 
 	annotation_processors = [
-		    lifecycle       : "android.arch.lifecycle:compiler:${lib_versions.lifecycle}",
+		    lifecycle       : "androidx.lifecycle:lifecycle-compiler:${lib_versions.lifecycle}",
 		    dagger          : "com.google.dagger:dagger-compiler:${lib_versions.dagger}",
 		    butterknife     : "com.jakewharton:butterknife-compiler:${lib_versions.butterknife}"
 	]
@@ -109,19 +109,19 @@ project.ext {
 	]
 
 	libs_support = [
-//			multidex            : "com.android.support:multidex:${lib_versions.multidex}",
-			appcompat           : "com.android.support:appcompat-v7:${lib_versions.support}",
-			support_v4          : "com.android.support:support-v4:${lib_versions.support}",
+//			multidex            : "androidx.multidex:multidex:${lib_versions.multidex}",
+			appcompat           : "androidx.appcompat:appcompat:${lib_versions.support}",
+			support_v4          : "androidx.legacy:legacy-support-v4:${lib_versions.support}",
 
 			//Lifecycle
-			lifecycle_java8     : "android.arch.lifecycle:common-java8:${lib_versions.lifecycle_java_8}",
-			lifecycle           : "android.arch.lifecycle:extensions:${lib_versions.lifecycle}",
+			lifecycle_java8     : "androidx.lifecycle:lifecycle-common-java8:${lib_versions.lifecycle_java_8}",
+			lifecycle           : "androidx.lifecycle:lifecycle-extensions:${lib_versions.lifecycle}",
 
 			//UI
-			recyclerview_v7     : "com.android.support:recyclerview-v7:${lib_versions.support}",
-			cardview_v7         : "com.android.support:cardview-v7:${lib_versions.support}",
-			support_design      : "com.android.support:design:${lib_versions.support_design}",
-			constraint_layout   : "com.android.support.constraint:constraint-layout:${lib_versions.constraint_layout}",
+			recyclerview_v7     : "androidx.recyclerview:recyclerview:${lib_versions.support}",
+			cardview_v7         : "androidx.cardview:cardview:${lib_versions.support}",
+			support_design      : "com.google.android.material:material:${lib_versions.support_design}",
+			constraint_layout   : "androidx.constraintlayout:constraintlayout:${lib_versions.constraint_layout}",
 	]
 
 	libs_play_services = [

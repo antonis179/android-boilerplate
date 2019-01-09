@@ -1,9 +1,9 @@
 package org.amoustakos.boilerplate.ui.activities
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.design.widget.NavigationView
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
 import android.util.LongSparseArray
 import org.amoustakos.boilerplate.BoilerplateApplication
 import org.amoustakos.boilerplate.injection.component.ActivityComponent

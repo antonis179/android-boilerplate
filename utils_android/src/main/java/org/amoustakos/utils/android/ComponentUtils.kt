@@ -3,7 +3,7 @@ package org.amoustakos.utils.android
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 
 
 object ComponentUtils {

@@ -1,7 +1,7 @@
 package org.amoustakos.utils.android.ui
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
@@ -20,7 +20,7 @@ class ViewHideScrollListener(
         private val animFactor: Float = 2F,
         private val animTime: Long = 300,
         startHidden: Boolean = true
-) : RecyclerView.OnScrollListener() {
+) : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
 
     private var scrolledDistance: Int = 0
     private var isAnimatorActive = false
@@ -31,7 +31,7 @@ class ViewHideScrollListener(
     }
 
 
-    override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
+    override fun onScrolled(rv: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(rv, dx, dy)
 
         chooseAnimation(rv)
@@ -48,16 +48,16 @@ class ViewHideScrollListener(
     private fun shouldUpdateDistance(d: Int) =
             (isVisible() && d > 0) || (!isVisible() && d < 0)
 
-    private fun shouldHide(rv: RecyclerView?) =
+    private fun shouldHide(rv: androidx.recyclerview.widget.RecyclerView?) =
         rv?.isAtTop()?:false || (scrolledDistance > threshold && isVisible())
 
     private fun shouldShow()    = scrolledDistance < -threshold && !isVisible()
     private fun isVertical()    = orientation == VERTICAL
     private fun isVisible()     = view.visibility == VISIBLE
 
-    private fun RecyclerView.isAtTop(): Boolean {
+    private fun androidx.recyclerview.widget.RecyclerView.isAtTop(): Boolean {
         return try {
-            val linearLayoutManager = this.layoutManager as LinearLayoutManager
+            val linearLayoutManager = this.layoutManager as androidx.recyclerview.widget.LinearLayoutManager
             val pos = linearLayoutManager.findFirstVisibleItemPosition()
 
             linearLayoutManager.findViewByPosition(pos)?.top == 0 && pos == 0
@@ -70,7 +70,7 @@ class ViewHideScrollListener(
 
 
 
-    protected fun chooseAnimation(rv: RecyclerView?) {
+    protected fun chooseAnimation(rv: androidx.recyclerview.widget.RecyclerView?) {
         if (shouldHide(rv)) {
             animate(false)
             resetDistance()

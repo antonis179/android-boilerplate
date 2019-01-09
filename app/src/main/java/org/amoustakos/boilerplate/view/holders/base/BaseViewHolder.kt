@@ -1,6 +1,6 @@
 package org.amoustakos.boilerplate.view.holders.base
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import org.amoustakos.boilerplate.view.models.base.Type.LONG_CLICK
 abstract class BaseViewHolder <Model> (
         itemView: View,
         protected val publishers: List<PublisherItem<Model>>
-) : RecyclerView.ViewHolder(itemView) {
+) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     protected var mItem: Model? = null
 

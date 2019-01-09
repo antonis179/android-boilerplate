@@ -2,8 +2,8 @@ package org.amoustakos.boilerplate.examples.ui.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_listing.*
 import org.amoustakos.boilerplate.R

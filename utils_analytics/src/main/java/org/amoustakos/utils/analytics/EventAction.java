@@ -1,6 +1,6 @@
 package org.amoustakos.utils.analytics;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 import java.lang.annotation.Retention;
 

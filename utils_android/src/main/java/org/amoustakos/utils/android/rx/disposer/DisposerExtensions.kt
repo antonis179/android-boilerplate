@@ -1,7 +1,7 @@
 package org.amoustakos.utils.android.rx.disposer
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleOwner
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
 

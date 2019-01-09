@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.ui.presenters
 
-import android.arch.lifecycle.DefaultLifecycleObserver
-import android.arch.lifecycle.Lifecycle
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import org.amoustakos.boilerplate.ui.contracts.base.BaseContractActions
 import org.amoustakos.boilerplate.ui.contracts.base.BaseContractView
 import java.lang.ref.WeakReference

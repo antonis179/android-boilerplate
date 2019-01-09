@@ -18,10 +18,10 @@ android {
 		applicationId "org.amoustakos.boilerplate"
 		minSdkVersion build_params.min_version
 		targetSdkVersion build_params.target_version
-		versionCode 2001
-		versionName "0.2.1"
+		versionCode 3000
+		versionName "0.3.0"
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
 	signingConfigs {
@@ -121,7 +121,7 @@ dependencies {
 
 
 	//Tests
-	kaptAndroidTest("com.android.support.test.espresso:espresso-core:${lib_versions.espresso}", {
+	kaptAndroidTest('androidx.test.espresso:espresso-core:3.1.1', {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	})

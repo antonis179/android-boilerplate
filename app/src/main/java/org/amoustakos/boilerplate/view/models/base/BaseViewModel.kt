@@ -1,12 +1,12 @@
 package org.amoustakos.boilerplate.view.models.base
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import io.reactivex.subjects.PublishSubject
 
 
-interface BaseViewModel<out Holder: RecyclerView.ViewHolder, Model: BaseViewModel<Holder, Model>> {
+interface BaseViewModel<out Holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, Model: BaseViewModel<Holder, Model>> {
 
     fun makeHolder(ctx: Context, view: ViewGroup, publishers: List<PublisherItem<Model>> ): Holder
 
