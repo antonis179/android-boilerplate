@@ -1,34 +1,13 @@
-apply from: "$project.rootDir/config/dependencies.gradle"
+apply plugin: applyPlugins.library
 apply from: "$project.rootDir/config/config.gradle"
 
-apply plugin: ext.plugins.library
-apply plugin: ext.plugins.kotlin
-apply plugin: ext.plugins.kotlinAndroidExtentions
+apply plugin: applyPlugins.kotlin
+apply plugin: applyPlugins.kotlinAndroidExtentions
 
 android {
-	compileSdkVersion build_params.compile_version
-
 	defaultConfig {
-		minSdkVersion build_params.min_version
-		targetSdkVersion build_params.target_version
 		versionCode 1001
 		versionName "0.1.1"
-	}
-
-	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt')
-		}
-	}
-
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
-
-	lintOptions {
-		abortOnError false
 	}
 
 	libraryVariants.all { variant ->

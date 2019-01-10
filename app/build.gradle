@@ -1,76 +1,20 @@
-apply from: "$project.rootDir/config/dependencies.gradle"
+apply plugin: applyPlugins.application
 apply from: "$project.rootDir/config/config.gradle"
 
-apply plugin: ext.plugins.application
-apply plugin: ext.plugins.kotlin
-apply plugin: ext.plugins.kapt
-apply plugin: ext.plugins.kotlinAndroidExtentions
-apply plugin: ext.plugins.realm
-apply plugin: ext.plugins.firebasePerformance
-apply plugin: ext.plugins.fabric
+apply plugin: applyPlugins.kotlin
+apply plugin: applyPlugins.kapt
+apply plugin: applyPlugins.kotlinAndroidExtentions
+apply plugin: applyPlugins.realm
+apply plugin: applyPlugins.firebasePerformance
+apply plugin: applyPlugins.fabric
 
 
 android {
-
-	compileSdkVersion build_params.compile_version
-
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
-		minSdkVersion build_params.min_version
-		targetSdkVersion build_params.target_version
 		versionCode 3000
 		versionName "0.3.0"
-
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
-
-	signingConfigs {
-		debug signing_configs.debug
-		release signing_configs.release
-	}
-
-	buildTypes {
-		debug {
-			debuggable true
-			signingConfig signingConfigs.debug
-		}
-		release {
-			debuggable false
-			useProguard true
-			minifyEnabled true
-			shrinkResources false
-
-			signingConfig signingConfigs.release
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-		}
-	}
-
-	dexOptions {
-		preDexLibraries true
-		dexInProcess true
-	}
-
-	compileOptions {
-		sourceCompatibility java_version
-		targetCompatibility java_version
-	}
-
-	lintOptions {
-		abortOnError false
-
-		/*
-		 * Disables deep linking warnings.
-		 * If your app is indexable remove this and add deep links
-		 * to the activities you want to be crawlable
-		 */
-		disable 'GoogleAppIndexingWarning'
-
-		/*
-		 * lint checks for java/kotlin interoperability
-		 */
-		check 'Interoperability'
-	}
-
 }
 
 kapt {

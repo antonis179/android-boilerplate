@@ -10,6 +10,18 @@ project.ext {
 		maven { url 'https://dl.bintray.com/realm/maven' }
 	}
 
+	applyPlugins = [
+			application               : 'com.android.application',
+			library                   : 'com.android.library',
+			kotlin                    : 'kotlin-android',
+			kapt                      : 'kotlin-kapt',
+			kotlinAndroidExtentions   : 'kotlin-android-extensions',
+			realm                     : 'realm-android',
+			firebasePerformance       : 'com.google.firebase.firebase-perf',
+			fabric                    : 'io.fabric',
+			dependencyUpdates         : 'com.github.ben-manes.versions'
+	]
+
 	plugins = [
 			application               : 'com.android.application',
 			library                   : 'com.android.library',

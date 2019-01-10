@@ -1,7 +1,8 @@
+apply from: "$project.rootDir/config/dependencies.gradle"
 
 buildscript {
 	//Needs to be applied here - buildscript executed first
-	apply from: 'config/dependencies.gradle'
+	apply from: "$project.rootDir/config/dependencies.gradle"
 
 	repositories repos
 	allprojects { repositories repos}
