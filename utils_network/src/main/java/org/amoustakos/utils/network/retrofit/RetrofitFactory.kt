@@ -36,12 +36,20 @@ object RetrofitFactory {
     fun getHttpClient(opts: OkhttpOptions): OkHttpClient {
         val client = OkHttpClient.Builder()
 
-	    client.configureAuthentication(opts)
-	    client.configureCache(opts)
-	    client.configureEvents(opts)
-	    client.configureConnection(opts)
+	    opts.authentication?.let {
+		    client.configureAuthentication(it)
+	    }
+	    opts.cache?.let {
+		    client.configureCache(it)
+	    }
+	    opts.events?.let {
+		    client.configureEvents(it)
+	    }
+	    opts.connection?.let {
+		    client.configureConnection(it)
+	    }
 	    client.configureInterceptors(opts)
-	    client.configureLogging(opts)
+	    client.configureLogging(opts.logging)
 
         return client.build()
     }
@@ -53,19 +61,16 @@ object RetrofitFactory {
 	// Internal helpers
 	// =========================================================================================
 
-	private fun OkHttpClient.Builder.configureAuthentication(opts: OkhttpOptions) {
+	private fun OkHttpClient.Builder.configureAuthentication(opts: OkHttpAuthentication) {
 		opts.authenticator?.let { authenticator(it) }
 		opts.certificatePinner?.let { certificatePinner(it) }
 	}
 
-	private fun OkHttpClient.Builder.configureCache(opts: OkhttpOptions) {
-		val cacheOptionsValid =
-				opts.cacheSizeMb?.let { it > 0L } == true
-						&& opts.cacheDir != null
-						&& opts.cacheSubDirectory != null
+	private fun OkHttpClient.Builder.configureCache(opts: OkHttpCache) {
+		val cacheOptionsValid = opts.cacheSizeMb > 0L
 
 		if (cacheOptionsValid) {
-			val cacheSize: Long = opts.cacheSizeMb!!
+			val cacheSize: Long = opts.cacheSizeMb
 			val cache = Cache(
 					File(opts.cacheDir, opts.cacheSubDirectory),
 					cacheSize
@@ -74,12 +79,12 @@ object RetrofitFactory {
 		}
 	}
 
-	private fun OkHttpClient.Builder.configureEvents(opts: OkhttpOptions) {
+	private fun OkHttpClient.Builder.configureEvents(opts: OkHttpEvents) {
 		opts.eventListenerFactory?.let { eventListenerFactory(it) }
 		opts.eventListener?.let { eventListener(it) }
 	}
 
-	private fun OkHttpClient.Builder.configureConnection(opts: OkhttpOptions) {
+	private fun OkHttpClient.Builder.configureConnection(opts: OkHttpConnection) {
 		opts.connectionSpecs?.let { connectionSpecs(it) }
 		opts.connectionPool?.let { connectionPool(it) }
 		opts.dns?.let { dns(it) }
@@ -95,7 +100,7 @@ object RetrofitFactory {
 	}
 
 	private fun OkHttpClient.Builder.configureInterceptors(opts: OkhttpOptions) {
-		opts.interceptors?.forEach {
+		opts.typedInterceptors?.forEach {
 			when (it.type) {
 				InterceptorType.INTERCEPTOR         -> addInterceptor(it.interceptor)
 				InterceptorType.NETWORK_INTERCEPTOR -> addNetworkInterceptor(it.interceptor)
@@ -103,7 +108,7 @@ object RetrofitFactory {
 		}
 	}
 
-	private fun OkHttpClient.Builder.configureLogging(opts: OkhttpOptions) {
+	private fun OkHttpClient.Builder.configureLogging(opts: OkHttpLogging) {
 		val loggingInterceptor = HttpLoggingInterceptor()
 		if (opts.logEnabled)
 			loggingInterceptor.level = opts.logLevel

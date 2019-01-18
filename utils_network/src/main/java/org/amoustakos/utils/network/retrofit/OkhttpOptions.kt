@@ -9,23 +9,36 @@ import java.util.concurrent.TimeUnit
  * Class used to provide arguments to [RetrofitFactory.getHttpClient]
  */
 data class OkhttpOptions (
-        // Debug
+		val logging: OkHttpLogging,
+		val cache: OkHttpCache? = null,
+		val authentication: OkHttpAuthentication? = null,
+		val connection: OkHttpConnection? = null,
+		val events: OkHttpEvents? = null,
+		val typedInterceptors: List<TypedInterceptor>? = null
+)
+
+
+
+
+
+
+data class OkHttpLogging(
 		val logEnabled: Boolean,
-		val logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY,
+		val logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY
+)
 
-        // Caching
-		val cacheSizeMb: Long? = null,
-		val cacheDir: File? = null,
-		val cacheSubDirectory: String? = null,
+data class OkHttpCache(
+		val cacheSizeMb: Long,
+		val cacheDir: File,
+		val cacheSubDirectory: String
+)
 
-		// Authentication
+data class OkHttpAuthentication(
 		val authenticator: Authenticator? = null,
-		val certificatePinner: CertificatePinner? = null,
+		val certificatePinner: CertificatePinner? = null
+)
 
-		// DNS
-		val dns: Dns? = null,
-
-        // Connection options
+data class OkHttpConnection(
 		val connectTimeout: Long? = null,
 		val readTimeout: Long? = null,
 		val writeTimeout: Long? = null,
@@ -35,21 +48,19 @@ data class OkhttpOptions (
 		val dispatcher: Dispatcher? = null,
 		val cookieJar: CookieJar? = null,
 		val connectionPool: ConnectionPool? = null,
-
-		// Events
-		val eventListener: EventListener? = null,
-		val eventListenerFactory: EventListener.Factory? = null,
-
-        // Interceptors
-		val interceptors: List<InterceptorWithType>? = null
+		val dns: Dns? = null
 )
 
+data class OkHttpEvents(
+		val eventListener: EventListener? = null,
+		val eventListenerFactory: EventListener.Factory? = null
+)
 
 enum class InterceptorType {
 	INTERCEPTOR, NETWORK_INTERCEPTOR
 }
 
-data class InterceptorWithType(
+data class TypedInterceptor(
 		val type: InterceptorType,
 		val interceptor: Interceptor
 )
