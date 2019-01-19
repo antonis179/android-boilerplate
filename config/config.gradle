@@ -70,7 +70,8 @@ android {
 			shrinkResources false
 
 			signingConfig signingConfigs.release
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			proguardFiles getDefaultProguardFile('proguard-android.txt'),
+					"$project.rootDir/config/proguard-rules.pro"
 		}
 	}
 
