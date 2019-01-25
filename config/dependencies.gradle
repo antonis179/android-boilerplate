@@ -37,7 +37,7 @@ project.ext {
 
 	plugin_versions = [
 			android                 : '3.3.0',
-			kotlin                  : '1.3.11',
+			kotlin                  : '1.3.20',
 			realm                   : '5.9.0',
 			firebase                : '4.2.0',
 			firebase_performance    : '1.1.5',
@@ -141,7 +141,6 @@ project.ext {
 			play_gcm            : "com.google.android.gms:play-services-gcm:${lib_versions.play_services}",
 			play_maps           : "com.google.android.gms:play-services-maps:${lib_versions.play_services}",
 			play_location       : "com.google.android.gms:play-services-location:${lib_versions.play_services}",
-			play_awareness      : "com.google.android.gms:play-services-awareness:${lib_versions.play_services}",
 	]
 
 	libs_firebase = [

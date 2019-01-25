@@ -1,11 +1,11 @@
-package org.amoustakos.boilerplate.injection.annotations.scopes
+package org.amoustakos.boilerplate.di.annotations.scopes
 
 import javax.inject.Scope
 
 
 /**
  * A scoping annotation to permit dependencies conform to the life of the
- * [org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent]
+ * [org.amoustakos.boilerplate.di.component.ConfigPersistentComponent]
  */
 @Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)

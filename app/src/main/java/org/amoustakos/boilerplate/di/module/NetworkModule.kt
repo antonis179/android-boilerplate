@@ -1,10 +1,10 @@
-package org.amoustakos.boilerplate.injection.module
+package org.amoustakos.boilerplate.di.module
 
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import org.amoustakos.boilerplate.BuildConfig
-import org.amoustakos.boilerplate.injection.annotations.network.*
+import org.amoustakos.boilerplate.di.annotations.network.*
 import org.amoustakos.boilerplate.net.NetworkConfigFactory
 import org.amoustakos.utils.network.retrofit.OkhttpOptions
 import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions

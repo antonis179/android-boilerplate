@@ -1,12 +1,12 @@
-package org.amoustakos.boilerplate.injection.annotations.network
+package org.amoustakos.boilerplate.di.annotations.network
 
 import javax.inject.Qualifier
 
 
 @Qualifier
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-annotation class DefaultOkHttpClient
+annotation class DefaultRetrofitEngine
 
 @Qualifier
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-annotation class DefaultOkHttpOptions
+annotation class DefaultRetrofitOptions

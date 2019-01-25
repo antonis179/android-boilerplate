@@ -7,7 +7,7 @@ import io.realm.RealmResults
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.ID
 import org.amoustakos.boilerplate.examples.io.local.models.ExampleModel.Column.NAME
-import org.amoustakos.boilerplate.injection.annotations.realm.DefaultRealmConfig
+import org.amoustakos.boilerplate.di.annotations.realm.DefaultRealmConfig
 import org.amoustakos.boilerplate.io.dao.base.BaseDao
 import org.amoustakos.utils.android.rx.RxUtil
 

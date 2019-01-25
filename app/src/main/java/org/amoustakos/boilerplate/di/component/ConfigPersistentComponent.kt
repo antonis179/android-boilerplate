@@ -1,11 +1,11 @@
-package org.amoustakos.boilerplate.injection.component
+package org.amoustakos.boilerplate.di.component
 
 
 import dagger.Component
-import org.amoustakos.boilerplate.injection.annotations.scopes.ConfigPersistent
-import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
-import org.amoustakos.boilerplate.injection.module.injectors.DialogModule
-import org.amoustakos.boilerplate.injection.module.injectors.FragmentModule
+import org.amoustakos.boilerplate.di.annotations.scopes.ConfigPersistent
+import org.amoustakos.boilerplate.di.module.injectors.ActivityModule
+import org.amoustakos.boilerplate.di.module.injectors.DialogModule
+import org.amoustakos.boilerplate.di.module.injectors.FragmentModule
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 
 /**

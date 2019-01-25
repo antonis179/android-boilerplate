@@ -1,10 +1,10 @@
-package org.amoustakos.boilerplate.injection.module
+package org.amoustakos.boilerplate.di.module
 
 import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
+import org.amoustakos.boilerplate.di.annotations.context.ApplicationContext
 
 /**
  * Provide application-level dependencies.

@@ -1,10 +1,9 @@
-package org.amoustakos.boilerplate.injection.component
+package org.amoustakos.boilerplate.di.component
 
 
-import androidx.fragment.app.Fragment
 import dagger.Subcomponent
-import org.amoustakos.boilerplate.injection.annotations.scopes.PerActivity
-import org.amoustakos.boilerplate.injection.module.injectors.FragmentModule
+import org.amoustakos.boilerplate.di.annotations.scopes.PerActivity
+import org.amoustakos.boilerplate.di.module.injectors.FragmentModule
 
 /**
  * This component inject dependencies to all Fragments across the application

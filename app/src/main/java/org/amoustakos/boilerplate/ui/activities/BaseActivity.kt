@@ -2,14 +2,13 @@ package org.amoustakos.boilerplate.ui.activities
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.util.LongSparseArray
 import org.amoustakos.boilerplate.BoilerplateApplication
-import org.amoustakos.boilerplate.injection.component.ActivityComponent
-import org.amoustakos.boilerplate.injection.component.ConfigPersistentComponent
-import org.amoustakos.boilerplate.injection.component.DaggerConfigPersistentComponent
-import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
+import org.amoustakos.boilerplate.di.component.ActivityComponent
+import org.amoustakos.boilerplate.di.component.ConfigPersistentComponent
+import org.amoustakos.boilerplate.di.component.DaggerConfigPersistentComponent
+import org.amoustakos.boilerplate.di.module.injectors.ActivityModule
 import org.amoustakos.boilerplate.view.base.IActivityViewComponent
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong

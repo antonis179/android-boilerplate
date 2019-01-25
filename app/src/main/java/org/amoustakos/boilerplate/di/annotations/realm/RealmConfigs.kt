@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.injection.annotations.realm
+package org.amoustakos.boilerplate.di.annotations.realm
 
 import javax.inject.Qualifier
 

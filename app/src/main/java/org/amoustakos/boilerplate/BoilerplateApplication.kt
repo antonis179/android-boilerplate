@@ -3,11 +3,11 @@ package org.amoustakos.boilerplate
 import android.app.Application
 import android.content.Context
 
-import org.amoustakos.boilerplate.injection.component.ApplicationComponent
-import org.amoustakos.boilerplate.injection.component.DaggerApplicationComponent
-import org.amoustakos.boilerplate.injection.module.ApplicationModule
-import org.amoustakos.boilerplate.injection.module.DBModule
-import org.amoustakos.boilerplate.injection.module.NetworkModule
+import org.amoustakos.boilerplate.di.component.ApplicationComponent
+import org.amoustakos.boilerplate.di.component.DaggerApplicationComponent
+import org.amoustakos.boilerplate.di.module.ApplicationModule
+import org.amoustakos.boilerplate.di.module.DBModule
+import org.amoustakos.boilerplate.di.module.NetworkModule
 import timber.log.Timber
 
 

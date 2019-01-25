@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext
+import org.amoustakos.boilerplate.di.annotations.context.ActivityContext
 
 
 /**

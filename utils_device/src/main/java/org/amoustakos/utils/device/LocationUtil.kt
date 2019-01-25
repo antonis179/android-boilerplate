@@ -2,13 +2,13 @@ package org.amoustakos.utils.device
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import android.content.Context
 import android.location.Location
 import android.os.Looper
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.location.*
 import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
@@ -18,13 +18,13 @@ import java.lang.ref.WeakReference
 class LocationUtil : LocationCallback, DefaultLifecycleObserver {
 
 	// Defaults
-	var mUpdateInterval: Long = 120000
-	var mFastestUpdateInterval = mUpdateInterval / 2
-	var mRequestPriority = LocationRequest.PRIORITY_LOW_POWER
+	private var mUpdateInterval: Long = 120000
+	private var mFastestUpdateInterval = mUpdateInterval / 2
+	private var mRequestPriority = LocationRequest.PRIORITY_LOW_POWER
 
 	//Publishers
-	val locationSubject = PublishSubject.create<Location>()!!
-	val availabilitySubject = PublishSubject.create<LocationAvailability?>()!!
+	private val locationSubject = PublishSubject.create<Location>()
+	private val availabilitySubject = PublishSubject.create<LocationAvailability?>()
 
 	//Client
 	private var mLocationRequest: LocationRequest? = null

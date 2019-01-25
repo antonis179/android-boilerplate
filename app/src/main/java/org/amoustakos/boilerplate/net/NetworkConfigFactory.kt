@@ -2,8 +2,8 @@ package org.amoustakos.boilerplate.net
 
 import com.google.gson.Gson
 import io.reactivex.schedulers.Schedulers
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultOkHttpOptions
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitOptions
+import org.amoustakos.boilerplate.di.annotations.network.DefaultOkHttpOptions
+import org.amoustakos.boilerplate.di.annotations.network.DefaultRetrofitOptions
 import org.amoustakos.utils.network.retrofit.OkHttpConnection
 import org.amoustakos.utils.network.retrofit.OkHttpLogging
 import org.amoustakos.utils.network.retrofit.OkhttpOptions

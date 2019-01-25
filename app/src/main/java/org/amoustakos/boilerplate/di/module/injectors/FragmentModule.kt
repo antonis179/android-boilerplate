@@ -1,10 +1,9 @@
-package org.amoustakos.boilerplate.injection.module.injectors
+package org.amoustakos.boilerplate.di.module.injectors
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import dagger.Module
 import dagger.Provides
-import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext
+import org.amoustakos.boilerplate.di.annotations.context.ActivityContext
 
 
 @Module

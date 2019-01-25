@@ -1,12 +1,12 @@
-package org.amoustakos.boilerplate.injection.component
+package org.amoustakos.boilerplate.di.component
 
 
 import android.app.Activity
 import dagger.Subcomponent
 import org.amoustakos.boilerplate.examples.ui.activities.ListingActivity
-import org.amoustakos.boilerplate.injection.annotations.context.ActivityContext
-import org.amoustakos.boilerplate.injection.annotations.scopes.PerActivity
-import org.amoustakos.boilerplate.injection.module.injectors.ActivityModule
+import org.amoustakos.boilerplate.di.annotations.context.ActivityContext
+import org.amoustakos.boilerplate.di.annotations.scopes.PerActivity
+import org.amoustakos.boilerplate.di.module.injectors.ActivityModule
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 
 /**

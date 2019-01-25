@@ -2,7 +2,7 @@ package org.amoustakos.boilerplate
 
 import android.content.Context
 import io.realm.Realm
-import org.amoustakos.boilerplate.injection.annotations.context.ApplicationContext
+import org.amoustakos.boilerplate.di.annotations.context.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 

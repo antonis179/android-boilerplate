@@ -1,4 +1,4 @@
-package org.amoustakos.boilerplate.injection.annotations.context
+package org.amoustakos.boilerplate.di.annotations.context
 
 import javax.inject.Qualifier
 

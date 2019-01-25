@@ -5,10 +5,10 @@ import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
-import org.amoustakos.boilerplate.injection.annotations.network.DefaultRetrofitEngine
-import org.amoustakos.boilerplate.injection.annotations.network.IDefaultDecoratorPolicyApplier
-import org.amoustakos.boilerplate.injection.annotations.network.IDefaultPostPolicyApplier
-import org.amoustakos.boilerplate.injection.annotations.network.IDefaultPrePolicyApplier
+import org.amoustakos.boilerplate.di.annotations.network.DefaultRetrofitEngine
+import org.amoustakos.boilerplate.di.annotations.network.IDefaultDecoratorPolicyApplier
+import org.amoustakos.boilerplate.di.annotations.network.IDefaultPostPolicyApplier
+import org.amoustakos.boilerplate.di.annotations.network.IDefaultPrePolicyApplier
 import org.amoustakos.utils.network.http.Headers.HEADER_CONTENT_TYPE
 import org.amoustakos.utils.network.http.Headers.MIME_JSON
 import org.amoustakos.utils.network.http.HttpStatusCode
