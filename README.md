@@ -168,3 +168,4 @@ So you liked my code and want to buy me coffee and pizza? That's awesome!
 
 - BTC: **19rqnHTiZNxeXVSCB2cckJeC92rm23nNrc**
 - Paypal: **<https://www.paypal.me/neo179>**
+- Buy me a coffee: **<https://www.buymeacoffee.com/AoCpEcg>**
