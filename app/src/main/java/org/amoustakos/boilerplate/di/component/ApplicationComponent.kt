@@ -14,9 +14,9 @@ import org.amoustakos.boilerplate.di.module.DBModule
 import org.amoustakos.boilerplate.di.module.NetworkModule
 import org.amoustakos.utils.network.retrofit.OkhttpOptions
 import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPostPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPrePolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PostPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PrePolicyApplier
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -68,12 +68,12 @@ interface ApplicationComponent {
 	// =========================================================================================
 
 	@IDefaultPrePolicyApplier
-	fun defaultPrePolicyApplier(): IPrePolicyApplier
+	fun defaultPrePolicyApplier(): PrePolicyApplier
 
 	@IDefaultPostPolicyApplier
-	fun defaultPostPolicyApplier(): IPostPolicyApplier
+	fun defaultPostPolicyApplier(): PostPolicyApplier
 
 	@IDefaultDecoratorPolicyApplier
-	fun defaultDecoratorPolicyApplier(): IDecoratorPolicyApplier
+	fun defaultDecoratorPolicyApplier(): DecoratorPolicyApplier
 
 }

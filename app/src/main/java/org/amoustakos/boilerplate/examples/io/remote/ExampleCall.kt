@@ -14,10 +14,10 @@ import org.amoustakos.utils.network.http.Headers.MIME_JSON
 import org.amoustakos.utils.network.http.HttpStatusCode
 import org.amoustakos.utils.network.http.models.NetResult
 import org.amoustakos.utils.network.retrofit.RetrofitFactory
-import org.amoustakos.utils.network.retrofit.plugins.base.ICall
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPostPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPrePolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.base.Call
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PostPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PrePolicyApplier
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.GET
@@ -28,13 +28,13 @@ class ExampleCall @Inject constructor(
 		@DefaultRetrofitEngine
 		private val engine: Retrofit,
 		@IDefaultPrePolicyApplier
-		override val prePoliciesApplier: IPrePolicyApplier,
+		override val prePoliciesApplier: PrePolicyApplier,
 		@IDefaultPostPolicyApplier
-		override val postPoliciesApplier: IPostPolicyApplier,
+		override val postPoliciesApplier: PostPolicyApplier,
 		@IDefaultDecoratorPolicyApplier
-		override val decoratorPoliciesApplier: IDecoratorPolicyApplier
+		override val decoratorPoliciesApplier: DecoratorPolicyApplier
 ) :
-		ICall.NoRequest<JsonObject, JsonObject>
+		Call.NoRequest<JsonObject, JsonObject>
 {
 
 	private var service: ApiService? = null

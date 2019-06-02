@@ -3,7 +3,7 @@ package org.amoustakos.boilerplate.di.component
 
 import android.app.Activity
 import dagger.Subcomponent
-import org.amoustakos.boilerplate.examples.ui.activities.ListingActivity
+import org.amoustakos.boilerplate.examples.usecases.listing.ListingActivity
 import org.amoustakos.boilerplate.di.annotations.context.ActivityContext
 import org.amoustakos.boilerplate.di.annotations.scopes.PerActivity
 import org.amoustakos.boilerplate.di.module.injectors.ActivityModule

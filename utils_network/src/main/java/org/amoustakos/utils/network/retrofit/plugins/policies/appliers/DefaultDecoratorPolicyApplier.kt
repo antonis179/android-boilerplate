@@ -1,10 +1,10 @@
 package org.amoustakos.utils.network.retrofit.plugins.policies.appliers
 
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicy
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicy
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicyApplier
 
-class DefaultDecoratorPolicyApplier : IDecoratorPolicyApplier {
+class DefaultDecoratorPolicyApplier : DecoratorPolicyApplier {
 
-	override fun decorators(): List<IDecoratorPolicy>? = null
+	override fun decorators(): List<DecoratorPolicy>? = null
 
 }

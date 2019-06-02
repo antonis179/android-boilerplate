@@ -9,9 +9,9 @@ import org.amoustakos.boilerplate.net.NetworkConfigFactory
 import org.amoustakos.utils.network.retrofit.OkhttpOptions
 import org.amoustakos.utils.network.retrofit.RetrofitEngineOptions
 import org.amoustakos.utils.network.retrofit.RetrofitFactory
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPostPolicyApplier
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IPrePolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PostPolicyApplier
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.PrePolicyApplier
 import org.amoustakos.utils.network.retrofit.plugins.policies.appliers.DefaultDecoratorPolicyApplier
 import org.amoustakos.utils.network.retrofit.plugins.policies.appliers.DefaultPostPolicyApplier
 import org.amoustakos.utils.network.retrofit.plugins.policies.appliers.DefaultPrePolicyApplier
@@ -58,17 +58,17 @@ object NetworkModule {
 	@Provides
 	@Singleton
 	@IDefaultPrePolicyApplier
-	internal fun provideDefaultPrePolicyApplier(): IPrePolicyApplier = DefaultPrePolicyApplier()
+	internal fun provideDefaultPrePolicyApplier(): PrePolicyApplier = DefaultPrePolicyApplier()
 
 	@Provides
 	@Singleton
 	@IDefaultPostPolicyApplier
-	internal fun provideDefaultPostPolicyApplier(): IPostPolicyApplier = DefaultPostPolicyApplier()
+	internal fun provideDefaultPostPolicyApplier(): PostPolicyApplier = DefaultPostPolicyApplier()
 
 	@Provides
 	@Singleton
 	@IDefaultDecoratorPolicyApplier
-	internal fun provideDefaultDecoratorPolicyApplier(): IDecoratorPolicyApplier =
+	internal fun provideDefaultDecoratorPolicyApplier(): DecoratorPolicyApplier =
 			DefaultDecoratorPolicyApplier()
 
 }

@@ -7,8 +7,8 @@ apply plugin: applyPlugins.kotlinAndroidExtentions
 
 android {
 	defaultConfig {
-		versionCode 1000
-		versionName "0.1"
+		versionCode 1001
+		versionName "0.1.1"
 	}
 
 	libraryVariants.all { variant ->
@@ -25,10 +25,9 @@ dependencies {
 
 	kapt annotation_processors.lifecycle
 
-	implementation libs_support.support_v4
 	implementation libs_support.recyclerview_v7
 	implementation libs_support.support_design
-	implementation libs_support.lifecycle
+	implementation libs_support.lifecycle_extensions
 	implementation libs_support.lifecycle_java8
 
 	implementation libs_logging.values()

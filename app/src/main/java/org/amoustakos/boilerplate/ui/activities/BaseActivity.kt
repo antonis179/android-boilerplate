@@ -1,15 +1,15 @@
 package org.amoustakos.boilerplate.ui.activities
 
 import android.os.Bundle
+import android.util.LongSparseArray
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import android.util.LongSparseArray
 import org.amoustakos.boilerplate.BoilerplateApplication
 import org.amoustakos.boilerplate.di.component.ActivityComponent
 import org.amoustakos.boilerplate.di.component.ConfigPersistentComponent
 import org.amoustakos.boilerplate.di.component.DaggerConfigPersistentComponent
 import org.amoustakos.boilerplate.di.module.injectors.ActivityModule
-import org.amoustakos.boilerplate.view.base.IActivityViewComponent
+import org.amoustakos.boilerplate.view.base.ActivityViewComponent
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 
@@ -26,11 +26,11 @@ abstract class BaseActivity : AppCompatActivity() {
 //    protected val rootView: View
 //        get() = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0)
 
-    protected fun setupViewComponents(components: List<IActivityViewComponent>) {
+    protected fun setupViewComponents(components: List<ActivityViewComponent>) {
 	    components.forEach { setupViewComponent(it) }
     }
 
-	protected fun setupViewComponent(component: IActivityViewComponent) {
+	protected fun setupViewComponent(component: ActivityViewComponent) {
 		component.setup(this)
 	}
 
@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         makeID(savedInstanceState)
-        makeComponents(mActivityId)
+        makeComponent(mActivityId)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -67,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity() {
         mActivityId = savedInstanceState?.getLong(KEY_ACTIVITY_ID) ?: NEXT_ID.getAndIncrement()
     }
 
-    private fun makeComponents(activityID: Long) {
+    private fun makeComponent(activityID: Long) {
         val configPersistentComponent: ConfigPersistentComponent
         val index = sComponentsMap.indexOfKey(activityID)
 
@@ -103,9 +103,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 throw IllegalStateException("Activity component not instantiated")
     }
 
-    fun application(): BoilerplateApplication {
-        return BoilerplateApplication[this]
-    }
+    fun application() = BoilerplateApplication[this]
 
     companion object {
         private const val KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID"

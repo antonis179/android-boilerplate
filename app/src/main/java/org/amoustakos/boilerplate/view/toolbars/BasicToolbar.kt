@@ -1,38 +1,52 @@
 package org.amoustakos.boilerplate.view.toolbars
 
 import android.app.Activity
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import org.amoustakos.boilerplate.view.base.IActivityViewComponent
-import org.amoustakos.boilerplate.view.toolbars.base.IToolbarView
+import org.amoustakos.boilerplate.R
+import org.amoustakos.boilerplate.view.base.ActivityViewComponent
+import org.amoustakos.boilerplate.view.toolbars.base.ToolbarView
+import java.lang.ref.WeakReference
 
-class BasicToolbar(val id: Int): IActivityViewComponent, IToolbarView {
+open class BasicToolbar(private val id: Int) : ActivityViewComponent, ToolbarView {
 
-	private var toolbar: Toolbar? = null
+	operator fun invoke() = get()
+
+	protected var activity: WeakReference<AppCompatActivity?> = WeakReference(null)
+	protected var toolbar: Toolbar? = null
+	protected var title: TextView? = null
 
 
 	override fun setup(activity: Activity) {
 		toolbar = activity.findViewById(id)
-	}
+		title = toolbar?.findViewById(R.id.tvToolbarTitle)
 
+		setAsActionbar(activity as AppCompatActivity)
+		this.activity = WeakReference(activity)
+	}
 
 
 	override fun get() = toolbar
 
 	override fun setAsActionbar(activity: AppCompatActivity) {
-		if (toolbar != null)
-			activity.setSupportActionBar(toolbar)
+		toolbar?.let { activity.setSupportActionBar(it) }
+	}
+
+	override fun toggleBackButton(enabled: Boolean) {
+		activity.get()?.supportActionBar?.setDisplayHomeAsUpEnabled(enabled)
+		activity.get()?.supportActionBar?.setDisplayShowHomeEnabled(enabled)
 	}
 
 	override fun setTitle(title: String) {
-		toolbar?.title = title
+		this.title?.text = title
 	}
 
 	override fun setTitle(title: CharSequence) {
-		toolbar?.title = title
+		this.title?.text = title
 	}
 
 	override fun setTitle(titleResource: Int) {
-		toolbar?.setTitle(titleResource)
+		this.title?.setText(titleResource)
 	}
 }

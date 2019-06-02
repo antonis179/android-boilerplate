@@ -1,6 +1,7 @@
 package org.amoustakos.boilerplate.di.component
 
 
+import androidx.fragment.app.Fragment
 import dagger.Subcomponent
 import org.amoustakos.boilerplate.di.annotations.scopes.PerActivity
 import org.amoustakos.boilerplate.di.module.injectors.FragmentModule
@@ -14,6 +15,6 @@ import org.amoustakos.boilerplate.di.module.injectors.FragmentModule
 ])
 interface FragmentComponent {
 
-	fun inject(fragment: androidx.fragment.app.Fragment)
+	fun inject(fragment: Fragment)
 
 }

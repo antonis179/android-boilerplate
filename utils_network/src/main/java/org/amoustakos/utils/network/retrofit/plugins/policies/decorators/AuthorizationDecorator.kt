@@ -1,13 +1,13 @@
 package org.amoustakos.utils.network.retrofit.plugins.policies.decorators
 
 import io.reactivex.Observable
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.IDecoratorPolicy
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.base.DecoratorPolicy
 
 class AuthorizationDecorator(
 		private val isAuthorized: () -> Boolean,
 		private val isAuthError: (t: Throwable) -> Boolean,
 		private val authorize: () -> Observable<*>
-) : IDecoratorPolicy {
+) : DecoratorPolicy {
 
 
 	override fun <Model: Any> wrap(obs: Observable<Model>): Observable<Model> {

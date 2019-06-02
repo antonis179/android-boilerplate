@@ -4,14 +4,14 @@ import io.reactivex.ObservableTransformer
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.amoustakos.utils.network.http.Headers
-import org.amoustakos.utils.network.retrofit.plugins.interfaces.policies.pre.IErrorReturnPolicy
+import org.amoustakos.utils.network.retrofit.plugins.interfaces.policies.pre.ErrorReturnPolicy
 import retrofit2.HttpException
 import retrofit2.Response
 
 
 
 @Suppress("UNCHECKED_CAST")
-class DefaultJsonErrorReturnPolicy: IErrorReturnPolicy {
+class DefaultJsonErrorReturnPolicy: ErrorReturnPolicy {
 
 	private val emptyBody = "{}".intern()
 

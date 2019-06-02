@@ -23,7 +23,7 @@
 		<!-- Activities -->
 
 		<activity
-			android:name=".examples.ui.activities.ListingActivity"
+			android:name=".examples.usecases.listing.ListingActivity"
 			android:exported="true"
 			android:label="@string/app_name"
 			android:launchMode="singleTask"

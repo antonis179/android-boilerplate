@@ -4,15 +4,11 @@
 
 ## Coming soon ##
 
-- Networking: All available options will be added to okhttp/retrofit option classes
 - ViewModel / LiveData / WorkManager
 - NetworkCapabilities utility
 - Realm restructuring
 - Proguard / Gradle restructuring
-
-### Frozen due to unresolved bugs ###
-- AndroidX migration
-
+- Dagger to be replaced by Koin
 
 ## Build notes ##
 
@@ -160,7 +156,7 @@ MVP is used as the architecture.
 
 To check available dependency updates you can run:
 ```
-gradlew dependencyUpdates
+./gradlew dependencyUpdates
 ```
 
 More info [here](https://github.com/ben-manes/gradle-versions-plugin)
@@ -170,5 +166,5 @@ More info [here](https://github.com/ben-manes/gradle-versions-plugin)
 
 So you liked my code and want to buy me coffee and pizza? That's awesome!
 
-- BTC: **1JaV93dtuy13gw4u1wHeDvnzfJ2oAGFprF**
-- Paypal: **https://www.paypal.me/neo179**
+- BTC: **19rqnHTiZNxeXVSCB2cckJeC92rm23nNrc**
+- Paypal: **<https://www.paypal.me/neo179>**

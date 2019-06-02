@@ -1,3 +1,7 @@
+# 0.3.1 - 02/06/2019 #
+- Updated dependencies
+- Gradle restructuring to expose methods to other gradle files
+
 # 0.3.0 - 09/01/2019 #
 - Restructured networking. Again...!
 - Migrated to AndroidX

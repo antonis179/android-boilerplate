@@ -12,8 +12,12 @@ apply plugin: applyPlugins.fabric
 android {
 	defaultConfig {
 		applicationId "org.amoustakos.boilerplate"
-		versionCode 3000
-		versionName "0.3.0"
+	}
+
+	buildTypes {
+		release {
+			shrinkResources true
+		}
 	}
 }
 
