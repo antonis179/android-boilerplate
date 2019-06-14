@@ -1,1 +1,9 @@
 include ':app', ':utils_device', ':utils_image', ':utils_network', ':utils_android', ':utils_analytics', ':utils_io'
+
+
+project(':utils_device').projectDir = new File(rootDir, 'utils/utils_device')
+project(':utils_image').projectDir = new File(rootDir, 'utils/utils_image')
+project(':utils_network').projectDir = new File(rootDir, 'utils/utils_network')
+project(':utils_android').projectDir = new File(rootDir, 'utils/utils_android')
+project(':utils_analytics').projectDir = new File(rootDir, 'utils/utils_analytics')
+project(':utils_io').projectDir = new File(rootDir, 'utils/utils_io')

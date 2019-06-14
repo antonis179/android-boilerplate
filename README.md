@@ -7,7 +7,6 @@
 - ViewModel / LiveData / WorkManager
 - NetworkCapabilities utility
 - Realm restructuring
-- Proguard / Gradle restructuring
 - Dagger to be replaced by Koin
 
 ## Build notes ##
