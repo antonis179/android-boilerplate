@@ -1,8 +1,9 @@
 package org.amoustakos.utils.network.retrofit.plugins.policies.pre
 
 import io.reactivex.ObservableTransformer
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.amoustakos.utils.network.http.Headers
 import org.amoustakos.utils.network.retrofit.plugins.interfaces.policies.pre.ErrorReturnPolicy
 import retrofit2.HttpException
@@ -32,6 +33,6 @@ class DefaultJsonErrorReturnPolicy: ErrorReturnPolicy {
 			Response.error(500, emptyJSONResponseBody())
 
 	private fun emptyJSONResponseBody(): ResponseBody =
-			ResponseBody.create(MediaType.parse(Headers.MIME_JSON), emptyBody)
+			emptyBody.toResponseBody(Headers.MIME_JSON.toMediaTypeOrNull())
 
 }

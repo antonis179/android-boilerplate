@@ -1,7 +1,7 @@
 package org.amoustakos.boilerplate.examples.usecases.listing
 
-import androidx.lifecycle.Lifecycle
 import android.content.pm.PackageManager
+import androidx.lifecycle.Lifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +20,7 @@ class ActivityListingPresenter(
 		private val basePackage: String,
 		private val pm: PackageManager,
 		lifecycle: Lifecycle
-): BasePresenter<ActivityListingView>(view, lifecycle), ActivityListingActions {
+): BasePresenter<ActivityListingView>(view, lifecycle) {
 
 
 	private val activities: List<Class<out BaseActivity>>
@@ -29,7 +29,7 @@ class ActivityListingPresenter(
 
 	override fun init() {}
 
-	override fun load() {
+	fun load() {
 		Observable.just {}
 			.disposeBy(lifecycle.onDestroy)
 			.observeOn(Schedulers.computation())

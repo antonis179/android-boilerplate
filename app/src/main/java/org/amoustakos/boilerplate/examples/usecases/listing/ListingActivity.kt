@@ -20,14 +20,15 @@ import java.util.*
 class ListingActivity : BaseActivity(), ActivityListingView {
 
 	private var isDoubleBackToExitPressedOnce = false
-	private var presenter: ActivityListingActions? = null
+	private var presenter: ActivityListingPresenter? = null
 
 	private lateinit var adapter: ActivityListingAdapter
 
 	private val toolbar = BasicToolbar(R.id.toolbar)
 
-	@LayoutRes override fun layoutId() = R.layout.activity_listing
 
+
+	@LayoutRes override fun layoutId() = R.layout.activity_listing
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
