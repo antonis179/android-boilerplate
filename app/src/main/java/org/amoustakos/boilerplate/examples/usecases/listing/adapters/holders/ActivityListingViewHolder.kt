@@ -1,11 +1,11 @@
-package org.amoustakos.boilerplate.examples.usecases.listing.holders
+package org.amoustakos.boilerplate.examples.usecases.listing.adapters.holders
 
 import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import org.amoustakos.boilerplate.R
-import org.amoustakos.boilerplate.examples.usecases.listing.models.ActivityListingModel
+import org.amoustakos.boilerplate.examples.usecases.listing.adapters.models.ActivityListingModel
 import org.amoustakos.boilerplate.view.holders.base.BaseViewHolder
 import org.amoustakos.boilerplate.view.models.base.PublisherItem
 

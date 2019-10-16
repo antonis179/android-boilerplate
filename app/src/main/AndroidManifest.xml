@@ -68,6 +68,14 @@
 			android:resource="@color/accent" />
 
 
+		<!-- Ads -->
+
+		<!-- AdMob-->
+<!--		<meta-data-->
+<!--			android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--			android:value="@string/admob_publisher"/>-->
+
+
 	</application>
 
 </manifest>

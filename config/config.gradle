@@ -18,16 +18,23 @@ project.ext {
 			release_alias_pwd: 'release.key.alias.password',
 
 			app_version      : 'app.version',
-			app_version_name : 'app.version.name'
+			app_version_name : 'app.version.name',
+
+			admob_publisher  : 'admob.publisher',
+			admob_banner     : 'admob.banner'
 	]
 
 	methods = [
 			getEnv                 : {
-				methods.getProperties("config.properties", false)
+				methods.getProperties("environment.properties", true)
 			},
 
 			getPasswords           : {
-				methods.getProperties("passwords.properties", true)
+				methods.getProperties("passwords.properties", false)
+			},
+
+			getAds                 : {
+				methods.getProperties("ads.properties", false)
 			},
 
 			getAttribute           : { Properties props, String key ->
@@ -41,11 +48,11 @@ project.ext {
 					throw new GradleException("Missing Attribute")
 			},
 
-			getProperties          : { String filename, Boolean sensitive ->
+			getProperties          : { String filename, Boolean fromRoot ->
 				Properties props = new Properties()
 				props.load(
 						new FileInputStream(
-								"${rootDir}${if (!sensitive) "/config/" else "/_SENSITIVE_HIDE_FROM_GIT_/"}${filename}"))
+								"${rootDir}${if (fromRoot) "/" else "/_SENSITIVE_HIDE_FROM_GIT_/"}${filename}"))
 				props
 			},
 
@@ -71,6 +78,24 @@ project.ext {
 				"${methods.getAttribute(props, "${key_config.app_version_name}")}"
 			}
 	]
+
+	ads = [
+			getAdmobPublisher: {
+				def props = project.ext.methods.getAds()
+				try {
+					return "${methods.getAttribute(props, "${key_config.admob_publisher}")}"
+				} catch (Exception ignored) {}
+				return ""
+			},
+
+			getAdmobBanner: { int footerNumber ->
+				def props = project.ext.methods.getAds()
+				try {
+					return "${methods.getAttribute(props, "${key_config.admob_banner}.$footerNumber")}"
+				} catch (Exception ignored) {}
+				return ""
+			}
+	]
 }
 
 
@@ -83,6 +108,10 @@ android {
 
 		minSdkVersion build_params.min_version
 		targetSdkVersion build_params.target_version
+
+		//AdMob
+		resValue "string", "admob_publisher", ads.getAdmobPublisher()
+//		resValue "string", "admob_footer_banner", ads.getAdmobBanner(1)
 	}
 
 	signingConfigs {

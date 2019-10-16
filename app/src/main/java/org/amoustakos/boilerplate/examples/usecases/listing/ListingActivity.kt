@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_listing.*
 import org.amoustakos.boilerplate.R
 import org.amoustakos.boilerplate.examples.usecases.listing.adapters.ActivityListingAdapter
-import org.amoustakos.boilerplate.examples.usecases.listing.models.ActivityListingModel
+import org.amoustakos.boilerplate.examples.usecases.listing.adapters.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.view.toolbars.BasicToolbar
 import java.util.*
@@ -25,7 +25,6 @@ class ListingActivity : BaseActivity(), ActivityListingView {
 	private lateinit var adapter: ActivityListingAdapter
 
 	private val toolbar = BasicToolbar(R.id.toolbar)
-
 
 
 	@LayoutRes override fun layoutId() = R.layout.activity_listing

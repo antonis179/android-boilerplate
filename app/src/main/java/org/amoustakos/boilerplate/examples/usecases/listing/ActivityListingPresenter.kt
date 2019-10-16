@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.amoustakos.boilerplate.examples.usecases.listing.models.ActivityListingModel
+import org.amoustakos.boilerplate.examples.usecases.listing.adapters.models.ActivityListingModel
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.ui.presenters.BasePresenter
 import org.amoustakos.utils.android.PackageManagerUtils.definedActivities

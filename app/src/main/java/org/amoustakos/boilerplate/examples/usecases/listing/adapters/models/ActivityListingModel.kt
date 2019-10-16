@@ -1,8 +1,8 @@
-package org.amoustakos.boilerplate.examples.usecases.listing.models
+package org.amoustakos.boilerplate.examples.usecases.listing.adapters.models
 
 import android.content.Context
 import android.view.ViewGroup
-import org.amoustakos.boilerplate.examples.usecases.listing.holders.ActivityListingViewHolder
+import org.amoustakos.boilerplate.examples.usecases.listing.adapters.holders.ActivityListingViewHolder
 import org.amoustakos.boilerplate.ui.activities.BaseActivity
 import org.amoustakos.boilerplate.view.models.base.BaseViewModel
 import org.amoustakos.boilerplate.view.models.base.PublisherItem

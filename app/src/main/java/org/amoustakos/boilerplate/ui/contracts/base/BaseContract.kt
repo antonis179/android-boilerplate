@@ -2,11 +2,11 @@ package org.amoustakos.boilerplate.ui.contracts.base
 
 import androidx.lifecycle.Lifecycle
 
-interface BasePresenterActions {
+interface BasePresenterContract {
 	fun init() {}
 
 	fun subscribeToLifecycle(lifecycle: Lifecycle)
 	fun unsubscribeFromLifecycle(lifecycle: Lifecycle)
 }
 
-interface BaseContractView
+interface BaseViewContract
