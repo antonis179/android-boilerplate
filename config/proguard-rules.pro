@@ -6,7 +6,7 @@
 #-renamesourcefileattribute SourceFile
 -optimizations code/removal/simple, code/removal/advanced, class/unboxing/enum
 -optimizationpasses 5
-#-dontobfuscate
+-dontobfuscate
 #-dontwarn **
 #-ignorewarnings
 
@@ -183,3 +183,7 @@
 ###Kotlin
 -dontwarn kotlin.reflect.jvm.**
 -keep class kotlin.jvm.internal.**
+
+###Material
+-keep class com.google.android.material.** { *; }
+-dontwarn com.google.android.material.**
