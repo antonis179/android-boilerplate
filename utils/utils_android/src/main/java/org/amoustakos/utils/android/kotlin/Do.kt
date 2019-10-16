@@ -1,25 +1,42 @@
 package org.amoustakos.utils.android.kotlin
 
+import timber.log.Timber
+
+/**
+ * Kotlin object that provides inline utility methods
+ * (e.g. Do exhaustive when(...) {...})
+ */
 object Do {
 
 	/**
-	 * Used to force exhaustive usage of 'when'.
+	 * Can be used to force exhaustive usage of 'when'.
+	 * When one or more cases are not handled the code will not compile.
 	 *
 	 * e.g. Do exhaustive when(sealedClass) {...}
 	 */
-	inline infix fun<reified T> exhaustive(any: T?) = any
-
+	inline infix fun <reified T> exhaustive(any: T?) = any
 
 	/**
-	 * Used to try/catch a block of code.
-	 * Will only catch errors extending [Exception]
+	 * Can be used to run a block of code "safely" inside a try catch method.
+	 * Only errors extending [Exception] are caught.
 	 */
-	inline infix fun<reified T> safe(run: () -> T): T? {
-		return try {
-			run()
+	inline infix fun <reified T> safe(any: () -> T) {
+		try {
+			any()
 		} catch (e: Exception) {
-			null
+			Timber.e(e)
 		}
 	}
 
+	/**
+	 * Can be used to run a block of code "safely" inside a try catch method.
+	 * Only errors extending [Exception] are caught.
+	 */
+	inline fun <reified T> safe(any: () -> T, onErrorExecute: (e: Exception) -> T): T {
+		return try {
+			any()
+		} catch (e: Exception) {
+			onErrorExecute(e)
+		}
+	}
 }
